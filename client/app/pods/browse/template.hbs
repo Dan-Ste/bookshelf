@@ -1,0 +1,14 @@
+{{one-way-search
+    value
+    update=(perform searchBooks)
+}}
+
+<ol>
+  {{#each searchBooks.lastSuccessful.value as |book|}}
+    <li>
+      {{book.title}}
+      {{book.name}}
+      <img src={{book.image}}>
+    </li>
+  {{/each}}
+</ol>

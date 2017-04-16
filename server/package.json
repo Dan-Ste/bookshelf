@@ -1,0 +1,12 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "app.js",
+  "license": "MIT",
+  "dependencies": {
+    "goodreads": "^0.1.0",
+    "koa": "^2.2.0",
+    "koa-body": "^1.6.0",
+    "koa-router": "next"
+  }
+}
