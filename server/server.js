@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
 const config = require('./config/default');
 const User = require('./app/models/user');
 
-mongoose.connect('mongodb://localhost:27017/bookshelf');
+mongoose.connect(config.mongoose.uri);
 
 app.use(cors());
 app.use(logger());
@@ -84,4 +84,4 @@ app
   .use(router.routes())
   .use(router.allowedMethods());
 
-app.listen(3000, () => console.log('Server listening on', 3000))
+app.listen(config.port, () => console.log('Server listening on', config.port))
