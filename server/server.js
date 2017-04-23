@@ -26,7 +26,7 @@ router.post('/token', async(ctx, next) => {
         "access_token": "secret token!",
         "account_id": 1
       });
-      
+
     } else {
       ctx.status = 400;
       ctx.body = JSON.stringify({
@@ -35,6 +35,19 @@ router.post('/token', async(ctx, next) => {
     }
   }
 })
+
+router.post('/revoke', function(req, res) {
+  ctx.body = ctx.request.body;
+
+  if (ctx.body.token_type_hint === 'access_token' || ctx.body.token_type_hint === 'refresh_token') {
+    ctx.status = 200;
+  } else {
+    ctx.status = 400;
+    ctx.body = JSON.stringify({
+      "error": "unsupported_token_type"
+    });
+  }
+});
 
 router.get('/searchBooks', async(ctx, next) => {
   const term = ctx.query.term;
