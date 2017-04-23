@@ -68,7 +68,13 @@ router.get('/searchBooks', async(ctx, next) => {
   })
 
   await promise.then((json) => {
-    ctx.body = json;
+    ctx.body = JSON.stringify(json.GoodreadsResponse.search[0].results[0].work.map((work) => {
+      return {
+        title: work.best_book[0].title[0],
+        image: work.best_book[0].image_url[0],
+        author: work.best_book[0].author[0].name[0]
+      };
+    }));
   })
 
   await next();

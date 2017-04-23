@@ -3,12 +3,15 @@
     update=(perform searchBooks)
 }}
 
-<ol>
-  {{#each searchBooks.lastSuccessful.value as |book|}}
-    <li>
-      {{book.title}}
-      {{book.name}}
-      <img src={{book.image}}>
-    </li>
-  {{/each}}
-</ol>
+{{#if searchBooks.lastSuccessful.value}}
+  <ol>
+    {{#each searchBooks.lastSuccessful.value as |book|}}
+      <li>
+        {{book.title}} {{book.name}}
+        <img src= {{book.image}}>
+      </li>
+    {{/each}}
+  </ol>
+{{else}}
+  <p>Nothing found</p>
+{{/if}}
