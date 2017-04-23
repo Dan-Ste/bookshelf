@@ -1,3 +1,14 @@
-{{#link-to "browse"}}Browse{{/link-to}}
+<div class="menu">
 
-{{outlet}}
+  {{#link-to "browse"}}Browse{{/link-to}}
+
+  {{#if session.isAuthenticated}}
+    <a href {{action 'invalidateSession'}}>Logout</a>
+  {{else}}
+    {{#link-to 'login'}}Login{{/link-to}}
+  {{/if}}
+</div>
+
+<div class="main">
+  {{outlet}}
+</div>

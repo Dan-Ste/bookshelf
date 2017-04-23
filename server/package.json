@@ -6,7 +6,11 @@
   "dependencies": {
     "goodreads": "^0.1.0",
     "koa": "^2.2.0",
-    "koa-body": "^1.6.0",
-    "koa-router": "next"
+    "koa-bodyparser": "^4.2.0",
+    "koa-cors": "^0.0.16",
+    "koa-logger": "^2.0.1",
+    "koa-router": "next",
+    "koa-session": "^5.0.0",
+    "mongoose": "^4.9.5"
   }
 }
