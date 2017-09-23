@@ -6,6 +6,7 @@ module.exports = function(environment) {
     modulePrefix: 'bookshelf',
     environment,
     rootURL: '/',
+    podModulePrefix: 'my-new-app/pods',
     locationType: 'auto',
     EmberENV: {
       FEATURES: {
@@ -43,9 +44,9 @@ module.exports = function(environment) {
     ENV.APP.rootElement = '#ember-testing';
   }
 
-  if (environment === 'production') {
+  // if (environment === 'production') {
 
-  }
+  // }
 
   return ENV;
 };
