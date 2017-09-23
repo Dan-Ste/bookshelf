@@ -2511,6 +2511,12 @@ ember-maybe-import-regenerator@^0.1.5:
     ember-cli-babel "^6.0.0-beta.4"
     regenerator-runtime "^0.9.5"
 
+ember-promise-tools@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/ember-promise-tools/-/ember-promise-tools-1.0.0.tgz#0f3d5bd1cb2b7da4f02abd4cb5cf9bd5399af754"
+  dependencies:
+    ember-cli-babel "^5.1.6"
+
 ember-qunit@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/ember-qunit/-/ember-qunit-2.2.0.tgz#3cdf400031c93a38de781a7304819738753b7f99"
@@ -2538,6 +2544,13 @@ ember-router-generator@^1.0.0, ember-router-generator@^1.2.3:
   resolved "https://registry.yarnpkg.com/ember-router-generator/-/ember-router-generator-1.2.3.tgz#8ed2ca86ff323363120fc14278191e9e8f1315ee"
   dependencies:
     recast "^0.11.3"
+
+ember-runtime-enumerable-includes-polyfill@^1.0.1:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/ember-runtime-enumerable-includes-polyfill/-/ember-runtime-enumerable-includes-polyfill-1.0.4.tgz#16a7612e347a2edf07da8b2f2f09dbfee70deba0"
+  dependencies:
+    ember-cli-babel "^5.1.6"
+    ember-cli-version-checker "^1.1.6"
 
 ember-runtime-enumerable-includes-polyfill@^2.0.0:
   version "2.0.0"
@@ -2572,6 +2585,12 @@ ember-source@~2.15.0:
     rsvp "^3.6.1"
     simple-dom "^0.3.0"
     simple-html-tokenizer "^0.4.1"
+
+ember-string-ishtmlsafe-polyfill@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/ember-string-ishtmlsafe-polyfill/-/ember-string-ishtmlsafe-polyfill-1.0.1.tgz#b40a8c98663be5c16d16f31dc686102bb655abbd"
+  dependencies:
+    ember-cli-babel "^5.1.6"
 
 ember-test-helpers@^0.6.3:
   version "0.6.3"
@@ -5268,6 +5287,15 @@ sane@^1.1.1, sane@^1.6.0:
     minimist "^1.1.1"
     walker "~1.0.5"
     watch "~0.10.0"
+
+semantic-ui-ember@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/semantic-ui-ember/-/semantic-ui-ember-2.0.1.tgz#69912623be81dd8bb4d70f50a675962f117c8b25"
+  dependencies:
+    ember-cli-babel "^5.1.7"
+    ember-promise-tools "1.0.0"
+    ember-runtime-enumerable-includes-polyfill "^1.0.1"
+    ember-string-ishtmlsafe-polyfill "1.0.1"
 
 semver@^5.1.0, semver@^5.1.1, semver@^5.3.0:
   version "5.4.1"
