@@ -1,10 +1,10 @@
 /* eslint-env node */
+'use strict';
 
 module.exports = function(environment) {
-  var ENV = {
+  let ENV = {
     modulePrefix: 'bookshelf',
-    podModulePrefix: 'bookshelf/pods',
-    environment: environment,
+    environment,
     rootURL: '/',
     locationType: 'auto',
     EmberENV: {
@@ -21,14 +21,8 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-    },
-
-    apiHost: 'http://localhost:3000'
+    }
   };
-
-  ENV.contentSecurityPolicy = {
-    'connect-src': ["'self'", "https://www.goodreads.com"],
-  }
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
@@ -49,9 +43,9 @@ module.exports = function(environment) {
     ENV.APP.rootElement = '#ember-testing';
   }
 
-  // if (environment === 'production') {
-  //
-  // }
+  if (environment === 'production') {
+
+  }
 
   return ENV;
 };
