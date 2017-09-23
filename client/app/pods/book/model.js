@@ -3,7 +3,7 @@ import DS from 'ember-data';
 const {
   attr,
   belongsTo,
-  hasMany
+  // hasMany
 } = DS;
 
 export default DS.Model.extend({
@@ -13,5 +13,5 @@ export default DS.Model.extend({
 
   author: belongsTo('author'),
   shelf: belongsTo('shelf'),
-  tag: hasMany('tag')
+  // tag: hasMany('tag')
 });
