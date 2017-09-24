@@ -5,5 +5,5 @@ import {
 
 export default Model.extend({
   author: belongsTo(),
-  shelf: belongsTo(),
+  shelf: belongsTo()
 });

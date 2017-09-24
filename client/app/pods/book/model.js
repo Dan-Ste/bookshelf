@@ -10,6 +10,7 @@ export default DS.Model.extend({
   title: attr('string'),
   description: attr('string'),
   imageUrl: attr('string'),
+  yearOfPublishing: attr('date'),
 
   author: belongsTo('author'),
   shelf: belongsTo('shelf'),

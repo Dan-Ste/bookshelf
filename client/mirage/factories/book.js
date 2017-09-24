@@ -12,5 +12,8 @@ export default Factory.extend({
   },
   imageUrl() {
     return faker.image.imageUrl();
+  },
+  yearOfPublishing() {
+    return faker.date.past();
   }
 });
