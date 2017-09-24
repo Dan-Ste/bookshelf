@@ -20,7 +20,26 @@ export default Route.extend({
       get(this, 'session').open('firebase', {
         provider: provider
       }).then(data => {
-        console.log(data.currentUser);
+        const {
+          uid,
+          displayName,
+          photoURL
+        } = data.currentUser;
+
+        const existedUser = this.store.query('user', {
+          orderBy: 'uid',
+          equalTo: uid
+        });
+
+        if (!existedUser) {
+          const newUser = this.store.createRecord('user', {
+            uid,
+            username: displayName,
+            avatar: photoURL
+          });
+
+          newUser.save();
+        }
       });
     },
 
