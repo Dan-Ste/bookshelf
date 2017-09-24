@@ -1,7 +1,7 @@
 /* eslint-env node */
 'use strict';
 
-module.exports = function(environment) {
+module.exports = function (environment) {
   let ENV = {
     modulePrefix: 'bookshelf',
     environment,
@@ -18,10 +18,21 @@ module.exports = function(environment) {
         Date: false
       }
     },
-
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+
+    firebase: {
+      apiKey: "AIzaSyC_BdyXRyuTzRVSmiVQLvV04uv3YZ_O02k",
+      authDomain: "bookshelf-b1e57.firebaseapp.com",
+      databaseURL: "https://bookshelf-b1e57.firebaseio.com",
+      projectId: "bookshelf-b1e57",
+      storageBucket: "",
+      messagingSenderId: "150488254250"
+    },
+    torii: {
+      sessionServiceName: 'session'
     }
   };
 
@@ -31,6 +42,10 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+
+    ENV['ember-cli-mirage'] = {
+      enabled: false
+    };
   }
 
   if (environment === 'test') {
