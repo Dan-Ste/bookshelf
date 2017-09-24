@@ -13,7 +13,7 @@ export default Factory.extend({
   imageUrl() {
     return faker.image.abstract();
   },
-  yearOfPublishing() {
+  pubYear() {
     return faker.date.past();
   }
 });

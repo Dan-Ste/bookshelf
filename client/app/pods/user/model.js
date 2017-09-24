@@ -1,5 +1,16 @@
 import DS from 'ember-data';
 
-export default DS.Model.extend({
+const {
+  Model,
+  attr,
+  hasMany
+} = DS;
 
+export default Model.extend({
+  uid: attr('string'),
+  username: attr('string'),
+  avatar: attr('string'),
+
+  books: hasMany('books'),
+  shelves: hasMany('shelf')
 });

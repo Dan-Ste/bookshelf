@@ -1,6 +1,6 @@
 <div class="ui centered link cards">
   {{#each model as |book|}}
-    <div class="card">
+    {{#link-to 'book' book.id tag="div" class="card"}}
       <div class="ui image">
         <img src={{book.imageUrl}}>
       </div>
@@ -13,6 +13,6 @@
       <div class="extra content">
         <a class="ui tag label">Novel</a>
       </div>
-    </div>
+    {{/link-to}}
   {{/each}}
 </div>

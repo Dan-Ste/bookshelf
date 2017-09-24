@@ -8,7 +8,7 @@ const {
 export default DS.Model.extend({
   name: attr('string'),
   biography: attr('string'),
-  yearOfBirth: attr('date'),
+  birthYear: attr('date'),
   imageUrl: attr('string'),
 
   books: hasMany('book')

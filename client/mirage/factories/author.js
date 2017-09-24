@@ -10,7 +10,7 @@ export default Factory.extend({
   imageUrl() {
     return faker.image.imageUrl();
   },
-  yearOfPublishing() {
+  birthYear() {
     return faker.date.past();
   }
 });
