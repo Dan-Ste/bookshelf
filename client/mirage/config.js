@@ -29,4 +29,6 @@ export default function () {
   this.get('/books');
   this.get('/authors');
   this.get('/shelfs');
+
+  this.get('/authors/:id');
 }

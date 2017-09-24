@@ -11,7 +11,7 @@ export default Factory.extend({
     return faker.random.words();
   },
   imageUrl() {
-    return faker.image.imageUrl();
+    return faker.image.abstract();
   },
   yearOfPublishing() {
     return faker.date.past();

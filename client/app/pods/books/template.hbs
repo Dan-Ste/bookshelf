@@ -1,3 +1,18 @@
-{{#each model as |book|}}
-  {{book.title}}
-{{/each}}
+<div class="ui centered link cards">
+  {{#each model as |book|}}
+    <div class="card">
+      <div class="ui image">
+        <img src={{book.imageUrl}}>
+      </div>
+      <div class="content">
+        <div class="header">{{book.title}}</div>
+        <div class="description">
+          by {{book.author.name}}
+        </div>
+      </div>
+      <div class="extra content">
+        <a class="ui tag label">Novel</a>
+      </div>
+    </div>
+  {{/each}}
+</div>
