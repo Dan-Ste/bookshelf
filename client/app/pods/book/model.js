@@ -14,5 +14,5 @@ export default DS.Model.extend({
 
   author: belongsTo('author'),
   shelf: belongsTo('shelf'),
-  // tag: hasMany('tag')
+  user: belongsTo('user')
 });

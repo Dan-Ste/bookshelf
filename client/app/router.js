@@ -7,15 +7,17 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function () {
-  this.route('books');
-  this.route('book', {
-    path: '/books/:book_id'
+  this.authenticatedRoute('books', function () {
+    this.route('new', {
+      path: '/new'
+    });
   });
-  this.route('new', {
-    path: '/books/new'
+  this.authenticatedRoute('book', {
+    path: '/book/:book_id'
   });
-  this.route('edit', {
-    path: '/books/:book_id/edit'
+
+  this.authenticatedRoute('edit', {
+    path: '/book/:book_id/edit'
   });
   this.route('login');
 });

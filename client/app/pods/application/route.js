@@ -2,21 +2,28 @@ import Ember from 'ember';
 
 const {
   Route,
-  get,
-  inject: {
-    service
-  }
+  get
 } = Ember;
 
 export default Route.extend({
-  session: service(),
 
-  beforeModel() {
-    return get(this, 'session').fetch().catch(() => {});
+  model() {
+    // if (get(this, 'session.isAuthenticated')) {
+    //   return this.store.query('user', {
+    //     orderBy: 'uid',
+    //     equalTo: get(this, 'session.uid')
+    //   });
+    // }
+  },
+
+  beforeModel(transition) {
+    return get(this, 'session').fetch().catch(function () {
+      transition.send('accessDenied')
+    });
   },
 
   actions: {
-    accessDenied: function() {
+    accessDenied() {
       this.transitionTo('login');
     }
   }

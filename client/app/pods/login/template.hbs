@@ -11,12 +11,7 @@
     <div class="row">
       {{#unless session.isAuthenticated}}
         <div>
-          <form class="ui inverted attached fluid form segment" {{action "login" email password username on="submit"}}>
-            <div class="field">
-              <label for="identification">Username</label>
-              {{input value=username placeholder="Enter Username"}}
-            </div>
-
+          <form class="ui inverted attached fluid form segment" {{action "login" email password on="submit"}}>
             <div class="field">
               <label for="identification">Email</label>
               {{input value=email placeholder="Enter Email"}}

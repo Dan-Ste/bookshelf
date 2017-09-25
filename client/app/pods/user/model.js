@@ -12,6 +12,6 @@ export default Model.extend({
   email: attr('string'),
   avatar: attr('string'),
 
-  books: hasMany('books'),
+  books: hasMany('book'),
   shelves: hasMany('shelf')
 });
