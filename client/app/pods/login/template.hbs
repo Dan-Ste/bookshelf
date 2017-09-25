@@ -1,0 +1,45 @@
+<div class="login">
+  <div class="ui center aligned grid">
+    <div class="row">
+      <div class="ui violet message">
+        <div class="header">
+          Welcome to Bookshelf!
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      {{#unless session.isAuthenticated}}
+        <div>
+          <form class="ui inverted attached fluid form segment" {{action "login" email password username on="submit"}}>
+            <div class="field">
+              <label for="identification">Username</label>
+              {{input value=username placeholder="Enter Username"}}
+            </div>
+
+            <div class="field">
+              <label for="identification">Email</label>
+              {{input value=email placeholder="Enter Email"}}
+            </div>
+
+            <div class="field">
+              <label for="password">Password</label>
+              {{input value=password type="password" placeholder="Enter Password"}}
+            </div>
+
+            <button class="ui blue submit button" type="submit">Submit</button>
+          </form>
+
+          {{#if (or message session.isWorking)}}
+            <div class="ui inverted attached segment">
+              {{if session.isWorking "Working..." message}}
+            </div>
+          {{/if}}
+        </div>
+      {{else}}
+        <button class="ui blue button" {{action "logout"}}>Logout</button>
+      {{/unless}}
+
+    </div>
+  </div>
+</div>

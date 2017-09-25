@@ -1,13 +1,3 @@
-{{#if session.isAuthenticated}}
-
-  {{#menu-with-sidebar}}
-    {{outlet}}
-  {{/menu-with-sidebar}}
-
-  Logged in as {{session.currentUser.displayName}}
-  <button {{action "signOut"}}>Sign out</button>
-
-{{else}}
-  <button {{action "signIn" "twitter"}}>Sign in with Twitter</button>
-{{/if}}
-
+{{#menu-with-sidebar}}
+  {{outlet}}
+{{/menu-with-sidebar}}
