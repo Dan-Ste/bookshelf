@@ -2,3 +2,9 @@ body>.ember-view,
 body>.ember-view>.ember-view {
   height: 100%;
 }
+
+.main {
+  width: 1024px;
+  margin-left: 3em;
+  padding: 2em 0;
+}

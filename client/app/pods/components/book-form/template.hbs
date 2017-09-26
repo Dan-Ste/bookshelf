@@ -1,0 +1,31 @@
+<div class="ui grid">
+  <div class="six wide column">
+    <h2 class="ui dividing header">New book</h2>
+
+    <form class="ui form">
+
+      <div class="field">
+        <label>Title</label>
+        {{one-way-input book.title update=(action (mut book.title))}}
+      </div>
+
+      <div class="field">
+        <label>Description</label>
+        {{one-way-textarea book.description update=(action (mut book.description)) rows="2"}}
+      </div>
+
+      <div class="field">
+        <label>Publishing year</label>
+        {{one-way-number book.pubYear update=(action (mut book.pubYear))}}
+      </div>
+
+      <div class="field">
+        <label>Author</label>
+        {{one-way-input author.name update=(action (mut author.name))}}
+      </div>
+
+      {{yield}}
+
+    </form>
+  </div>
+</div>

@@ -1,4 +1,7 @@
-{{edit-book
+{{#book-form
     book=book
+    author=author
     createUser=(perform createUser)
 }}
+  <div class="ui button" tabindex="0" onclick={{perform createUser book author}}>Create book</div>
+{{/book-form}}

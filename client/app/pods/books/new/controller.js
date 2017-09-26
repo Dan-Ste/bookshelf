@@ -13,17 +13,21 @@ const {
 
 export default Controller.extend({
 
-  book: alias('model'),
+  book: alias('model.book'),
+  author: alias('model.author'),
 
-  createUser: task(function* (newBook) {
+  createUser: task(function* (newBook, author) {
     const records = yield this.store.findAll('user')
     const user = get(records, 'firstObject');
 
     get(user, 'books').addObject(newBook);
+    get(author, 'books').addObject(newBook);
 
-    newBook.save().then(() => user.save()).then(() => this.transitionTo('books'));
+    yield newBook.save();
+    yield author.save();
+    yield user.save();
 
-    this.transitionTo('books');
+    this.transitionToRoute('books');
   })
 
 });

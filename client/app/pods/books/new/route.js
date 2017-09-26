@@ -1,15 +1,17 @@
 import Ember from 'ember';
 
 const {
-  Route
+  Route,
+  RSVP: {
+    hash
+  }
 } = Ember;
 
 export default Route.extend({
   model() {
-    return this.store.createRecord('book', {
-      title: 'My book',
-      description: 'Some description',
-      pubYear: '2017'
-    });
+    return hash({
+      book: this.store.createRecord('book'),
+      author: this.store.createRecord('author')
+    })
   }
 });
