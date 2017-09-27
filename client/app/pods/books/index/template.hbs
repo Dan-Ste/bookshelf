@@ -1,6 +1,6 @@
 <div class="ui link cards">
   {{#each model as |book|}}
-    {{#link-to 'book' book.id tag="div" class="card"}}
+    {{#link-to 'books.book' book.id tag="div" class="card"}}
       <div class="ui image">
         <img src={{book.imageUrl}}>
       </div>
