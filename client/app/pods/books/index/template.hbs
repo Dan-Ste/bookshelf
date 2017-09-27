@@ -1,15 +1,18 @@
-<div class="ui link cards">
+<div class="books-list">
   {{#each model as |book|}}
-    {{#link-to 'books.book' book.id tag="div" class="card"}}
-      <div class="ui image">
-        <img src={{book.imageUrl}}>
-      </div>
-      <div class="content">
-        <div class="header">{{book.title}}</div>
-        <div class="description">
-          by {{book.author.name}}
+    {{#link-to 'books.book' book.id tagName="div"}}
+      {{#background-image
+          url="https://placem.at/places"
+          class="book-card"
+      }}
+        <div class="book-card__overlay"></div>
+        <div class="book-card__content">
+          <h3 class="book-card__title">
+            {{book.title}}
+            <div class="book-card__author">by {{book.author.name}}</div>
+          </h3>
         </div>
-      </div>
+      {{/background-image}}
       {{!-- <div class="extra content">
         <a class="ui tag label">Novel</a>
       </div> --}}

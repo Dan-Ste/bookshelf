@@ -1,1 +1,16 @@
-{{yield}}
+<div class="ui grid">
+  <div class="three wide column">
+    {{background-image
+        url="https://placem.at/places"
+        class="book-cover"
+    }}
+  </div>
+
+  <div class="nine wide column">
+    <h2 class="ui header">
+      {{book.title}}
+      <div class="sub header">by {{book.author.name}}</div>
+    </h2>
+  </div>
+</div>
+
