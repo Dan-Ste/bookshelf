@@ -1,16 +1,19 @@
 <div class="ui grid centered">
   <div class="three wide column">
-    {{background-image
-        url="https://placem.at/places"
-        class="book-cover"
+    {{book-card
+        book=book
+        isBlank=true
     }}
   </div>
 
   <div class="nine wide column">
-    <h2 class="ui header">
+    <h2 class="ui dividing header">
       {{book.title}}
       <div class="sub header">by {{book.author.name}}</div>
     </h2>
+
+    <p>{{book.description}}</p>
+
   </div>
 </div>
 

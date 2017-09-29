@@ -1,16 +1,13 @@
-<div class="ui bottom attached segment pushable">
-  <div class="ui inverted left vertical sidebar menu" style="">
-    {{#link-to "index" class="item"}}
-      <h1>Bookshelf</h1>
-    {{/link-to}}
-    {{#link-to "books" class="item"}}
-      <i class="book icon"></i>
-      Books
-    {{/link-to}}
-  </div>
+<div class="ui inverted left vertical menu fixed" local-class="sidebar">
+  {{#link-to "index" class="item"}}
+    <h1>Bookshelf</h1>
+  {{/link-to}}
+  {{#link-to "books" class="item"}}
+    <i class="book icon"></i>
+    Books
+  {{/link-to}}
+</div>
 
-    <div class="ui main container">
-      {{outlet}}
-    </div>
-
+<div class="ui" local-class="main">
+  {{outlet}}
 </div>

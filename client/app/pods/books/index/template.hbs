@@ -1,23 +1,9 @@
-<div class="books-list">
+<div local-class="books-list">
   {{#each model as |book|}}
-    {{#link-to 'books.book' book.id tagName="div" class="book-card"}}
-      {{#background-image
-          url=book.coverImageUrl
-          class="book-card__image"
+    {{#link-to 'books.book' book.id tagName="div" local-class="book-link"}}
+      {{book-card
+          book=book
       }}
-        <div class="book-card__overlay"></div>
-        <div class="book-card__content">
-          <h3 class="book-card__title">
-            {{book.title}}
-            <div class="book-card__author">by {{book.author.name}}</div>
-          </h3>
-        </div>
-      {{/background-image}}
-      <div class="book-card__cover"></div>
-      <div class="book-card__pages"></div>
-      {{!-- <div class="extra content">
-        <a class="ui tag label">Novel</a>
-      </div> --}}
     {{/link-to}}
   {{/each}}
 </div>

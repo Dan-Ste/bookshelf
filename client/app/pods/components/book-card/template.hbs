@@ -1,0 +1,13 @@
+<div local-class="cover" style={{coverBg}}></div>
+<div local-class="overlay"></div>
+<div local-class="fake-cover"></div>
+<div local-class="pages"></div>
+
+{{#unless isBlank}}
+  <div local-class="content">
+    <h3 local-class="title">
+      {{book.title}}
+      <div local-class="author">by {{book.author.name}}</div>
+    </h3>
+  </div>
+{{/unless}}
