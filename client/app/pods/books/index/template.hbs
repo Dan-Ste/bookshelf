@@ -1,3 +1,7 @@
+{{#ember-wormhole to="header"}}
+    Hello world!
+{{/ember-wormhole}}
+
 <div local-class="books-list">
   {{#each model as |book|}}
     {{#link-to 'books.book' book.id tagName="div" local-class="book-link"}}
