@@ -2769,6 +2769,12 @@ ember-data@~2.15.0:
     silent-error "^1.0.0"
     testem "1.15.0"
 
+ember-emberfire-find-query@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/ember-emberfire-find-query/-/ember-emberfire-find-query-1.0.2.tgz#83acff2721dddc6a36f29745d4efd6bd69963fdc"
+  dependencies:
+    ember-cli-babel "^5.1.6"
+
 ember-export-application-global@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ember-export-application-global/-/ember-export-application-global-2.0.0.tgz#8d6d7619ac8a1a3f8c43003549eb21ebed685bd2"

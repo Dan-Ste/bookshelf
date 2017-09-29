@@ -1,5 +1,9 @@
 {{#ember-wormhole to="header"}}
-    Hello world!
+
+  <div class="ui input">
+    {{one-way-search search update=(action (mut search)) placeholder="Search by title..."}}
+  </div>
+
 {{/ember-wormhole}}
 
 <div local-class="books-list">
