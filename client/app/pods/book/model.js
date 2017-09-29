@@ -9,7 +9,7 @@ const {
 export default DS.Model.extend({
   title: attr('string'),
   description: attr('string'),
-  imageUrl: attr('string'),
+  coverImageUrl: attr('string'),
   pubYear: attr('date'),
 
   author: belongsTo('author'),

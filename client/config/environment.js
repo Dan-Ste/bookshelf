@@ -28,7 +28,7 @@ module.exports = function (environment) {
       authDomain: "bookshelf-b1e57.firebaseapp.com",
       databaseURL: "https://bookshelf-b1e57.firebaseio.com",
       projectId: "bookshelf-b1e57",
-      storageBucket: "",
+      storageBucket: "bookshelf-b1e57.appspot.com",
       messagingSenderId: "150488254250"
     },
     torii: {

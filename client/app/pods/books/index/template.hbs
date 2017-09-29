@@ -2,7 +2,7 @@
   {{#each model as |book|}}
     {{#link-to 'books.book' book.id tagName="div" class="book-card"}}
       {{#background-image
-          url="https://placem.at/places"
+          url=book.coverImageUrl
           class="book-card__image"
       }}
         <div class="book-card__overlay"></div>

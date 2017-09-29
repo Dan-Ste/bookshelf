@@ -1,6 +1,6 @@
-<div class="ui grid">
+<div class="ui grid centered">
   <div class="six wide column">
-    <h2 class="ui dividing header">New book</h2>
+    <h2 class="ui dividing header">Add new book</h2>
 
     <form class="ui form">
 
@@ -22,6 +22,11 @@
       <div class="field">
         <label>Author</label>
         {{one-way-input author.name update=(action (mut author.name))}}
+      </div>
+
+      <div class="field">
+        <label>Upload book cover</label>
+        {{one-way-file update=(action uploadBookCover) id="book-cover-file"}}
       </div>
 
       {{yield}}
