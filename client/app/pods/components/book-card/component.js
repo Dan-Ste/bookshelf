@@ -15,7 +15,7 @@ export default Ember.Component.extend({
   book: null,
   isBlank: false,
 
-  coverBg: computed({
+  coverBg: computed('book.coverImageUrl', {
     get() {
       const coverImageUrl = get(this, 'book.coverImageUrl');
       return htmlSafe(`background-image:url("${coverImageUrl}")`);

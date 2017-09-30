@@ -2511,6 +2511,17 @@ ember-cli-node-assets@^0.1.4:
     lodash "^4.5.1"
     resolve "^1.1.7"
 
+ember-cli-node-assets@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/ember-cli-node-assets/-/ember-cli-node-assets-0.2.2.tgz#d2d55626e7cc6619f882d7fe55751f9266022708"
+  dependencies:
+    broccoli-funnel "^1.0.1"
+    broccoli-merge-trees "^1.1.1"
+    broccoli-source "^1.1.0"
+    debug "^2.2.0"
+    lodash "^4.5.1"
+    resolve "^1.1.7"
+
 ember-cli-normalize-entity-name@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/ember-cli-normalize-entity-name/-/ember-cli-normalize-entity-name-1.0.0.tgz#0b14f7bcbc599aa117b5fddc81e4fd03c4bad5b7"
@@ -3026,7 +3037,19 @@ ember-wormhole@^0.5.2:
     ember-cli-babel "^6.0.0"
     ember-cli-htmlbars "^1.1.1"
 
-emberfire@^2.0.8:
+emberfire-utils@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/emberfire-utils/-/emberfire-utils-1.5.1.tgz#b26c8d0ef86aae461abdbbd5898875079f486493"
+  dependencies:
+    broccoli-funnel "^1.2.0"
+    ember-cli-babel "^6.3.0"
+    ember-cli-htmlbars "^2.0.1"
+    ember-cli-node-assets "^0.2.2"
+    emberfire "^2.0.7"
+    fastboot-transform "^0.1.2"
+    firebaseui "^1.0.1"
+
+emberfire@^2.0.7, emberfire@^2.0.8:
   version "2.0.8"
   resolved "https://registry.yarnpkg.com/emberfire/-/emberfire-2.0.8.tgz#03cdc99faaa6e1d9feac0cd6dce5316099c600c5"
   dependencies:
@@ -3450,6 +3473,12 @@ fast-sourcemap-concat@^1.0.1:
     source-map-url "^0.3.0"
     sourcemap-validator "^1.0.5"
 
+fastboot-transform@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/fastboot-transform/-/fastboot-transform-0.1.2.tgz#f910d666ab93e75604492ea655270d1804bc8de7"
+  dependencies:
+    broccoli-stew "^1.5.0"
+
 fastparse@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/fastparse/-/fastparse-1.1.1.tgz#d1e2643b38a94d7583b479060e6c4affc94071f8"
@@ -3548,7 +3577,7 @@ findup-sync@0.4.3, findup-sync@^0.4.2:
     micromatch "^2.3.7"
     resolve-dir "^0.1.0"
 
-firebase@^3.4.1:
+firebase@^3.3.0, firebase@^3.4.1:
   version "3.9.0"
   resolved "https://registry.yarnpkg.com/firebase/-/firebase-3.9.0.tgz#c4237f50f58eeb25081b1839d6cbf175f8f7ed9b"
   dependencies:
@@ -3557,6 +3586,12 @@ firebase@^3.4.1:
     jsonwebtoken "^7.3.0"
     promise-polyfill "^6.0.2"
     xmlhttprequest "^1.8.0"
+
+firebaseui@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/firebaseui/-/firebaseui-1.0.1.tgz#ba7bd6432d6a08d1a591fa49dd31112bc69f0385"
+  dependencies:
+    firebase "^3.3.0"
 
 fireworm@^0.7.0:
   version "0.7.1"

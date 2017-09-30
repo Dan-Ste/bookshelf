@@ -12,11 +12,12 @@ const {
   },
   inject: {
     service
-  }
+  },
+  Logger
 } = Ember;
 
 export default Controller.extend({
-  firebaseApp: service(),
+  firebaseUtil: service(),
 
   book: alias('model.book'),
   author: alias('model.author'),
@@ -32,31 +33,32 @@ export default Controller.extend({
     yield author.save();
     yield user.save();
 
-    this.transitionToRoute('books');
+    this.transitionToRoute('books.index');
   }),
 
-  uploadBookCover() {
-    const storageRef = get(this, 'firebaseApp').storage().ref();
+  uploadBookCover: task(function* () {
     const coverImage = document.getElementById('book-cover-file').files[0];
+    const records = yield this.store.findAll('user');
+    const user = get(records, 'firstObject');
     const book = get(this, 'book');
-
-
-    const uploadTask = storageRef.child('images/').put(coverImage, {
+    const path = `images/book-cover/${get(user, 'username')}/${coverImage.name}`;
+    const metadata = {
       'contentType': coverImage.type
-    });
+    };
 
-    uploadTask.on('state_changed',
-      function (snapshot) {
+    try {
+      const coverImageUrl = yield get(this, 'firebaseUtil').uploadFile(path, coverImage, metadata, this._onStateChange);
 
-      },
-      function (error) {
+      set(book, 'coverImageUrl', coverImageUrl);
+    } catch (e) {
+      Logger.log(e);
+    }
+  }),
 
-      },
-      function () {
-        const coverImageUrl = uploadTask.snapshot.downloadURL;
+  _onStateChange(snapshot) {
+    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
 
-        set(book, 'coverImageUrl', coverImageUrl);
-      });
+    Logger.log('Upload is ' + progress + '% done');
   }
 
 });
