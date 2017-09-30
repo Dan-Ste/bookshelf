@@ -8,6 +8,10 @@ const {
 } = Ember;
 
 export default Route.extend({
+  breadCrumb: {
+    title: 'New Book'
+  },
+
   model() {
     return hash({
       book: this.store.createRecord('book'),

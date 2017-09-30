@@ -4,10 +4,26 @@
   margin-right: 3em;
 }
 
+.layout {
+  display: grid;
+  grid-template-columns: 210px auto;
+}
+
 .sidebar {
   height: 100%;
 }
 
-.header {
-  border-bottom: 1px solid #ddd;
+.stretch {
+  width: 210px;
+  height: 100%;
 }
+
+.masthead-wrapper {
+  border-bottom: 1px solid #ddd;
+  padding: 1em 0;
+}
+
+.breadcrumbs {
+  margin-bottom: 1em;
+}
+

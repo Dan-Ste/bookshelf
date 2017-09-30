@@ -17,12 +17,10 @@ export default Route.extend(FindQuery, {
     search
   }) {
     if (search) {
-      return new RSVP.Promise((resolve) => {
+      return new RSVP.Promise(resolve => {
         this.filterContains(this.store, 'book', {
           'title': search
-        }, function (books) {
-          resolve(books);
-        })
+        }, books => resolve(books));
       })
     } else {
       return this.store.query('book', {

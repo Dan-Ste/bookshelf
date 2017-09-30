@@ -1,17 +1,33 @@
-<div class="ui inverted left vertical menu fixed" local-class="sidebar">
-  {{#link-to "index" class="item"}}
-    <h1>Bookshelf</h1>
-  {{/link-to}}
-  {{#link-to "books" class="item"}}
-    <i class="book icon"></i>
-    Books
-  {{/link-to}}
-</div>
+<div local-class="layout">
+  <div class="ui inverted left vertical menu fixed" local-class="sidebar">
+    {{#link-to "index" class="item"}}
+      <h1>Bookshelf</h1>
+    {{/link-to}}
+    {{#link-to "books" class="item"}}
+      <i class="book icon"></i>
+      Books
+    {{/link-to}}
+  </div>
 
-<div local-class="header">
-  <div local-class="main" id="header"></div>
-</div>
+  <div local-class="stretch"></div>
 
-<div local-class="main">
-  {{outlet}}
+  <div class="site">
+
+    <div local-class="masthead-wrapper">
+      <div class="ui container">
+
+        <div local-class="breadcrumbs">
+          {{bread-crumbs class="ui breadcrumb large" tagName="div" linkable=true}}
+        </div>
+
+        <div id="masthead"></div>
+
+      </div>
+    </div>
+
+    <div class="ui container" local-class="main">
+      {{outlet}}
+    </div>
+
+  </div>
 </div>

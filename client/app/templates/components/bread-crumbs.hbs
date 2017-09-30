@@ -1,0 +1,10 @@
+{{#each routeHierarchy as |route index|}}
+  {{#if hasBlock}}
+    {{yield this route}}
+  {{else}}
+    {{bs-bread-crumb route=route breadCrumbs=this}}
+    {{#unless (eq (dec routeHierarchy.length) index)}}
+      <i class="right angle icon divider"></i>
+    {{/unless}}
+  {{/if}}
+{{/each}}
