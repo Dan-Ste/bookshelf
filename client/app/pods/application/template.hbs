@@ -1,9 +1,12 @@
 {{#if session.isAuthenticated}}
   <div local-class="layout">
+
     <div class="ui inverted left vertical menu fixed" local-class="sidebar">
+
       {{#link-to "index" class="item"}}
         <h1>Bookshelf</h1>
       {{/link-to}}
+
       <div class="item">
         <div local-class="user-item">
           <div>
@@ -14,16 +17,17 @@
           <button class="ui mini inverted button" {{action "logout"}}>Log Out</button>
         </div>
       </div>
+
       {{#link-to "books" class="item"}}
         <i class="book icon"></i>
         Books
       {{/link-to}}
+
     </div>
 
     <div local-class="stretch"></div>
 
     <div class="site">
-
       <div local-class="masthead-wrapper">
         <div class="ui container">
 
@@ -39,8 +43,8 @@
       <div class="ui container" local-class="main">
         {{outlet}}
       </div>
-
     </div>
+
   </div>
 {{else}}
   {{outlet}}

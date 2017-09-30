@@ -6,6 +6,7 @@ import {
 const {
   Route,
   get,
+  set,
   inject: {
     service
   }
@@ -26,19 +27,19 @@ export default Route.extend({
     } catch (error) {
       switch (error.code) {
         case 'auth/invalid-email':
-          this.set('message', 'Please enter a valid email address');
+          set(this, 'controller.message', 'Please enter a valid email address');
           break;
         case 'auth/user-disabled':
-          this.set('message', 'The user associated with the email entered has been disabled.  If you think this happened in error, please contact us.');
+          set(this, 'controller.message', 'The user associated with the email entered has been disabled.  If you think this happened in error, please contact us.');
           break;
         case 'auth/user-not-found':
-          this.set('message', 'There was no user found with the email entered');
+          set(this, 'controller.message', 'There was no user found with the email entered');
           break;
         case 'auth/wrong-password':
-          this.set('message', 'The password entered does not match the email entered');
+          set(this, 'controller.message', 'The password entered does not match the email entered');
           break;
         default:
-          this.set('message', 'There was an error with your login, please try again');
+          set(this, 'controller.message', 'There was an error with your login, please try again');
       }
     }
   }),

@@ -1,40 +1,41 @@
-<div class="login">
-  <div class="ui center aligned grid">
-    <div class="row">
-      <div class="ui violet message">
-        <div class="header">
-          Welcome to Bookshelf!
-        </div>
-      </div>
-    </div>
+{{#unless session.isAuthenticated}}
 
-    <div class="row">
-      {{#unless session.isAuthenticated}}
-        <div>
-          <form class="ui inverted attached fluid form segment" {{action "login" email password on="submit"}}>
+  <div class="ui middle aligned center grid" local-class="login-layout">
+    <div class="column" local-class="login-container">
+      <h2 class="ui orange header centered">
+        Welcome to Bookshelf
+      </h2>
+
+        <form class="ui large form" {{action "login" email password on="submit"}}>
+
+          <div class="ui stacked segment">
+
             <div class="field">
-              <label for="identification">Email</label>
-              {{input value=email placeholder="Enter Email"}}
+              <div class="ui left icon input">
+                <i class="user icon"></i>
+                {{one-way-input email update=(action (mut email)) placeholder="Email address"}}
+              </div>
             </div>
 
             <div class="field">
-              <label for="password">Password</label>
-              {{input value=password type="password" placeholder="Enter Password"}}
+              <div class="ui left icon input">
+                <i class="lock icon"></i>
+                {{one-way-input password update=(action (mut password)) type="password" placeholder="Password"}}
+              </div>
             </div>
 
-            <button class="ui blue submit button" type="submit">Submit</button>
-          </form>
+            <button class="ui orange fluid large submit button {{if session.isWorking 'loading'}}">Log In</button>
 
-          {{#if (or message session.isWorking)}}
-            <div class="ui inverted attached segment">
-              {{if session.isWorking "Working..." message}}
+          </div>
+
+          {{#if message}}
+            <div class="ui error message">
+              {{message}}
             </div>
           {{/if}}
-        </div>
-      {{else}}
-        <button class="ui blue button" {{action "logout"}}>Logout</button>
-      {{/unless}}
+        </form>
 
     </div>
   </div>
-</div>
+
+{{/unless}}
