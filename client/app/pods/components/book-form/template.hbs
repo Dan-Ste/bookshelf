@@ -1,5 +1,21 @@
 <div class="ui grid centered">
-  <div class="six wide column">
+  <div class="three wide column">
+    {{book-card
+        book=book
+    }}
+    <div local-class="upload-cover">
+      <label local-class="upload-cover-label" class="ui button fluid">
+      Upload book cover
+      {{one-way-file
+          update=(action uploadBookCover)
+          id="book-cover-file"
+          local-class="upload-cover-input"
+      }}
+      </label>
+    </div>
+  </div>
+
+  <div class="seven wide column">
     <h2 class="ui dividing header">Add new book</h2>
 
     <form class="ui form">
@@ -22,11 +38,6 @@
       <div class="field">
         <label>Author</label>
         {{one-way-input author.name update=(action (mut author.name))}}
-      </div>
-
-      <div class="field">
-        <label>Upload book cover</label>
-        {{one-way-file update=(action uploadBookCover) id="book-cover-file"}}
       </div>
 
       {{yield}}
