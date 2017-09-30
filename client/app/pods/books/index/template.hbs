@@ -1,15 +1,15 @@
 {{#ember-wormhole to="masthead"}}
 
   <div local-class="books-masthead">
-    <div class="ui input">
-      {{one-way-search search update=(action (mut search)) placeholder="Search by title..."}}
-    </div>
+    {{#link-to "books.new" tagName="button" class="ui icon button primary labeled icon"}}
+      <i class="plus icon"></i>
+      Add new book
+    {{/link-to}}
 
-    <div local-class="buttons">
-      {{#link-to "books.new" tagName="button" class="ui icon button primary labeled icon"}}
-        <i class="plus icon"></i>
-        Add new book
-      {{/link-to}}
+    <div local-class="search">
+      <div class="ui input">
+        {{one-way-search search update=(action (mut search)) placeholder="Search by title..."}}
+      </div>
     </div>
   </div>
 

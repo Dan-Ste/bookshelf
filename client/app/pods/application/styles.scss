@@ -1,7 +1,5 @@
 .main {
   padding: 2em 0;
-  margin-left: 18em;
-  margin-right: 3em;
 }
 
 .layout {
@@ -26,3 +24,7 @@
   margin: 1em 0;
 }
 
+.user-item {
+  display: flex;
+  justify-content: space-between;
+}

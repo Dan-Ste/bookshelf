@@ -19,10 +19,9 @@ Router.map(function () {
     });
   });
 
-
+  this.authenticatedRoute('authors');
 
   this.route('login');
-  this.route('authors');
 });
 
 export default Router;

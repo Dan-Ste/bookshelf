@@ -8,12 +8,12 @@ const {
 export default Route.extend({
 
   model() {
-    // if (get(this, 'session.isAuthenticated')) {
-    //   return this.store.query('user', {
-    //     orderBy: 'uid',
-    //     equalTo: get(this, 'session.uid')
-    //   });
-    // }
+    if (get(this, 'session.isAuthenticated')) {
+      return this.store.query('user', {
+        orderBy: 'uid',
+        equalTo: get(this, 'session.uid')
+      });
+    }
   },
 
   beforeModel(transition) {
@@ -24,6 +24,11 @@ export default Route.extend({
 
   actions: {
     accessDenied() {
+      this.transitionTo('login');
+    },
+
+    logout() {
+      get(this, 'session').close();
       this.transitionTo('login');
     }
   }
