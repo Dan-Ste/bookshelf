@@ -17,7 +17,7 @@
 
 <div local-class="books-list">
   {{#each model as |book|}}
-    {{#link-to 'books.book' book.id tagName="div" local-class="book-link"}}
+    {{#link-to 'books.book' book.slug local-class="book-link"}}
       {{book-card
           book=book
       }}

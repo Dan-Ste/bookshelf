@@ -7,8 +7,6 @@
 }
 
 .book-link {
-  cursor: pointer;
-
   &:hover {
     transform: translateY(-3px);
     transition: transform .1s ease;

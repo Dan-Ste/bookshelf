@@ -12,7 +12,7 @@ Router.map(function () {
       path: '/new'
     });
     this.authenticatedRoute('book', {
-      path: '/:book_id'
+      path: '/:slug'
     });
     this.authenticatedRoute('edit', {
       path: '/:book_id/edit'

@@ -1,13 +1,17 @@
 import Ember from 'ember';
 
 const {
+  get,
   Route
 } = Ember;
 
 export default Route.extend({
   model({
-    book_id
+    slug
   }) {
-    return this.store.findRecord('book', book_id);
+    return this.store.query('book', {
+      orderBy: 'slug',
+      equalTo: slug
+    });
   }
 });

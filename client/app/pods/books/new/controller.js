@@ -2,6 +2,7 @@ import Ember from 'ember';
 import {
   task
 } from 'ember-concurrency';
+import MakeSlug from 'bookshelf/utils/make-slug';
 
 const {
   get,
@@ -25,6 +26,8 @@ export default Controller.extend({
   createUser: task(function* (newBook, author) {
     const records = yield this.store.findAll('user')
     const user = get(records, 'firstObject');
+
+    set(newBook, 'slug', MakeSlug(get(newBook, 'title')));
 
     get(user, 'books').addObject(newBook);
     get(author, 'books').addObject(newBook);

@@ -8,6 +8,5 @@ const {
 } = Ember;
 
 export default Controller.extend({
-
-  book: alias('model')
+  book: alias('model.firstObject')
 });
