@@ -2,14 +2,18 @@ import DS from 'ember-data';
 
 const {
   attr,
-  hasMany
+  hasMany,
+  belongsTo
 } = DS;
 
 export default DS.Model.extend({
-  name: attr('string'),
+  firstName: attr('string'),
+  lastName: attr('string'),
+  patronymic: attr('string'),
   biography: attr('string'),
   birthYear: attr('date'),
-  imageUrl: attr('string'),
+  portraitUrl: attr('string'),
 
-  books: hasMany('book')
+  books: hasMany('book'),
+  user: belongsTo('user')
 });

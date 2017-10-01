@@ -16,7 +16,7 @@
 {{/ember-wormhole}}
 
 <div local-class="books-list">
-  {{#each model as |book|}}
+  {{#each books as |book|}}
     {{#link-to 'books.book' book.slug local-class="book-link"}}
       {{book-card
           book=book
