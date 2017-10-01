@@ -3,16 +3,13 @@
     {{book-card
         book=book
     }}
-    <div local-class="upload-cover">
-      <label local-class="upload-cover-label" class="ui button fluid">
-      Upload book cover
-      {{one-way-file
-          update=(action uploadBookCover)
-          id="book-cover-file"
-          local-class="upload-cover-input"
-      }}
-      </label>
-    </div>
+
+    {{upload-image-button
+        title="Upload book cover"
+        local-class="upload-cover"
+        fileInputId="book-cover-file"
+        update=(action uploadBookCover)
+    }}
   </div>
 
   <div class="seven wide column">

@@ -1,0 +1,47 @@
+<div class="ui grid centered">
+  <div class="three wide column">
+
+
+    {{upload-image-button
+        title="Upload book cover"
+        local-class="upload-portrait"
+        fileInputId="author-portrait-file"
+        update=(action uploadAuthorPortrait)
+    }}
+  </div>
+
+  <div class="seven wide column">
+    <h2 class="ui dividing header">Add new author</h2>
+
+    <div class="ui form">
+
+      <div class="field">
+        <label>First name</label>
+        {{one-way-input author.firstName update=(action (mut author.firstName))}}
+      </div>
+
+      <div class="field">
+        <label>Last name</label>
+        {{one-way-input author.lastName update=(action (mut author.lastName))}}
+      </div>
+
+      <div class="field">
+        <label>Patronymic</label>
+        {{one-way-input author.patronymic update=(action (mut author.patronymic))}}
+      </div>
+
+      <div class="field">
+        <label>Biography</label>
+        {{one-way-textarea author.biography update=(action (mut author.biography)) rows="2"}}
+      </div>
+
+      <div class="field">
+        <label>Year of birth</label>
+        {{one-way-number author.birthYear update=(action (mut author.birthYear))}}
+      </div>
+
+      {{yield}}
+
+    </div>
+  </div>
+</div>
