@@ -13,5 +13,6 @@ export default Model.extend({
   avatar: attr('string'),
 
   books: hasMany('book'),
+  authors: hasMany('authors'),
   shelves: hasMany('shelf')
 });

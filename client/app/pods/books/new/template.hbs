@@ -1,7 +1,7 @@
 {{#book-form
-    book=book
+    book=newBook
     author=author
     uploadBookCover=uploadBookCover
 }}
-  <button class="ui button primary" onclick={{perform createUser book author}}>Add book</button>
+  <button class="ui button primary" onclick={{perform createUser newBook author}}>Add book</button>
 {{/book-form}}

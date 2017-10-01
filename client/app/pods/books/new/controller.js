@@ -1,8 +1,9 @@
 import Ember from 'ember';
+import MakeSlug from 'bookshelf/utils/make-slug';
+import UploadImageToFirebase from 'bookshelf/utils/fb-upload-image';
 import {
   task
 } from 'ember-concurrency';
-import MakeSlug from 'bookshelf/utils/make-slug';
 
 const {
   get,
@@ -20,7 +21,7 @@ const {
 export default Controller.extend({
   firebaseUtil: service(),
 
-  book: alias('model.book'),
+  newBook: alias('model.book'),
   author: alias('model.author'),
 
   createUser: task(function* (newBook, author) {
@@ -39,20 +40,22 @@ export default Controller.extend({
     this.transitionToRoute('books.index');
   }),
 
-  uploadBookCover: task(function* () {
-    const coverImage = document.getElementById('book-cover-file').files[0];
+  uploadBookCover: task(function* (image) {
     const records = yield this.store.findAll('user');
     const user = get(records, 'firstObject');
-    const book = get(this, 'book');
-    const path = `images/book-cover/${get(user, 'username')}/${coverImage.name}`;
-    const metadata = {
-      'contentType': coverImage.type
-    };
+    const newBook = get(this, 'newBook');
+    const firebaseUtil = get(this, 'firebaseUtil');
 
     try {
-      const coverImageUrl = yield get(this, 'firebaseUtil').uploadFile(path, coverImage, metadata, this._onStateChange);
+      const coverImageUrl = yield UploadImageToFirebase({
+        firebaseUtil,
+        image,
+        user,
+        type: 'book-cover',
+        onStateChange: this._onStateChange.bind(this)
+      })
 
-      set(book, 'coverImageUrl', coverImageUrl);
+      set(newBook, 'coverImageUrl', coverImageUrl);
     } catch (e) {
       Logger.log(e);
     }
