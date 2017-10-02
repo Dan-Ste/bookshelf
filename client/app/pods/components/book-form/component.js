@@ -6,5 +6,6 @@ const {
 
 export default Component.extend({
   // passed in
-  book: null
+  book: null,
+  authors: null
 });

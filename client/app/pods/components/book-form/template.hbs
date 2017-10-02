@@ -13,7 +13,7 @@
   </div>
 
   <div class="seven wide column">
-    <h2 class="ui dividing header">Add new book</h2>
+    <h2 class="ui dividing header">New book</h2>
 
     <div class="ui form">
 
@@ -32,10 +32,53 @@
         {{one-way-number book.pubYear update=(action (mut book.pubYear))}}
       </div>
 
-      <div class="field">
-        <label>Author</label>
-        {{one-way-input author.name update=(action (mut author.name))}}
+      <div class="ui segment">
+        <h4>Author</h4>
+
+        <div class="field">
+          <label>Pick existed</label>
+          {{#ui-dropdown class="fluid search selection" selected=book.author onChange=(action (mut book.author)) as |execute mapper|}}
+            <i class="dropdown icon"></i>
+            <div class="menu">
+              {{#each authors as |author|}}
+                <div class="item" data-value="{{map-value mapper author}}">
+                  {{author.fullInitials}}
+                </div>
+              {{/each}}
+            </div>
+          {{/ui-dropdown}}
+        </div>
+
+        <h4 class="ui horizontal divider header">
+           Or add new one
+        </h4>
+
+        <div class="fields">
+          <div class="four wide field">
+            <label>First name</label>
+            <input type="text">
+          </div>
+          <div class="five wide field">
+             <label>Patronymic</label>
+            <input type="text">
+          </div>
+          <div class="five wide field">
+            <label>Last name</label>
+            <input type="text">
+          </div>
+          <div class="two wide field" local-class="add-author-wrapper">
+            <div local-class="add-author-btn">
+              {{#ui-popup content="Add new author"}}
+                <button class="ui icon button secondary">
+                  <i class="add icon"></i>
+                </button>
+              {{/ui-popup}}
+            </div>
+          </div>
+        </div>
       </div>
+        {{!-- {{one-way-input author.name update=(action (mut author.name))}} --}}
+
 
       {{yield}}
 
