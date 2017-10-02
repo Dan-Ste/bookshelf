@@ -34,5 +34,17 @@ export default DS.Model.extend({
         `${firstName} ${lastName} ${patronymic}` :
         `${firstName} ${lastName}`;
     }
+  }),
+
+  fullInitials: computed({
+    get() {
+      const firstName = get(this, 'firstName');
+      const lastName = get(this, 'lastName');
+      const patronymic = get(this, 'patronymic');
+
+      return patronymic ?
+        `${lastName} ${firstName.charAt(0).toUpperCase()}.${patronymic.charAt(0).toUpperCase()}.` :
+        `${lastName} ${firstName.charAt(0)}.`;
+    }
   })
 });

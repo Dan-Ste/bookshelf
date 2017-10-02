@@ -51,5 +51,5 @@ export default Controller.extend({
     } catch (e) {
       Logger.log(e);
     }
-  }),
+  })
 });
