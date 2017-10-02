@@ -22,7 +22,7 @@ export default Controller.extend({
   firebaseUtil: service(),
 
   newBook: alias('model.book'),
-  author: alias('model.author'),
+  authors: alias('model.authors'),
 
   createUser: task(function* (newBook, author) {
     const records = yield this.store.findAll('user')

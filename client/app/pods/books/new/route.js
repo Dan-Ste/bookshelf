@@ -15,7 +15,7 @@ export default Route.extend({
   model() {
     return hash({
       book: this.store.createRecord('book'),
-      author: this.store.createRecord('author')
+      authors: this.store.findAll('author')
     })
   }
 });
