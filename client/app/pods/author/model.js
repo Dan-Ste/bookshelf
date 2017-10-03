@@ -24,7 +24,7 @@ export default DS.Model.extend({
   books: hasMany('book'),
   user: belongsTo('user'),
 
-  fullName: computed({
+  fullName: computed('firstName', 'patronymic', 'lastName', {
     get() {
       const firstName = get(this, 'firstName');
       const lastName = get(this, 'lastName');
@@ -36,7 +36,7 @@ export default DS.Model.extend({
     }
   }),
 
-  fullInitials: computed({
+  fullInitials: computed('firstName', 'patronymic', 'lastName', {
     get() {
       const firstName = get(this, 'firstName');
       const lastName = get(this, 'lastName');

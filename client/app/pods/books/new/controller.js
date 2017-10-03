@@ -52,7 +52,7 @@ export default Controller.extend({
         image,
         user,
         type: 'book-cover',
-        onStateChange: this._onStateChange.bind(this)
+        onStateChange: this._onImageStateChange.bind(this)
       })
 
       set(newBook, 'coverImageUrl', coverImageUrl);
@@ -61,7 +61,34 @@ export default Controller.extend({
     }
   }),
 
-  _onStateChange(snapshot) {
+  addNewAuthor: task(function* ({
+    firstName,
+    patronymic,
+    lastName
+  }) {
+    const records = yield this.store.findAll('user');
+    const user = get(records, 'firstObject');
+    const newBook = get(this, 'newBook');
+
+    try {
+      const newAuthor = this.store.createRecord('author', {
+        firstName,
+        patronymic,
+        lastName
+      });
+debugger
+      get(user, 'authors').addObject(newAuthor);
+      set(newBook, 'author', newAuthor);
+
+      yield newAuthor.save();
+      yield user.save()
+
+    } catch (e) {
+      Logger.log(e);
+    }
+  }),
+
+  _onImageStateChange(snapshot) {
     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
 
     Logger.log('Upload is ' + progress + '% done');

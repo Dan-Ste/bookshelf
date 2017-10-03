@@ -4,8 +4,16 @@ const {
   Component
 } = Ember;
 
+const authorInfo = Ember.Object.create({
+  firstName: null,
+  patronymic: null,
+  lastName: null,
+});
+
 export default Component.extend({
   // passed in
   book: null,
-  authors: null
+  authors: null,
+
+  authorInfo
 });
