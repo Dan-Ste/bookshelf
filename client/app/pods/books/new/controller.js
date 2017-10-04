@@ -76,7 +76,7 @@ export default Controller.extend({
         patronymic,
         lastName
       });
-debugger
+
       get(user, 'authors').addObject(newAuthor);
       set(newBook, 'author', newAuthor);
 
