@@ -2,14 +2,3 @@
 <div local-class="overlay"></div>
 <div local-class="fake-cover"></div>
 <div local-class="pages"></div>
-
-{{#unless isBlank}}
-  <div local-class="content">
-    <h3 local-class="title">
-      {{book.title}}
-      {{#if book.author.name}}
-        <div local-class="author">by {{book.author.name}}</div>
-      {{/if}}
-    </h3>
-  </div>
-{{/unless}}

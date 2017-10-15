@@ -1,16 +1,9 @@
 .books-list {
   display: grid;
-  grid-gap: 2em;
-  grid-template-columns: repeat(auto-fill, 200px);
-  grid-auto-rows: 280px;
+  grid-gap: 50px;
+  grid-template-columns: repeat(auto-fill, 160px);
+  grid-auto-rows: 240px;
   justify-content: center;
-}
-
-.book-link {
-  &:hover {
-    transform: translateY(-3px);
-    transition: transform .1s ease;
-  }
 }
 
 .books-masthead {
@@ -19,4 +12,17 @@
 
 .search {
   float: right;
+}
+
+.book-content {
+  width: 100%;
+}
+
+.book-title {
+  color: #000;
+}
+
+.book-author {
+  color: #A0A0A0;
+  font-size: 0.8em;
 }

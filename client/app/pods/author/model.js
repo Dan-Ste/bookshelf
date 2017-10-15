@@ -38,8 +38,8 @@ export default DS.Model.extend({
       const patronymic = get(this, 'patronymic')
 
       return patronymic ?
-        `${lastName} ${firstName.charAt(0).toUpperCase()}.${patronymic.charAt(0).toUpperCase()}.` :
-        `${lastName} ${firstName.charAt(0)}.`
+        `${lastName} ${firstName && firstName.charAt(0).toUpperCase()}.${patronymic && patronymic.charAt(0).toUpperCase()}.` :
+        `${lastName} ${firstName && firstName.charAt(0)}.`
     }
   })
 })

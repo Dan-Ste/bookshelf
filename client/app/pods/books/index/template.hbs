@@ -17,10 +17,18 @@
 
 <div local-class="books-list">
   {{#each books as |book|}}
-    {{#link-to 'books.book' book.slug local-class="book-link"}}
-      {{book-card
-          book=book
-      }}
-    {{/link-to}}
+    <div local-class="book">
+      {{#link-to 'books.book' book.slug local-class="book-link"}}
+        {{book-card
+            book=book
+        }}
+      {{/link-to}}
+      <div local-class="book-content">
+        <div local-class="book-title">
+          {{book.title}}
+        </div>
+        <div local-class="book-author">{{book.author.fullInitials}}</div>
+      </div>
+    </div>
   {{/each}}
 </div>
