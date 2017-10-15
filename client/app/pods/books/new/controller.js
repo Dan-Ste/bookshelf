@@ -21,25 +21,24 @@ export default Controller.extend({
 
   createUser: task(function* (newBook, author) {
     const records = yield this.store.findAll('user')
-    const user = get(records, 'firstObject');
+    const user = get(records, 'firstObject')
 
-    set(newBook, 'slug', MakeSlug(get(newBook, 'title')));
+    set(newBook, 'slug', MakeSlug(get(newBook, 'title')))
 
-    get(user, 'books').addObject(newBook);
-    get(author, 'books').addObject(newBook);
+    get(user, 'books').addObject(newBook)
+    get(newBook, 'author.books').addObject(newBook)
 
-    yield newBook.save();
-    yield author.save();
-    yield user.save();
+    yield newBook.save()
+    yield user.save()
 
-    this.transitionToRoute('books.index');
+    this.transitionToRoute('books.index')
   }),
 
   uploadBookCover: task(function* (image) {
-    const records = yield this.store.findAll('user');
-    const user = get(records, 'firstObject');
-    const newBook = get(this, 'newBook');
-    const firebaseUtil = get(this, 'firebaseUtil');
+    const records = yield this.store.findAll('user')
+    const user = get(records, 'firstObject')
+    const newBook = get(this, 'newBook')
+    const firebaseUtil = get(this, 'firebaseUtil')
 
     try {
       const coverImageUrl = yield UploadImageToFirebase({
@@ -50,9 +49,9 @@ export default Controller.extend({
         onStateChange: this._onImageStateChange.bind(this)
       })
 
-      set(newBook, 'coverImageUrl', coverImageUrl);
+      set(newBook, 'coverImageUrl', coverImageUrl)
     } catch (e) {
-      Logger.log(e);
+      Logger.log(e)
     }
   }),
 
@@ -61,21 +60,21 @@ export default Controller.extend({
     patronymic,
     lastName
   }) {
-    const records = yield this.store.findAll('user');
-    const user = get(records, 'firstObject');
-    const newBook = get(this, 'newBook');
+    const records = yield this.store.findAll('user')
+    const user = get(records, 'firstObject')
+    const newBook = get(this, 'newBook')
 
     try {
       const newAuthor = this.store.createRecord('author', {
         firstName,
         patronymic,
         lastName
-      });
+      })
 
-      get(user, 'authors').addObject(newAuthor);
-      set(newBook, 'author', newAuthor);
+      get(user, 'authors').addObject(newAuthor)
+      set(newBook, 'author', newAuthor)
 
-      yield newAuthor.save();
+      yield newAuthor.save()
       yield user.save()
 
     } catch (e) {

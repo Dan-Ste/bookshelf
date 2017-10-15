@@ -1,11 +1,11 @@
-import { computed, get } from '@ember/object';
-import DS from 'ember-data';
+import { computed, get } from '@ember/object'
+import DS from 'ember-data'
 
 const {
   attr,
   hasMany,
   belongsTo
-} = DS;
+} = DS
 
 export default DS.Model.extend({
   firstName: attr('string'),
@@ -21,25 +21,25 @@ export default DS.Model.extend({
 
   fullName: computed('firstName', 'patronymic', 'lastName', {
     get() {
-      const firstName = get(this, 'firstName');
-      const lastName = get(this, 'lastName');
-      const patronymic = get(this, 'patronymic');
+      const firstName = get(this, 'firstName')
+      const lastName = get(this, 'lastName')
+      const patronymic = get(this, 'patronymic')
 
       return patronymic ?
-        `${firstName} ${lastName} ${patronymic}` :
-        `${firstName} ${lastName}`;
+        `${firstName} ${patronymic} ${lastName}` :
+        `${firstName} ${lastName}`
     }
   }),
 
   fullInitials: computed('firstName', 'patronymic', 'lastName', {
     get() {
-      const firstName = get(this, 'firstName');
-      const lastName = get(this, 'lastName');
-      const patronymic = get(this, 'patronymic');
+      const firstName = get(this, 'firstName')
+      const lastName = get(this, 'lastName')
+      const patronymic = get(this, 'patronymic')
 
       return patronymic ?
         `${lastName} ${firstName.charAt(0).toUpperCase()}.${patronymic.charAt(0).toUpperCase()}.` :
-        `${lastName} ${firstName.charAt(0)}.`;
+        `${lastName} ${firstName.charAt(0)}.`
     }
   })
-});
+})

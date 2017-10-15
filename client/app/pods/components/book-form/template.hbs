@@ -53,20 +53,20 @@
         <div class="fields">
           <div class="five wide field">
             <label>Last name</label>
-            {{one-way-input authorInfo.lastName update=(action (mut authorInfo.lastName))}}
+            {{one-way-input newAuthorInfo.lastName update=(action (mut newAuthorInfo.lastName))}}
           </div>
           <div class="five wide field">
             <label>First name</label>
-            {{one-way-input authorInfo.firstName update=(action (mut authorInfo.firstName))}}
+            {{one-way-input newAuthorInfo.firstName update=(action (mut newAuthorInfo.firstName))}}
           </div>
           <div class="four wide field">
             <label>Patronymic</label>
-            {{one-way-input authorInfo.patronymic update=(action (mut authorInfo.patronymic))}}
+            {{one-way-input newAuthorInfo.patronymic update=(action (mut newAuthorInfo.patronymic))}}
           </div>
           <div class="two wide field" local-class="add-author-wrapper">
             <div local-class="add-author-btn">
               {{#ui-popup content="Add new author"}}
-                <button class="ui icon button secondary" onclick={{perform addNewAuthor authorInfo}}>
+                <button class="ui icon button secondary" onclick={{queue (perform addNewAuthor newAuthorInfo) (action cleanNewAuthorInfo)}}>
                   <i class="add icon"></i>
                 </button>
               {{/ui-popup}}

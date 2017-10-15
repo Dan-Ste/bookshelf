@@ -1,16 +1,30 @@
-import EmberObject from '@ember/object';
-import Component from '@ember/component';
+import {
+  get,
+  setProperties
+} from '@ember/object'
+import EmberObject from '@ember/object'
+import Component from '@ember/component'
 
-const authorInfo = EmberObject.create({
+const newAuthorInfo = EmberObject.create({
   firstName: null,
   patronymic: null,
-  lastName: null,
-});
+  lastName: null
+})
 
 export default Component.extend({
   // passed in
   book: null,
   authors: null,
 
-  authorInfo
+  newAuthorInfo,
+
+  cleanNewAuthorInfo() {
+    const newAuthorInfo = get(this, 'newAuthorInfo')
+
+    setProperties(newAuthorInfo, {
+      firstName: null,
+      patronymic: null,
+      lastName: null
+    })
+  }
 });
