@@ -1,3 +1,7 @@
+import { set, get } from '@ember/object';
+import Controller from '@ember/controller';
+import { alias } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
 import Ember from 'ember';
 import MakeSlug from 'bookshelf/utils/make-slug';
 import UploadImageToFirebase from 'bookshelf/utils/fb-upload-image';
@@ -6,15 +10,6 @@ import {
 } from 'ember-concurrency';
 
 const {
-  get,
-  set,
-  Controller,
-  computed: {
-    alias
-  },
-  inject: {
-    service
-  },
   Logger
 } = Ember;
 

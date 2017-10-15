@@ -1,16 +1,9 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
+import { set, get } from '@ember/object';
+import { inject as service } from '@ember/service';
 import {
   task
 } from 'ember-concurrency';
-
-const {
-  Route,
-  get,
-  set,
-  inject: {
-    service
-  }
-} = Ember;
 
 export default Route.extend({
   session: service(),

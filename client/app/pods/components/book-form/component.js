@@ -1,10 +1,7 @@
-import Ember from 'ember';
+import EmberObject from '@ember/object';
+import Component from '@ember/component';
 
-const {
-  Component
-} = Ember;
-
-const authorInfo = Ember.Object.create({
+const authorInfo = EmberObject.create({
   firstName: null,
   patronymic: null,
   lastName: null,

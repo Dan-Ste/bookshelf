@@ -1,11 +1,5 @@
-import Ember from 'ember';
-
-const {
-  get,
-  RSVP: {
-    Promise
-  }
-} = Ember;
+import { get } from '@ember/object';
+import { Promise } from 'rsvp';
 
 export default function fbUploadImage({
   firebaseUtil,

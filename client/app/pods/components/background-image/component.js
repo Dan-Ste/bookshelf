@@ -1,13 +1,6 @@
-import Ember from 'ember';
-
-const {
-  get,
-  set,
-  Component,
-  String: {
-    htmlSafe
-  }
-} = Ember;
+import { set, get } from '@ember/object';
+import Component from '@ember/component';
+import { htmlSafe } from '@ember/string';
 
 export default Component.extend({
   attributeBindings: ['style'],

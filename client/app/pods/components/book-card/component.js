@@ -1,14 +1,8 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { computed, get } from '@ember/object';
+import { htmlSafe } from '@ember/string';
 
-const {
-  get,
-  computed,
-  String: {
-    htmlSafe
-  }
-} = Ember;
-
-export default Ember.Component.extend({
+export default Component.extend({
   attributeBindings: ['style'],
   localClassNames: ['book-card'],
 
