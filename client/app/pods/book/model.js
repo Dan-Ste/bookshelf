@@ -13,6 +13,6 @@ export default DS.Model.extend({
   slug: attr('string'),
 
   author: belongsTo('author'),
-  shelf: belongsTo('shelf'),
+  bookshelf: belongsTo('bookshelf'),
   user: belongsTo('user')
 });

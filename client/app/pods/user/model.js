@@ -14,5 +14,5 @@ export default Model.extend({
 
   books: hasMany('book'),
   authors: hasMany('authors'),
-  shelves: hasMany('shelf')
+  bookshelves: hasMany('bookshelf')
 });
