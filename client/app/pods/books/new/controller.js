@@ -1,30 +1,31 @@
 import {
   set,
   get
-} from '@ember/object';
-import Controller from '@ember/controller';
+} from '@ember/object'
+import Controller from '@ember/controller'
 import {
   alias
-} from '@ember/object/computed';
+} from '@ember/object/computed'
 import {
   inject as service
-} from '@ember/service';
-import Ember from 'ember';
-import MakeSlug from 'bookshelf/utils/make-slug';
-import UploadImageToFirebase from 'bookshelf/utils/fb-upload-image';
+} from '@ember/service'
+import Ember from 'ember'
+import MakeSlug from 'bookshelf/utils/make-slug'
+import UploadImageToFirebase from 'bookshelf/utils/fb-upload-image'
 import {
   task
-} from 'ember-concurrency';
+} from 'ember-concurrency'
 
 const {
   Logger
-} = Ember;
+} = Ember
 
 export default Controller.extend({
   firebaseUtil: service(),
 
   newBook: alias('model.book'),
   authors: alias('model.authors'),
+  bookshelves: alias('model.bookshelves'),
 
   createUser: task(function* (newBook) {
     const records = yield this.store.findAll('user')
@@ -37,9 +38,13 @@ export default Controller.extend({
     yield newBook.save()
 
     const author = yield this.store.findRecord('author', get(newBook, 'author.id'))
+    const bookshelf = yield this.store.findRecord('bookshelf', get(newBook, 'bookshelf.id'))
+
     get(author, 'books').addObject(newBook)
+    get(bookshelf, 'books').addObject(newBook)
 
     yield author.save()
+    yield bookshelf.save()
     yield user.save()
 
     this.transitionToRoute('books.index')
@@ -89,14 +94,37 @@ export default Controller.extend({
       yield user.save()
 
     } catch (e) {
-      Logger.log(e);
+      Logger.log(e)
+    }
+  }),
+
+  addNewBookshelf: task(function* ({
+    title
+  }) {
+    const records = yield this.store.findAll('user')
+    const user = get(records, 'firstObject')
+    const newBook = get(this, 'newBook')
+
+    try {
+      const newBookshelf = this.store.createRecord('bookshelf', {
+        title
+      })
+
+      get(user, 'bookshelves').addObject(newBookshelf)
+      set(newBook, 'bookshelf', newBookshelf)
+
+      yield newBookshelf.save()
+      yield user.save()
+
+    } catch (e) {
+      Logger.log(e)
     }
   }),
 
   _onImageStateChange(snapshot) {
-    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
 
-    Logger.log('Upload is ' + progress + '% done');
+    Logger.log('Upload is ' + progress + '% done')
   }
 
-});
+})

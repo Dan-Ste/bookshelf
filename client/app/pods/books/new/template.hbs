@@ -3,6 +3,10 @@
     authors=authors
     uploadBookCover=uploadBookCover
     addNewAuthor=addNewAuthor
+    addNewBookshelf=addNewBookshelf
 }}
-  <button class="ui button primary" onclick={{perform createUser newBook}}>Add book</button>
+  <button class="ui button primary {{if createUser.isRunning 'loading'}}"
+    onclick={{perform createUser newBook}}>
+    Add book
+  </button>
 {{/book-form}}

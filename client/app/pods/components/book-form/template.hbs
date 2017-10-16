@@ -33,6 +33,43 @@
       </div>
 
       <div class="ui segment">
+        <h4>Bookshelf</h4>
+
+        <div class="field">
+          {{#power-select
+              selected=book.bookshelf
+              options=bookshelves
+              searchField="fullInitials"
+              onchange=(action (mut book.bookshelf))
+          as |bookshelf|}}
+            {{bookshelf.title}}
+          {{/power-select}}
+        </div>
+
+        <h4 class="ui horizontal divider header">
+           Or add new one
+        </h4>
+
+        <div class="fields">
+          <div class="fourteen wide field">
+            <label>Title</label>
+            {{one-way-input newBookshelfInfo.title update=(action (mut newBookshelfInfo.title))}}
+          </div>
+          <div class="two wide field" local-class="add-btn-wrapper">
+            <div local-class="add-btn">
+              {{#ui-popup content="Add new bookshelf"}}
+                <button class="ui icon button secondary {{if addNewBookshelf.isRunning 'loading'}}"
+                  onclick={{queue (perform addNewBookshelf newBookshelfInfo) (action cleanNewBookshelfInfo)}}
+                >
+                  <i class="add icon"></i>
+                </button>
+              {{/ui-popup}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ui segment">
         <h4>Author</h4>
 
         <div class="field">
@@ -63,10 +100,12 @@
             <label>Patronymic</label>
             {{one-way-input newAuthorInfo.patronymic update=(action (mut newAuthorInfo.patronymic))}}
           </div>
-          <div class="two wide field" local-class="add-author-wrapper">
-            <div local-class="add-author-btn">
+          <div class="two wide field" local-class="add-btn-wrapper">
+            <div local-class="add-btn">
               {{#ui-popup content="Add new author"}}
-                <button class="ui icon button secondary" onclick={{queue (perform addNewAuthor newAuthorInfo) (action cleanNewAuthorInfo)}}>
+                <button class="ui icon button secondary {{if addNewAuthor.isRunning 'loading'}}"
+                  onclick={{queue (perform addNewAuthor newAuthorInfo) (action cleanNewAuthorInfo)}}
+                >
                   <i class="add icon"></i>
                 </button>
               {{/ui-popup}}

@@ -9,7 +9,8 @@ export default Route.extend({
   model() {
     return hash({
       book: this.store.createRecord('book'),
-      authors: this.store.findAll('author')
+      authors: this.store.findAll('author'),
+      bookshelves: this.store.findAll('bookshelf'),
     })
   }
 });

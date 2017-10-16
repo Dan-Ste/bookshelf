@@ -11,12 +11,17 @@ const newAuthorInfo = EmberObject.create({
   lastName: null
 })
 
+const newBookshelfInfo = EmberObject.create({
+  title: null
+})
+
 export default Component.extend({
   // passed in
   book: null,
   authors: null,
 
   newAuthorInfo,
+  newBookshelfInfo,
 
   cleanNewAuthorInfo() {
     const newAuthorInfo = get(this, 'newAuthorInfo')
@@ -25,6 +30,14 @@ export default Component.extend({
       firstName: null,
       patronymic: null,
       lastName: null
+    })
+  },
+
+  cleanNewBookshelfInfo() {
+    const newBookshelfInfo = get(this, 'newBookshelfInfo')
+
+    setProperties(newBookshelfInfo, {
+      title: null
     })
   }
 });
