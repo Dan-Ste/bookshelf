@@ -1,7 +1,14 @@
-import { set, get } from '@ember/object';
+import {
+  set,
+  get
+} from '@ember/object';
 import Controller from '@ember/controller';
-import { alias } from '@ember/object/computed';
-import { inject as service } from '@ember/service';
+import {
+  alias
+} from '@ember/object/computed';
+import {
+  inject as service
+} from '@ember/service';
 import Ember from 'ember';
 import MakeSlug from 'bookshelf/utils/make-slug';
 import UploadImageToFirebase from 'bookshelf/utils/fb-upload-image';
@@ -19,16 +26,20 @@ export default Controller.extend({
   newBook: alias('model.book'),
   authors: alias('model.authors'),
 
-  createUser: task(function* (newBook, author) {
+  createUser: task(function* (newBook) {
     const records = yield this.store.findAll('user')
     const user = get(records, 'firstObject')
 
     set(newBook, 'slug', MakeSlug(get(newBook, 'title')))
 
     get(user, 'books').addObject(newBook)
-    get(newBook, 'author.books').addObject(newBook)
 
     yield newBook.save()
+
+    const author = yield this.store.findRecord('author', get(newBook, 'author.id'))
+    get(author, 'books').addObject(newBook)
+
+    yield author.save()
     yield user.save()
 
     this.transitionToRoute('books.index')
