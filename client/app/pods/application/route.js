@@ -1,14 +1,22 @@
 import Route from '@ember/routing/route';
-import { get } from '@ember/object';
+import {
+  get
+} from '@ember/object';
+import {
+  hash
+} from 'rsvp'
 
 export default Route.extend({
 
   model() {
     if (get(this, 'session.isAuthenticated')) {
-      return this.store.query('user', {
-        orderBy: 'uid',
-        equalTo: get(this, 'session.uid')
-      });
+      return hash({
+        user: this.store.query('user', {
+          orderBy: 'uid',
+          equalTo: get(this, 'session.uid')
+        }),
+        bookshelves: this.store.findAll('bookshelf')
+      })
     }
   },
 

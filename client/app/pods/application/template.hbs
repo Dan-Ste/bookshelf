@@ -25,14 +25,12 @@
 
       <div class="item">
         <div class="menu">
-          <a class="item">
-            <i class="circle icon" style="color: tomato"></i>
-            Programming
-          </a>
-          <a class="item">
-            <i class="circle icon" style="color: cyan"></i>
-            History
-          </a>
+          {{#each model.bookshelves as |bookshelf|}}
+            {{#link-to "bookshelf" bookshelf.id class="item"}}
+              <i class="circle icon" style="color: tomato"></i>
+              {{bookshelf.title}}
+            {{/link-to}}
+          {{/each}}
         </div>
       </div>
 

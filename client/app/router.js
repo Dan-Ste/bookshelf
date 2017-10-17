@@ -29,6 +29,10 @@ Router.map(function () {
       path: '/new'
     });
   });
+
+  this.route('bookshelf', {
+    path: '/:bookshelf_id'
+  });
 });
 
 export default Router;
