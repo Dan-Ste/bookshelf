@@ -31,7 +31,7 @@ Router.map(function () {
   });
 
   this.route('bookshelf', {
-    path: '/:bookshelf_id'
+    path: 'bookshelf/:bookshelf_id'
   });
 });
 
