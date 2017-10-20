@@ -15,8 +15,4 @@
 
 {{/ember-wormhole}}
 
-<div local-class="books-list">
-  {{#each books as |book|}}
-    {{book-card book=book}}
-  {{/each}}
-</div>
+{{books-list books=books}}
