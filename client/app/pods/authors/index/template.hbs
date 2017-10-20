@@ -1,11 +1,3 @@
-{{#ember-wormhole to="masthead"}}
-
-  <div local-class="authors-masthead">
-
-  </div>
-
-{{/ember-wormhole}}
-
 <div local-class="authors-list">
   {{#each model as |author|}}
     {{#link-to 'authors.author' author.slug local-class="author-link"}}

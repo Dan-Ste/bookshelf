@@ -16,12 +16,15 @@
   height: 100%;
 }
 
-.masthead-wrapper {
-  border-bottom: 1px solid #ddd;
+.masthead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1em 0;
 }
 
 .breadcrumbs {
-  margin: 1em 0;
+  margin-bottom: 2em;
 }
 
 .user-item {
