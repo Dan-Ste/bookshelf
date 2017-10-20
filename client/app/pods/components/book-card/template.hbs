@@ -1,4 +1,11 @@
-<div local-class="cover" style={{coverBg}}></div>
-<div local-class="overlay"></div>
-<div local-class="fake-cover"></div>
-<div local-class="pages"></div>
+{{#link-to 'books.book' book.slug local-class="book-link"}}
+  {{book-cover
+      book=book
+  }}
+{{/link-to}}
+<div local-class="book-content">
+  <div local-class="book-title">
+    {{book.title}}
+  </div>
+  <div local-class="book-author">{{book.author.fullInitials}}</div>
+</div>
