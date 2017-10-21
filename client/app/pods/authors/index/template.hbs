@@ -1,7 +1,1 @@
-<div local-class="authors-list">
-  {{#each model as |author|}}
-    {{#link-to 'authors.author' author.slug local-class="author-link"}}
-      {{author.firstName}}
-    {{/link-to}}
-  {{/each}}
-</div>
+{{authors-list authors=authors}}

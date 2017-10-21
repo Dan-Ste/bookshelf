@@ -87,6 +87,8 @@ export default Controller.extend({
         lastName
       })
 
+      set(newAuthor, 'slug', MakeSlug(get(newAuthor, 'fullName')))
+
       get(user, 'authors').addObject(newAuthor)
       set(newBook, 'author', newAuthor)
 
