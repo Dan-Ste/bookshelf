@@ -9,10 +9,10 @@ export default Component.extend({
   book: null,
   isBlank: false,
 
-  coverBg: computed('book.coverImageUrl', {
+  coverBg: computed('book.coverUrl', {
     get() {
-      const coverImageUrl = get(this, 'book.coverImageUrl');
-      return htmlSafe(`background-image:url("${coverImageUrl}")`);
+      const coverUrl = get(this, 'book.coverUrl');
+      return htmlSafe(`background-image:url("${coverUrl}")`);
     }
   })
 });

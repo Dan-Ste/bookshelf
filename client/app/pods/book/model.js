@@ -8,7 +8,8 @@ const {
 export default DS.Model.extend({
   title: attr('string'),
   description: attr('string'),
-  coverImageUrl: attr('string'),
+  coverUrl: attr('string'),
+  fileUrl: attr('string'),
   pubYear: attr('number'),
   slug: attr('string'),
 

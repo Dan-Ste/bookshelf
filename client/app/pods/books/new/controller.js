@@ -11,7 +11,7 @@ import {
 } from '@ember/service'
 import Ember from 'ember'
 import MakeSlug from 'bookshelf/utils/make-slug'
-import UploadImageToFirebase from 'bookshelf/utils/fb-upload-image'
+import UploadFileToFirebase from 'bookshelf/utils/fb-upload-file'
 import {
   task
 } from 'ember-concurrency'
@@ -55,17 +55,38 @@ export default Controller.extend({
     const user = get(records, 'firstObject')
     const newBook = get(this, 'newBook')
     const firebaseUtil = get(this, 'firebaseUtil')
+    const path = `${get(user, 'username')}/images/book-covers/${image.name}`
 
     try {
-      const coverImageUrl = yield UploadImageToFirebase({
+      const coverUrl = yield UploadFileToFirebase({
         firebaseUtil,
-        image,
-        user,
-        type: 'book-cover',
-        onStateChange: this._onImageStateChange.bind(this)
+        file: image,
+        path,
+        onStateChange: this._onUploadStateChange.bind(this)
       })
 
-      set(newBook, 'coverImageUrl', coverImageUrl)
+      set(newBook, 'coverUrl', coverUrl)
+    } catch (e) {
+      Logger.log(e)
+    }
+  }),
+
+  uploadBookFile: task(function* (file) {
+    const records = yield this.store.findAll('user')
+    const user = get(records, 'firstObject')
+    const newBook = get(this, 'newBook')
+    const firebaseUtil = get(this, 'firebaseUtil')
+    const path = `${get(user, 'username')}/files/books/${file.name}`
+
+    try {
+      const bookFileUrl = yield UploadFileToFirebase({
+        firebaseUtil,
+        file,
+        path,
+        onStateChange: this._onUploadStateChange.bind(this)
+      })
+
+      set(newBook, 'fileUrl', bookFileUrl)
     } catch (e) {
       Logger.log(e)
     }
@@ -123,7 +144,7 @@ export default Controller.extend({
     }
   }),
 
-  _onImageStateChange(snapshot) {
+  _onUploadStateChange(snapshot) {
     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
 
     Logger.log('Upload is ' + progress + '% done')

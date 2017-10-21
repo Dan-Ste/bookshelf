@@ -1,4 +1,5 @@
-<div local-class="form">
+<div>
+
   <div class="ui form">
     <div class="field">
       <label>Title</label>
@@ -14,121 +15,121 @@
       <label>Publishing year</label>
       {{one-way-number book.pubYear update=(action (mut book.pubYear))}}
     </div>
+  </div>
 
-    <div class="ui segment">
-      <h4>Bookshelf</h4>
+  <div class="ui segment">
+    <h4>Bookshelf</h4>
 
-      {{#if isNewBookshelf}}
+    {{#if isNewBookshelf}}
 
-         <div class="ui form">
-          <div class="field">
-            <label>Title</label>
-            {{one-way-input newBookshelfInfo.title update=(action (mut newBookshelfInfo.title))}}
-          </div>
-
-          <button class="ui button basic primary {{if addNewBookshelf.isRunning 'loading'}}"
-            onclick={{queue (perform addNewBookshelf newBookshelfInfo) (action cleanNewBookshelfInfo) (action hideNewBookShelfForm)}}
-          >
-            Create New Bookshelf
-          </button>
-
-          <button class="ui button basic negative" onclick={{action hideNewBookShelfForm}}>
-            Cancel
-          </button>
+      <div class="ui form">
+        <div class="field">
+          <label>Title</label>
+          {{one-way-input newBookshelfInfo.title update=(action (mut newBookshelfInfo.title))}}
         </div>
 
-      {{else}}
+        <button class="ui button basic primary {{if addNewBookshelf.isRunning 'loading'}}"
+          onclick={{queue (perform addNewBookshelf newBookshelfInfo) (action cleanNewBookshelfInfo) (action hideNewBookShelfForm)}}
+        >
+          Create New Bookshelf
+        </button>
 
-        <div class="ui form">
-          <div class="fields">
-            <div class="nine wide field">
-              {{#power-select
-                  selected=book.bookshelf
-                  options=bookshelves
-                  searchField="fullInitials"
-                  searchEnabled=(gt bookshelves.length 5)
-                  onchange=(action (mut book.bookshelf))
-                  placeholder="Pick Existed Bookshelf"
-              as |bookshelf|}}
-                {{bookshelf.title}}
-              {{/power-select}}
-            </div>
+        <button class="ui button basic negative" onclick={{action hideNewBookShelfForm}}>
+          Cancel
+        </button>
+      </div>
 
-            <div class="seven wide field">
-              <button class="ui icon labeled button fluid" onclick={{action showNewBookShelfForm}}>
-                New Bookshelf
-                <i class="add icon"></i>
-              </button>
-            </div>
+    {{else}}
+
+      <div class="ui form">
+        <div class="fields">
+          <div class="nine wide field">
+            {{#power-select
+                selected=book.bookshelf
+                options=bookshelves
+                searchField="fullInitials"
+                searchEnabled=(gt bookshelves.length 5)
+                onchange=(action (mut book.bookshelf))
+                placeholder="Pick Existed Bookshelf"
+            as |bookshelf|}}
+              {{bookshelf.title}}
+            {{/power-select}}
+          </div>
+
+          <div class="seven wide field">
+            <button class="ui icon labeled button fluid" onclick={{action showNewBookShelfForm}}>
+              New Bookshelf
+              <i class="add icon"></i>
+            </button>
           </div>
         </div>
+      </div>
 
-      {{/if}}
-
-    </div>
-
-    <div class="ui segment">
-      <h4>Author</h4>
-
-      {{#if isNewAuthor}}
-
-         <div class="ui from">
-          <div class="field">
-            <label>Last name</label>
-            {{one-way-input newAuthorInfo.lastName update=(action (mut newAuthorInfo.lastName))}}
-          </div>
-
-          <div class="field">
-            <label>First name</label>
-            {{one-way-input newAuthorInfo.firstName update=(action (mut newAuthorInfo.firstName))}}
-          </div>
-
-          <div class="field">
-            <label>Patronymic</label>
-            {{one-way-input newAuthorInfo.patronymic update=(action (mut newAuthorInfo.patronymic))}}
-          </div>
-
-          <button class="ui basic primary button {{if addNewAuthor.isRunning 'loading'}}"
-            onclick={{queue (perform addNewAuthor newAuthorInfo) (action cleanNewAuthorInfo) (action hideNewAuthorForm)}}
-          >
-            Create New Author
-          </button>
-
-          <button class="ui button basic negative" onclick={{action hideNewAuthorForm}}>Cancel</button>
-        </div>
-
-      {{else}}
-        <div class="ui form">
-          <div class="fields">
-
-            <div class="nine wide field">
-              {{#power-select
-                  selected=book.author
-                  options=authors
-                  searchEnabled=(gt authors.length 5)
-                  searchField="fullInitials"
-                  onchange=(action (mut book.author))
-                  placeholder="Pick Existed Author"
-              as |author|}}
-                {{author.fullInitials}}
-              {{/power-select}}
-            </div>
-
-            <div class="seven wide field">
-              <button class="ui icon labeled button fluid" onclick={{action showNewAuthorForm}}>
-                New Author
-                <i class="add icon"></i>
-              </button>
-            </div>
-
-          </div>
-        </div>
-      {{/if}}
-    </div>
-
-    {{yield}}
+    {{/if}}
 
   </div>
+
+  <div class="ui segment">
+    <h4>Author</h4>
+
+    {{#if isNewAuthor}}
+
+      <div class="ui from">
+        <div class="field">
+          <label>Last name</label>
+          {{one-way-input newAuthorInfo.lastName update=(action (mut newAuthorInfo.lastName))}}
+        </div>
+
+        <div class="field">
+          <label>First name</label>
+          {{one-way-input newAuthorInfo.firstName update=(action (mut newAuthorInfo.firstName))}}
+        </div>
+
+        <div class="field">
+          <label>Patronymic</label>
+          {{one-way-input newAuthorInfo.patronymic update=(action (mut newAuthorInfo.patronymic))}}
+        </div>
+
+        <button class="ui basic primary button {{if addNewAuthor.isRunning 'loading'}}"
+          onclick={{queue (perform addNewAuthor newAuthorInfo) (action cleanNewAuthorInfo) (action hideNewAuthorForm)}}
+        >
+          Create New Author
+        </button>
+
+        <button class="ui button basic negative" onclick={{action hideNewAuthorForm}}>Cancel</button>
+      </div>
+
+    {{else}}
+      <div class="ui form">
+        <div class="fields">
+
+          <div class="nine wide field">
+            {{#power-select
+                selected=book.author
+                options=authors
+                searchEnabled=(gt authors.length 5)
+                searchField="fullInitials"
+                onchange=(action (mut book.author))
+                placeholder="Pick Existed Author"
+            as |author|}}
+              {{author.fullInitials}}
+            {{/power-select}}
+          </div>
+
+          <div class="seven wide field">
+            <button class="ui icon labeled button fluid" onclick={{action showNewAuthorForm}}>
+              New Author
+              <i class="add icon"></i>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    {{/if}}
+  </div>
+
+  {{yield}}
+
 </div>
 
 <div local-class="files">
@@ -136,11 +137,23 @@
       book=book
   }}
 
-  {{upload-image-button
-      title="Upload book cover"
-      local-class="upload-cover"
-      fileInputId="book-cover-file"
-      update=(action uploadBookCover)
-  }}
-</div>
+  <div local-class="btn-group">
+    <div class="ui vertical labeled icon buttons small fluid">
+      {{upload-button
+          title=(if book.coverUrl "Change cover" "Upload cover")
+          fileInputId="book-cover-image"
+          icon="file image outline"
+          update=(action uploadBookCover)
+          isUploaded=book.coverUrl
+      }}
 
+      {{upload-button
+          title=(if book.fileUrl "Change ebook" "Upload ebook")
+          fileInputId="book-file"
+          icon="file text outline"
+          update=(action uploadBookFile)
+          isUploaded=book.fileUrl
+      }}
+    </div>
+  </div>
+</div>
