@@ -1,5 +1,6 @@
 import {
-  get
+  get,
+  set
 } from '@ember/object'
 import Route from '@ember/routing/route';
 import {
@@ -7,14 +8,21 @@ import {
 } from 'rsvp'
 
 export default Route.extend({
+  breadCrumb: {},
 
   model({
     bookshelf_id
   }) {
     return hash({
-      books: this.store.findRecord('bookshelf', bookshelf_id).then(bookshelf => {
-        return get(bookshelf, 'books');
-      })
+      bookshelf: this.store.findRecord('bookshelf', bookshelf_id)
     })
-  }
+  },
+
+  afterModel(model) {
+    const bookshelfTitle = get(model, 'bookshelf.title');
+
+    set(this, 'breadCrumb', {
+      title: bookshelfTitle
+    });
+  },
 });
