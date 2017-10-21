@@ -1,121 +1,146 @@
-<div class="ui grid centered">
-  <div class="three wide column">
-    {{book-cover
-        book=book
-    }}
+<div local-class="form">
+  <div class="ui form">
+    <div class="field">
+      <label>Title</label>
+      {{one-way-input book.title update=(action (mut book.title))}}
+    </div>
 
-    {{upload-image-button
-        title="Upload book cover"
-        local-class="upload-cover"
-        fileInputId="book-cover-file"
-        update=(action uploadBookCover)
-    }}
-  </div>
+    <div class="field">
+      <label>Description</label>
+      {{one-way-textarea book.description update=(action (mut book.description)) rows="2"}}
+    </div>
 
-  <div class="seven wide column">
-    <h2 class="ui dividing header">New book</h2>
+    <div class="field">
+      <label>Publishing year</label>
+      {{one-way-number book.pubYear update=(action (mut book.pubYear))}}
+    </div>
 
-    <div class="ui form">
+    <div class="ui segment">
+      <h4>Bookshelf</h4>
 
-      <div class="field">
-        <label>Title</label>
-        {{one-way-input book.title update=(action (mut book.title))}}
-      </div>
+      {{#if isNewBookshelf}}
 
-      <div class="field">
-        <label>Description</label>
-        {{one-way-textarea book.description update=(action (mut book.description)) rows="2"}}
-      </div>
-
-      <div class="field">
-        <label>Publishing year</label>
-        {{one-way-number book.pubYear update=(action (mut book.pubYear))}}
-      </div>
-
-      <div class="ui segment">
-        <h4>Bookshelf</h4>
-
-        <div class="field">
-          {{#power-select
-              selected=book.bookshelf
-              options=bookshelves
-              searchField="fullInitials"
-              onchange=(action (mut book.bookshelf))
-          as |bookshelf|}}
-            {{bookshelf.title}}
-          {{/power-select}}
-        </div>
-
-        <h4 class="ui horizontal divider header">
-           Or add new one
-        </h4>
-
-        <div class="fields">
-          <div class="fourteen wide field">
+         <div class="ui form">
+          <div class="field">
             <label>Title</label>
             {{one-way-input newBookshelfInfo.title update=(action (mut newBookshelfInfo.title))}}
           </div>
-          <div class="two wide field" local-class="add-btn-wrapper">
-            <div local-class="add-btn">
-              {{#ui-popup content="Add new bookshelf"}}
-                <button class="ui icon button secondary {{if addNewBookshelf.isRunning 'loading'}}"
-                  onclick={{queue (perform addNewBookshelf newBookshelfInfo) (action cleanNewBookshelfInfo)}}
-                >
-                  <i class="add icon"></i>
-                </button>
-              {{/ui-popup}}
+
+          <button class="ui button basic primary {{if addNewBookshelf.isRunning 'loading'}}"
+            onclick={{queue (perform addNewBookshelf newBookshelfInfo) (action cleanNewBookshelfInfo) (action hideNewBookShelfForm)}}
+          >
+            Create New Bookshelf
+          </button>
+
+          <button class="ui button basic negative" onclick={{action hideNewBookShelfForm}}>
+            Cancel
+          </button>
+        </div>
+
+      {{else}}
+
+        <div class="ui form">
+          <div class="fields">
+            <div class="nine wide field">
+              {{#power-select
+                  selected=book.bookshelf
+                  options=bookshelves
+                  searchField="fullInitials"
+                  searchEnabled=(gt bookshelves.length 5)
+                  onchange=(action (mut book.bookshelf))
+                  placeholder="Pick Existed Bookshelf"
+              as |bookshelf|}}
+                {{bookshelf.title}}
+              {{/power-select}}
+            </div>
+
+            <div class="seven wide field">
+              <button class="ui icon labeled button fluid" onclick={{action showNewBookShelfForm}}>
+                New Bookshelf
+                <i class="add icon"></i>
+              </button>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="ui segment">
-        <h4>Author</h4>
+      {{/if}}
 
-        <div class="field">
-          {{#power-select
-              selected=book.author
-              options=authors
-              searchField="fullInitials"
-              onchange=(action (mut book.author))
-          as |author|}}
-            {{author.fullInitials}}
-          {{/power-select}}
-        </div>
+    </div>
 
-        <h4 class="ui horizontal divider header">
-           Or add new one
-        </h4>
+    <div class="ui segment">
+      <h4>Author</h4>
 
-        <div class="fields">
-          <div class="five wide field">
+      {{#if isNewAuthor}}
+
+         <div class="ui from">
+          <div class="field">
             <label>Last name</label>
             {{one-way-input newAuthorInfo.lastName update=(action (mut newAuthorInfo.lastName))}}
           </div>
-          <div class="five wide field">
+
+          <div class="field">
             <label>First name</label>
             {{one-way-input newAuthorInfo.firstName update=(action (mut newAuthorInfo.firstName))}}
           </div>
-          <div class="four wide field">
+
+          <div class="field">
             <label>Patronymic</label>
             {{one-way-input newAuthorInfo.patronymic update=(action (mut newAuthorInfo.patronymic))}}
           </div>
-          <div class="two wide field" local-class="add-btn-wrapper">
-            <div local-class="add-btn">
-              {{#ui-popup content="Add new author"}}
-                <button class="ui icon button secondary {{if addNewAuthor.isRunning 'loading'}}"
-                  onclick={{queue (perform addNewAuthor newAuthorInfo) (action cleanNewAuthorInfo)}}
-                >
-                  <i class="add icon"></i>
-                </button>
-              {{/ui-popup}}
+
+          <button class="ui basic primary button {{if addNewAuthor.isRunning 'loading'}}"
+            onclick={{queue (perform addNewAuthor newAuthorInfo) (action cleanNewAuthorInfo) (action hideNewAuthorForm)}}
+          >
+            Create New Author
+          </button>
+
+          <button class="ui button basic negative" onclick={{action hideNewAuthorForm}}>Cancel</button>
+        </div>
+
+      {{else}}
+        <div class="ui form">
+          <div class="fields">
+
+            <div class="nine wide field">
+              {{#power-select
+                  selected=book.author
+                  options=authors
+                  searchEnabled=(gt authors.length 5)
+                  searchField="fullInitials"
+                  onchange=(action (mut book.author))
+                  placeholder="Pick Existed Author"
+              as |author|}}
+                {{author.fullInitials}}
+              {{/power-select}}
             </div>
+
+            <div class="seven wide field">
+              <button class="ui icon labeled button fluid" onclick={{action showNewAuthorForm}}>
+                New Author
+                <i class="add icon"></i>
+              </button>
+            </div>
+
           </div>
         </div>
-      </div>
-
-      {{yield}}
-
+      {{/if}}
     </div>
+
+    {{yield}}
+
   </div>
 </div>
+
+<div local-class="files">
+  {{book-cover
+      book=book
+  }}
+
+  {{upload-image-button
+      title="Upload book cover"
+      local-class="upload-cover"
+      fileInputId="book-cover-file"
+      update=(action uploadBookCover)
+  }}
+</div>
+

@@ -1,13 +1,15 @@
-{{#book-form
-    book=newBook
-    authors=authors
-    bookshelves=bookshelves
-    uploadBookCover=uploadBookCover
-    addNewAuthor=addNewAuthor
-    addNewBookshelf=addNewBookshelf
-}}
-  <button class="ui button primary {{if createUser.isRunning 'loading'}}"
-    onclick={{perform createUser newBook}}>
-    Add book
-  </button>
-{{/book-form}}
+<div class="bc-container">
+  {{#book-form
+      book=newBook
+      authors=authors
+      bookshelves=bookshelves
+      uploadBookCover=uploadBookCover
+      addNewAuthor=addNewAuthor
+      addNewBookshelf=addNewBookshelf
+  }}
+    <button class="ui button basic primary fluid {{if createUser.isRunning 'loading'}}"
+      onclick={{perform createUser newBook}}>
+      Create New Book
+    </button>
+  {{/book-form}}
+</div>

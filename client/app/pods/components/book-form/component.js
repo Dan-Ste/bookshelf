@@ -1,4 +1,5 @@
 import {
+  set,
   get,
   setProperties
 } from '@ember/object'
@@ -16,9 +17,14 @@ const newBookshelfInfo = EmberObject.create({
 })
 
 export default Component.extend({
+  localClassNames: ['book-form'],
+
   // passed in
   book: null,
   authors: null,
+
+  isNewAuthor: false,
+  isNewBookshelf: false,
 
   newAuthorInfo,
   newBookshelfInfo,
@@ -39,5 +45,21 @@ export default Component.extend({
     setProperties(newBookshelfInfo, {
       title: null
     })
+  },
+
+  showNewBookShelfForm() {
+    set(this, 'isNewBookshelf', true)
+  },
+
+  hideNewBookShelfForm() {
+    set(this, 'isNewBookshelf', false)
+  },
+
+  showNewAuthorForm() {
+    set(this, 'isNewAuthor', true)
+  },
+
+  hideNewAuthorForm() {
+    set(this, 'isNewAuthor', false)
   }
 });

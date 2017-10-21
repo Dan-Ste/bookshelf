@@ -3,9 +3,14 @@
 }
 
 :global(.bc-container) {
-  max-width: 1280px;
+  max-width: 1640px;
   padding: 0 2em;
 }
 
 @import 'ember-power-select/themes/bootstrap';
 @import "ember-power-select";
+
+:global(.ember-power-select-trigger) {
+  min-height: 36px;
+  line-height: 2.4;
+}
