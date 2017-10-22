@@ -33,21 +33,36 @@ export default Service.extend({
 
     set(newBook, 'slug', MakeSlug(get(newBook, 'title')))
 
-    get(user, 'books').addObject(newBook)
+    const bookshelf = yield get(newBook, 'bookshelf')
+    const author = yield get(newBook, 'author')
 
-    yield newBook.save()
+    if (get(bookshelf, 'isNew')) {
+      set(bookshelf, 'user', user)
+    } else {
+      get(bookshelf, 'books').addObject(newBook)
+    }
 
-    const author = yield store.findRecord('author', get(newBook, 'author.id'))
-    const bookshelf = yield store.findRecord('bookshelf', get(newBook, 'bookshelf.id'))
+    yield bookshelf.save()
 
-    get(author, 'books').addObject(newBook)
-    get(bookshelf, 'books').addObject(newBook)
+    if (get(author, 'isNew')) {
+      set(author, 'user', user)
+    } else {
+      get(author, 'books').addObject(newBook)
+    }
 
     yield author.save()
-    yield bookshelf.save()
+
+    set(newBook, 'user', user)
+
+    yield newBook.save()
     yield user.save()
 
-    router.transitionTo('books.index')
+    // TODO: Fix transition
+    router.transitionTo('books.index', {
+      queryParams: {
+        search: null
+      }
+    })
   }),
 
   updateBook: task(function* (book) {
@@ -64,7 +79,7 @@ export default Service.extend({
 
   uploadBookCover: task(function* (book, image) {
     const store = get(this, 'store')
-    const records = yield store.findAll('user')
+    const records = yield store.peekAll('user')
     const user = get(records, 'firstObject')
     const firebaseUtil = get(this, 'firebaseUtil')
     const path = `${get(user, 'username')}/images/book-covers/${image.name}`
@@ -92,7 +107,7 @@ export default Service.extend({
 
   uploadBookFile: task(function* (book, file) {
     const store = get(this, 'store')
-    const records = yield store.findAll('user')
+    const records = yield store.peekAll('user')
     const user = get(records, 'firstObject')
     const firebaseUtil = get(this, 'firebaseUtil')
     const path = `${get(user, 'username')}/files/books/${file.name}`
@@ -118,59 +133,35 @@ export default Service.extend({
     }
   }),
 
-  addNewAuthor: task(function* ({
-    firstName,
-    patronymic,
-    lastName
-  }) {
-    const store = get(this, 'store')
-    const records = yield store.findAll('user')
-    const user = get(records, 'firstObject')
-    const newBook = get(this, 'newBook')
+  addNewAuthor(book, newAuthorInfo) {
+    const {
+      firstName,
+      lastName,
+      patronymic
+    } = newAuthorInfo
 
-    try {
-      const newAuthor = store.createRecord('author', {
-        firstName,
-        patronymic,
-        lastName
-      })
+    const newAuthor = get(this, 'store').createRecord('author', {
+      firstName,
+      lastName,
+      patronymic
+    })
 
-      set(newAuthor, 'slug', MakeSlug(get(newAuthor, 'fullName')))
+    set(newAuthor, 'slug', MakeSlug(get(newAuthor, 'fullName')))
+    set(book, 'author', newAuthor)
+  },
 
-      get(user, 'authors').addObject(newAuthor)
-      set(newBook, 'author', newAuthor)
+  addNewBookshelf(book, newBookshelfInfo) {
+    const {
+      title
+    } = newBookshelfInfo
 
-      yield newAuthor.save()
-      yield user.save()
+    const newBookshelf = get(this, 'store').createRecord('bookshelf', {
+      title
+    })
 
-    } catch (e) {
-      Logger.log(e)
-    }
-  }),
-
-  addNewBookshelf: task(function* ({
-    title
-  }) {
-    const store = get(this, 'store')
-    const records = yield store.findAll('user')
-    const user = get(records, 'firstObject')
-    const newBook = get(this, 'newBook')
-
-    try {
-      const newBookshelf = store.createRecord('bookshelf', {
-        title
-      })
-
-      get(user, 'bookshelves').addObject(newBookshelf)
-      set(newBook, 'bookshelf', newBookshelf)
-
-      yield newBookshelf.save()
-      yield user.save()
-
-    } catch (e) {
-      Logger.log(e)
-    }
-  }),
+    set(newBookshelf, 'slug', MakeSlug(get(newBookshelf, 'title')))
+    set(book, 'bookshelf', newBookshelf)
+  },
 
   _onUploadStateChange(snapshot) {
     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100

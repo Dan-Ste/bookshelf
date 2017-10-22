@@ -8,5 +8,6 @@ const {
 
 export default Model.extend({
   title: attr('string'),
-  books: hasMany('books')
+  slug: attr('string'),
+  books: hasMany('book')
 });

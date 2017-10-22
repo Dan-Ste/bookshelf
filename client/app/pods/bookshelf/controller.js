@@ -4,5 +4,5 @@ import {
 } from '@ember/object/computed'
 
 export default Controller.extend({
-  books: alias('model.books')
+  bookshelf: alias('model.bookshelf')
 });

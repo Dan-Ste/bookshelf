@@ -3,11 +3,11 @@
       book=newBook
       authors=authors
       bookshelves=bookshelves
+      addNewAuthor=(action books.addNewAuthor)
+      addNewBookshelf=(action books.addNewBookshelf)
       tasks=(hash
         uploadBookCover=books.uploadBookCover
         uploadBookFile=books.uploadBookFile
-        addNewAuthor=books.addNewAuthor
-        addNewBookshelf=books.addNewBookshelf
       )
   }}
     <button class="ui button basic primary fluid {{if books.createBook.isRunning 'loading'}}"

@@ -28,8 +28,8 @@
           {{one-way-input newBookshelfInfo.title update=(action (mut newBookshelfInfo.title))}}
         </div>
 
-        <button class="ui button basic primary {{if tasks.addNewBookshelf.isRunning 'loading'}}"
-          onclick={{queue (perform tasks.addNewBookshelf newBookshelfInfo) (action cleanNewBookshelfInfo) (action hideNewBookShelfForm)}}
+        <button class="ui button basic primary"
+          onclick={{queue (action addNewBookshelf book newBookshelfInfo) (action cleanNewBookshelfInfo) (action hideNewBookShelfForm)}}
         >
           Create New Bookshelf
         </button>
@@ -74,7 +74,7 @@
 
     {{#if isNewAuthor}}
 
-      <div class="ui from">
+      <div class="ui form">
         <div class="field">
           <label>Last name</label>
           {{one-way-input newAuthorInfo.lastName update=(action (mut newAuthorInfo.lastName))}}
@@ -90,8 +90,8 @@
           {{one-way-input newAuthorInfo.patronymic update=(action (mut newAuthorInfo.patronymic))}}
         </div>
 
-        <button class="ui basic primary button {{if tasks.addNewAuthor.isRunning 'loading'}}"
-          onclick={{queue (perform tasks.addNewAuthor newAuthorInfo) (action cleanNewAuthorInfo) (action hideNewAuthorForm)}}
+        <button class="ui basic primary button"
+          onclick={{queue (action addNewAuthor book newAuthorInfo) (action cleanNewAuthorInfo) (action hideNewAuthorForm)}}
         >
           Create New Author
         </button>
