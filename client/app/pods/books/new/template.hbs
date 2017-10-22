@@ -8,8 +8,8 @@
       addNewAuthor=addNewAuthor
       addNewBookshelf=addNewBookshelf
   }}
-    <button class="ui button basic primary fluid {{if createUser.isRunning 'loading'}}"
-      onclick={{perform createUser newBook}}>
+    <button class="ui button basic primary fluid {{if createBook.isRunning 'loading'}}"
+      onclick={{perform createBook newBook}}>
       Create New Book
     </button>
   {{/book-form}}

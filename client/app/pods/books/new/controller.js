@@ -27,7 +27,7 @@ export default Controller.extend({
   authors: alias('model.authors'),
   bookshelves: alias('model.bookshelves'),
 
-  createUser: task(function* (newBook) {
+  createBook: task(function* (newBook) {
     const records = yield this.store.findAll('user')
     const user = get(records, 'firstObject')
 

@@ -1,4 +1,4 @@
-{{#link-to 'books.book' book.slug local-class="book-link"}}
+{{#link-to 'books.book' book.slug}}
   {{book-cover
       coverUrl=book.coverUrl
   }}
@@ -7,8 +7,14 @@
 {{#unless isBlank}}
   <div local-class="book-content">
     <div local-class="book-title">
-      {{book.title}}
+      {{#link-to 'books.book' book.slug}}
+        {{book.title}}
+      {{/link-to}}
     </div>
-    <div local-class="book-author">{{book.author.fullInitials}}</div>
+    <div local-class="book-author">
+      {{#link-to 'authors.author' book.author.slug}}
+        {{book.author.fullInitials}}
+      {{/link-to}}
+    </div>
   </div>
 {{/unless}}

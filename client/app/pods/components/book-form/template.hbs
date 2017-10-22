@@ -134,7 +134,7 @@
 
 <div local-class="files">
   {{book-cover
-      book=book
+      coverUrl=book.coverUrl
   }}
 
   <div local-class="btn-group">
@@ -148,7 +148,7 @@
       }}
 
       {{upload-button
-          title=(if book.fileUrl "Change ebook" "Upload ebook")
+          title=(if book.fileUrl "Change eBook" "Upload eBook")
           fileInputId="book-file"
           icon="file text outline"
           update=(action uploadBookFile)
