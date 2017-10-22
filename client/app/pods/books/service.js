@@ -8,7 +8,10 @@ import {
   inject as service
 } from '@ember/service'
 import MakeSlug from 'bookshelf/utils/make-slug'
-import UploadFileToFirebase from 'bookshelf/utils/fb-upload-file'
+import {
+  fbUploadFile,
+  fbDeleteFile
+} from 'bookshelf/utils/fb-upload-file'
 import {
   task
 } from 'ember-concurrency'
@@ -49,15 +52,12 @@ export default Service.extend({
 
   updateBook: task(function* (book) {
     const router = get(this, 'router')
-    const store = get(this, 'store')
-    const records = yield store.findAll('user')
-    const user = get(records, 'firstObject')
 
-    console.log(get(book, 'hasDirtyAttributes'))
+    if (get(book, 'hasDirtyAttributes')) {
+      set(book, 'slug', MakeSlug(get(book, 'title')))
 
-    set(book, 'slug', MakeSlug(get(book, 'title')))
-
-    yield user.save()
+      yield book.save()
+    }
 
     router.transitionTo('books.book', get(book, 'slug'))
   }),
@@ -70,7 +70,14 @@ export default Service.extend({
     const path = `${get(user, 'username')}/images/book-covers/${image.name}`
 
     try {
-      const coverUrl = yield UploadFileToFirebase({
+      if (get(book, 'coverUrl')) {
+        yield fbDeleteFile({
+          firebaseUtil,
+          url: get(book, 'coverUrl')
+        })
+      }
+
+      const coverUrl = yield fbUploadFile({
         firebaseUtil,
         file: image,
         path,
@@ -91,7 +98,14 @@ export default Service.extend({
     const path = `${get(user, 'username')}/files/books/${file.name}`
 
     try {
-      const bookFileUrl = yield UploadFileToFirebase({
+      if (get(book, 'fileUrl')) {
+        yield fbDeleteFile({
+          firebaseUtil,
+          url: get(book, 'fileUrl')
+        })
+      }
+
+      const bookFileUrl = yield fbUploadFile({
         firebaseUtil,
         file,
         path,
