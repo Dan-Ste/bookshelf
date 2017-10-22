@@ -1,1 +1,5 @@
-<div local-class="cover" style={{coverBg}}></div>
+{{#if coverUrl}}
+  <img src={{coverUrl}}>
+{{else}}
+  <img src="https://dummyimage.com/400x600/dadada/dadada">
+{{/if}}

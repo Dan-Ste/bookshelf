@@ -1,23 +1,26 @@
-<div class="ui grid centered">
-  <div class="three wide column">
-    {{book-card
-        book=book
-        isBlank=true
-    }}
-  </div>
+<div class="bc-container">
+  <div class="ui grid centered">
 
-  <div class="nine wide column">
-    <h2 class="ui dividing header">
-      {{book.title}}
-      <div class="sub header">by {{book.author.fullName}}</div>
-    </h2>
+    <div class="seven wide column">
+      <h2 class="ui dividing header">
+        {{book.title}}
+        <div class="sub header">by {{book.author.fullName}}</div>
+      </h2>
 
-    <p>{{book.description}}</p>
+      <p>{{book.description}}</p>
 
-    <p>
-        <b>Year: </b>{{book.pubYear}}
-    </p>
+      <p>
+          <b>Year: </b>{{book.pubYear}}
+      </p>
+
+    </div>
+
+    <div class="nine wide column">
+      {{book-card
+          book=book
+          isBlank=true
+      }}
+    </div>
 
   </div>
 </div>
-
