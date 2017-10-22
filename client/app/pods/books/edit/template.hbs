@@ -1,5 +1,18 @@
 <div class="bc-container">
-  {{book-form
+   {{#book-form
       book=book
+      authors=authors
+      bookshelves=bookshelves
+      tasks=(hash
+        uploadBookCover=books.uploadBookCover
+        uploadBookFile=books.uploadBookFile
+        addNewAuthor=books.addNewAuthor
+        addNewBookshelf=books.addNewBookshelf
+      )
   }}
+    <button class="ui button basic primary fluid {{if books.updateBook.isRunning 'loading'}}"
+      onclick={{perform books.updateBook book}}>
+      Update Book
+    </button>
+  {{/book-form}}
 </div>

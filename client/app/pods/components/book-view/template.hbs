@@ -1,41 +1,39 @@
-<div class="bc-container">
-  <div class="ui grid centered">
+<div class="ui grid centered">
 
-    <div class="seven wide column">
-      <h2 class="ui dividing header">
-        {{book.title}}
-        <div class="sub header">by {{book.author.fullName}}</div>
-      </h2>
+  <div class="seven wide column">
+    <h2 class="ui dividing header">
+      {{book.title}}
+      <div class="sub header">by {{book.author.fullName}}</div>
+    </h2>
 
-      <div class="ui basic buttons icon labeled">
-        {{#link-to "books.edit" book.slug class="ui button"}}
-          Edit book
-          <i class="icon edit"></i>
-        {{/link-to}}
-        {{#if book.fileUrl}}
-          <a href={{book.fileUrl}} class="ui button">
-            Download eBook
-            <i class="icon cloud download"></i>
-          </a>
-        {{/if}}
-      </div>
-
-      <div class="ui divider"></div>
-
-      <p>{{book.description}}</p>
-
-      <p>
-          <b>Year: </b>{{book.pubYear}}
-      </p>
-
+    <div class="ui basic buttons icon labeled">
+      {{#link-to "books.edit" book.slug class="ui button"}}
+        Edit book
+        <i class="icon edit"></i>
+      {{/link-to}}
+      {{#if book.fileUrl}}
+        <a href={{book.fileUrl}} target="_blank" class="ui button">
+          Download eBook
+          <i class="icon cloud download"></i>
+        </a>
+      {{/if}}
     </div>
 
-    <div class="nine wide column">
-      {{book-card
-          book=book
-          isBlank=true
-      }}
-    </div>
+    <div class="ui divider"></div>
+
+    <p>{{book.description}}</p>
+
+    <p>
+        <b>Year: </b>{{book.pubYear}}
+    </p>
 
   </div>
+
+  <div class="nine wide column">
+    {{book-card
+        book=book
+        isBlank=true
+    }}
+  </div>
+
 </div>

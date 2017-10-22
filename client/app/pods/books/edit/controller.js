@@ -2,7 +2,14 @@ import Controller from '@ember/controller';
 import {
   alias
 } from '@ember/object/computed';
+import {
+  inject as service
+} from '@ember/service'
 
 export default Controller.extend({
-  book: alias('model.firstObject')
+  books: service(),
+
+  book: alias('model.book.firstObject'),
+  bookshelves: alias('model.bookshelves'),
+  authors: alias('model.authors')
 });

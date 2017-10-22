@@ -3,6 +3,9 @@ import {
   get,
   set
 } from '@ember/object'
+import {
+  hash
+} from 'rsvp';
 
 export default Route.extend({
   breadCrumb: {},
@@ -10,9 +13,13 @@ export default Route.extend({
   model({
     slug
   }) {
-    return this.store.query('book', {
-      orderBy: 'slug',
-      equalTo: slug
+    return hash({
+      book: this.store.query('book', {
+        orderBy: 'slug',
+        equalTo: slug
+      }),
+      authors: this.store.findAll('author'),
+      bookshelves: this.store.findAll('bookshelf'),
     })
   },
 

@@ -3,13 +3,15 @@
       book=newBook
       authors=authors
       bookshelves=bookshelves
-      uploadBookCover=uploadBookCover
-      uploadBookFile=uploadBookFile
-      addNewAuthor=addNewAuthor
-      addNewBookshelf=addNewBookshelf
+      tasks=(hash
+        uploadBookCover=books.uploadBookCover
+        uploadBookFile=books.uploadBookFile
+        addNewAuthor=books.addNewAuthor
+        addNewBookshelf=books.addNewBookshelf
+      )
   }}
-    <button class="ui button basic primary fluid {{if createBook.isRunning 'loading'}}"
-      onclick={{perform createBook newBook}}>
+    <button class="ui button basic primary fluid {{if books.createBook.isRunning 'loading'}}"
+      onclick={{perform books.createBook newBook}}>
       Create New Book
     </button>
   {{/book-form}}

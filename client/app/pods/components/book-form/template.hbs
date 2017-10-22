@@ -8,7 +8,7 @@
 
     <div class="field">
       <label>Description</label>
-      {{one-way-textarea book.description update=(action (mut book.description)) rows="2"}}
+      {{one-way-textarea book.description update=(action (mut book.description)) rows="10"}}
     </div>
 
     <div class="field">
@@ -28,8 +28,8 @@
           {{one-way-input newBookshelfInfo.title update=(action (mut newBookshelfInfo.title))}}
         </div>
 
-        <button class="ui button basic primary {{if addNewBookshelf.isRunning 'loading'}}"
-          onclick={{queue (perform addNewBookshelf newBookshelfInfo) (action cleanNewBookshelfInfo) (action hideNewBookShelfForm)}}
+        <button class="ui button basic primary {{if tasks.addNewBookshelf.isRunning 'loading'}}"
+          onclick={{queue (perform tasks.addNewBookshelf newBookshelfInfo) (action cleanNewBookshelfInfo) (action hideNewBookShelfForm)}}
         >
           Create New Bookshelf
         </button>
@@ -90,8 +90,8 @@
           {{one-way-input newAuthorInfo.patronymic update=(action (mut newAuthorInfo.patronymic))}}
         </div>
 
-        <button class="ui basic primary button {{if addNewAuthor.isRunning 'loading'}}"
-          onclick={{queue (perform addNewAuthor newAuthorInfo) (action cleanNewAuthorInfo) (action hideNewAuthorForm)}}
+        <button class="ui basic primary button {{if tasks.addNewAuthor.isRunning 'loading'}}"
+          onclick={{queue (perform tasks.addNewAuthor newAuthorInfo) (action cleanNewAuthorInfo) (action hideNewAuthorForm)}}
         >
           Create New Author
         </button>
@@ -143,7 +143,7 @@
           title=(if book.coverUrl "Change cover" "Upload cover")
           fileInputId="book-cover-image"
           icon="file image outline"
-          update=(action uploadBookCover)
+          update=(perform tasks.uploadBookCover book)
           isUploaded=book.coverUrl
       }}
 
@@ -151,7 +151,7 @@
           title=(if book.fileUrl "Change eBook" "Upload eBook")
           fileInputId="book-file"
           icon="file text outline"
-          update=(action uploadBookFile)
+          update=(perform tasks.uploadBookFile book)
           isUploaded=book.fileUrl
       }}
     </div>
