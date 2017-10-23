@@ -57,7 +57,6 @@ export default Service.extend({
     yield newBook.save()
     yield user.save()
 
-    // TODO: Fix transition
     router.transitionTo('books.index', {
       queryParams: {
         search: null
@@ -82,7 +81,6 @@ export default Service.extend({
 
     yield book.destroyRecord()
 
-    // TODO: Fix transition
     router.transitionTo('books.index', {
       queryParams: {
         search: null

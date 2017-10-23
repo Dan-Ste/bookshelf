@@ -12,7 +12,7 @@ export default Route.extend(FindQuery, {
   model({
     search
   }) {
-    if (search) {
+    if (search && search !== 'null') {
       return new RSVP.Promise(resolve => {
         this.filterContains(this.store, 'book', {
           'title': search
