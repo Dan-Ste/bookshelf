@@ -77,6 +77,19 @@ export default Service.extend({
     router.transitionTo('books.book', get(book, 'slug'))
   }),
 
+  deleteBook: task(function* (book) {
+    const router = get(this, 'router')
+
+    yield book.destroyRecord()
+
+    // TODO: Fix transition
+    router.transitionTo('books.index', {
+      queryParams: {
+        search: null
+      }
+    })
+  }),
+
   uploadBookCover: task(function* (book, image) {
     const store = get(this, 'store')
     const records = yield store.peekAll('user')
