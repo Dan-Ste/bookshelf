@@ -1,0 +1,16 @@
+{{#book-form
+    book=book
+    authors=authors
+    bookshelves=bookshelves
+    addNewAuthor=books.addNewAuthor
+    addNewBookshelf=books.addNewBookshelf
+    tasks=(hash
+      uploadBookCover=books.uploadBookCover
+      uploadBookFile=books.uploadBookFile
+    )
+}}
+  <button class="ui button basic primary fluid {{if books.updateBook.isRunning 'loading'}}"
+    onclick={{perform books.updateBook book}}>
+    Update Book
+  </button>
+{{/book-form}}

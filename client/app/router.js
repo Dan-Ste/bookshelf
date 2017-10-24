@@ -10,14 +10,15 @@ Router.map(function () {
   this.route('login');
 
   this.authenticatedRoute('books', function () {
-    this.authenticatedRoute('new', {
-      path: '/new'
-    });
     this.authenticatedRoute('book', {
       path: '/:slug'
+    }, function () {
+      this.authenticatedRoute('edit', {
+        path: '/edit'
+      });
     });
-    this.authenticatedRoute('edit', {
-      path: '/:slug/edit'
+    this.authenticatedRoute('new', {
+      path: '/new'
     });
   });
 
