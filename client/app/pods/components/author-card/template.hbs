@@ -1,7 +1,5 @@
 {{#link-to 'authors.author' author.slug local-class="author-link"}}
-  <div local-class="photo">
-    <img src="img/avatar-placeholder.png">
-  </div>
+  {{author-portrait portraitUrl=author.portraitUrl}}
 {{/link-to}}
 
 {{author.fullName}}

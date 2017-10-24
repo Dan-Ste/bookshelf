@@ -12,7 +12,8 @@ export default DS.Model.extend({
   lastName: attr('string'),
   patronymic: attr('string'),
   biography: attr('string'),
-  birthYear: attr('date'),
+  birthYear: attr('number'),
+  deathYear: attr('number'),
   portraitUrl: attr('string'),
   slug: attr('string'),
 

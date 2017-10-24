@@ -2,8 +2,33 @@
   <h2 class="ui dividing header">
     {{author.fullName}}
   </h2>
+
+   <div class="ui basic buttons icon labeled">
+    {{#link-to "authors.author.edit" author.slug class="ui button"}}
+      Edit author
+      <i class="icon edit"></i>
+    {{/link-to}}
+    <button class="ui button" onclick={{perform deleteAuthor author}}>
+      Delete author
+      <i class="icon remove"></i>
+    </button>
+  </div>
+
+  <div class="ui divider"></div>
+
+  {{#if author.biography}}
+    <p local-class="biography">
+      {{author.biography}}
+    </p>
+  {{/if}}
+
+  {{#if author.birthYear}}
+    <p>
+      <b>Year of birth: </b>{{author.birthYear}}
+    </p>
+  {{/if}}
 </div>
 
 <div>
-
+  {{author-portrait portraitUrl=author.portraitUrl}}
 </div>

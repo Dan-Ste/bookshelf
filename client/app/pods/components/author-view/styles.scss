@@ -1,0 +1,9 @@
+.author-view {
+  display: grid;
+  grid-gap: 54px;
+  grid-template-columns: 480px 1fr;
+}
+
+.biography {
+  white-space: pre-wrap;
+}

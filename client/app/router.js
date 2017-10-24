@@ -25,6 +25,10 @@ Router.map(function () {
   this.authenticatedRoute('authors', function () {
     this.authenticatedRoute('author', {
       path: '/:slug'
+    }, function () {
+      this.authenticatedRoute('edit', {
+        path: '/edit'
+      });
     });
     this.authenticatedRoute('new', {
       path: '/new'
