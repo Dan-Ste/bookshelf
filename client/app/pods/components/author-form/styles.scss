@@ -1,3 +1,9 @@
-.upload-portrait {
-  margin-top: 2em;
+.author-form {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 480px 180px;
+}
+
+.btn-group {
+  margin-top: 1.5em;
 }

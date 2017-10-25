@@ -9,5 +9,5 @@ import {
 export default Controller.extend({
   authors: service(),
 
-  author: alias('model.firstObject')
+  author: alias('model.author.firstObject')
 });

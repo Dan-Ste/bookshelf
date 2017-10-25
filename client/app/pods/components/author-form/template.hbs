@@ -1,47 +1,50 @@
-<div class="ui grid centered">
-  <div class="three wide column">
+<div>
 
+  <div class="ui form">
 
-    {{upload-image-button
-        title="Upload author portrait"
-        local-class="upload-portrait"
-        fileInputId="author-portrait-file"
-        update=(action uploadAuthorPortrait)
-    }}
+    <div class="field">
+      <label>First name</label>
+      {{one-way-input author.firstName update=(action (mut author.firstName))}}
+    </div>
+
+    <div class="field">
+      <label>Last name</label>
+      {{one-way-input author.lastName update=(action (mut author.lastName))}}
+    </div>
+
+    <div class="field">
+      <label>Patronymic</label>
+      {{one-way-input author.patronymic update=(action (mut author.patronymic))}}
+    </div>
+
+    <div class="field">
+      <label>Biography</label>
+      {{one-way-textarea author.biography update=(action (mut author.biography)) rows="2"}}
+    </div>
+
+    <div class="field">
+      <label>Year of birth</label>
+      {{one-way-number author.birthYear update=(action (mut author.birthYear))}}
+    </div>
+
+    {{yield}}
+
   </div>
 
-  <div class="seven wide column">
-    <h2 class="ui dividing header">Add new author</h2>
+</div>
 
-    <div class="ui form">
+<div local-class="files">
+  {{author-portrait portraitUrl=author.portraitUrl}}
 
-      <div class="field">
-        <label>First name</label>
-        {{one-way-input author.firstName update=(action (mut author.firstName))}}
-      </div>
-
-      <div class="field">
-        <label>Last name</label>
-        {{one-way-input author.lastName update=(action (mut author.lastName))}}
-      </div>
-
-      <div class="field">
-        <label>Patronymic</label>
-        {{one-way-input author.patronymic update=(action (mut author.patronymic))}}
-      </div>
-
-      <div class="field">
-        <label>Biography</label>
-        {{one-way-textarea author.biography update=(action (mut author.biography)) rows="2"}}
-      </div>
-
-      <div class="field">
-        <label>Year of birth</label>
-        {{one-way-number author.birthYear update=(action (mut author.birthYear))}}
-      </div>
-
-      {{yield}}
-
+  <div local-class="btn-group">
+    <div class="ui vertical labeled icon buttons small fluid">
+      {{upload-button
+          title=(if author.portraitUrl "Change portrait" "Upload portrait")
+          fileInputId="author-portrait-image"
+          icon="user circle outline"
+          update=(perform tasks.uploadAuthorPortrait author)
+          isUploaded=author.portraitUrl
+      }}
     </div>
   </div>
 </div>
