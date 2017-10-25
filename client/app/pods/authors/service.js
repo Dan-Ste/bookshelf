@@ -25,12 +25,39 @@ export default Service.extend({
   store: service(),
   router: service(),
 
-  deleteBook: task(function* (author) {
+  createAuthor: task(function* (newAuthor) {
+    const router = get(this, 'router')
+    const records = yield get(this, 'store').findAll('user')
+    const user = get(records, 'firstObject');
+
+    set(newAuthor, 'slug', MakeSlug(get(newAuthor, 'fullName')));
+
+    get(user, 'authors').addObject(newAuthor);
+
+    yield newAuthor.save();
+    yield user.save();
+
+    router.transitionTo('authors.index')
+  }),
+
+  deleteAuthor: task(function* (author) {
     const router = get(this, 'router')
 
     yield author.destroyRecord()
 
     router.transitionTo('authors.index')
+  }),
+
+  updateAuthor: task(function* (author) {
+    const router = get(this, 'router')
+
+    if (get(author, 'hasDirtyAttributes')) {
+      set(author, 'slug', MakeSlug(get(author, 'fullName')))
+
+      yield author.save()
+    }
+
+    router.transitionTo('authors.author', get(author, 'slug'))
   }),
 
   uploadAuthorPortrait: task(function* (author, image) {

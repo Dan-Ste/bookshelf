@@ -27,8 +27,7 @@ export default Service.extend({
 
   createBook: task(function* (newBook) {
     const router = get(this, 'router')
-    const store = get(this, 'store')
-    const records = yield store.findAll('user')
+    const records = yield get(this, 'store').findAll('user')
     const user = get(records, 'firstObject')
 
     set(newBook, 'slug', MakeSlug(get(newBook, 'title')))

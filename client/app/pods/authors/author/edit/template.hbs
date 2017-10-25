@@ -1,6 +1,11 @@
-{{author-form
+{{#author-form
     author=author
     tasks=(hash
       uploadAuthorPortrait=authors.uploadAuthorPortrait
     )
 }}
+  <button class="ui button basic primary fluid {{if authors.updateAuthor.isRunning 'loading'}}"
+    onclick={{perform updateAuthor author}}>
+      Update author
+  </button>
+{{/author-form}}
