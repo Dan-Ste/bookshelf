@@ -54,11 +54,17 @@
             </div>
           </div>
 
-          {{#ui-popup content="Add new book"}}
-            {{#link-to "books.new" tagName="button" class="ui icon button basic primary"}}
+          <div class="ui buttons icon labeled">
+            {{#link-to "authors.new" tagName="button" class="ui button"}}
+              Add Author
               <i class="plus icon"></i>
             {{/link-to}}
-          {{/ui-popup }}
+
+            {{#link-to "books.new" tagName="button" class="ui button"}}
+              Add Book
+              <i class="plus icon"></i>
+            {{/link-to}}
+          </div>
 
       </div>
 

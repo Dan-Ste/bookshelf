@@ -1,9 +1,11 @@
-{{#author-form
-    author=newAuthor
-    uploadAuthorPortrait=uploadAuthorPortrait
-}}
-  <button class="ui button basic primary fluid {{if authors.createAuthor.isRunning 'loading'}}"
-    onclick={{perform authors.createAuthor author}}>
-      Create author
-  </button>
-{{/author-form}}
+<div class="bc-container">
+  {{#author-form
+      author=newAuthor
+      uploadAuthorPortrait=uploadAuthorPortrait
+  }}
+    <button class="ui button basic primary fluid {{if authors.createAuthor.isRunning 'loading'}}"
+      onclick={{perform authors.createAuthor author}}>
+        Create author
+    </button>
+  {{/author-form}}
+</div>
