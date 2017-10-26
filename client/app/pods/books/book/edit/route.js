@@ -4,15 +4,9 @@ import {
 } from 'rsvp';
 
 export default Route.extend({
-
-  model({
-    slug
-  }) {
+  model() {
     return hash({
-      book: this.store.query('book', {
-        orderBy: 'slug',
-        equalTo: slug
-      }),
+      book: this.modelFor('books.book'),
       authors: this.store.findAll('author'),
       bookshelves: this.store.findAll('bookshelf'),
     })

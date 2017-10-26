@@ -7,5 +7,5 @@ import {
 export default Controller.extend({
   books: service(),
 
-  book: alias('model.firstObject')
+  book: alias('model')
 });

@@ -1,4 +1,4 @@
-{{#link-to 'books.book' book.slug}}
+{{#link-to 'books.book.index' book.slug}}
   {{book-cover
       coverUrl=book.coverUrl
   }}
@@ -7,7 +7,7 @@
 {{#unless isBlank}}
   <div local-class="book-content">
     <div local-class="book-title" title={{book.title}}>
-      {{#link-to 'books.book' book.slug}}
+      {{#link-to 'books.book.index' book.slug}}
         {{book.title}}
       {{/link-to}}
     </div>

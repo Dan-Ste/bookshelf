@@ -2,13 +2,13 @@
   display: grid;
   grid-gap: 54px;
   grid-template-columns: 480px 350px;
-  grid-template-rows: 480px;
+  grid-template-rows: 480px auto;
 }
 
 .description {
   white-space: pre-wrap;
 }
 
-.book-cover {
-
+.info {
+  grid-row: 1 / 3;
 }
