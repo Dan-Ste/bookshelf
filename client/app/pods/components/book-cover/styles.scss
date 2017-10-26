@@ -1,18 +1,9 @@
-.book-cover {
-  position: relative;
-  &:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 1%;
-    z-index: 1;
-    height: 100%;
-    width: 2%;
-    background-color: rgba(0, 0, 0, 0.2);
-  }
-  img {
-    display: block;
-    border-top-right-radius: 6px;
-    border-bottom-right-radius: 6px;
-  }
+.cover {
+  height: 100%;
+  width: 100%;
+  background-color: #dadada;
+  background-position: center;
+  background-size: 100% 100%;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
 }

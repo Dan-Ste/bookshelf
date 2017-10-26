@@ -1,7 +1,21 @@
-import Component from '@ember/component';
+import Component from '@ember/component'
+import {
+  computed,
+  get
+} from '@ember/object'
+import {
+  htmlSafe
+} from '@ember/string'
+
 
 export default Component.extend({
-  localClassNames: ['book-cover'],
+  tagName: '',
 
-  coverUrl: null
+  coverUrl: null,
+
+  coverBg: computed('coverUrl', {
+    get() {
+      return htmlSafe(`background-image: url(${get(this, 'coverUrl')})`)
+    }
+  })
 });
