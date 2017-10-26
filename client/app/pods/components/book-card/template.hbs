@@ -6,7 +6,7 @@
 
 {{#unless isBlank}}
   <div local-class="book-content">
-    <div local-class="book-title">
+    <div local-class="book-title" title={{book.title}}>
       {{#link-to 'books.book' book.slug}}
         {{book.title}}
       {{/link-to}}
