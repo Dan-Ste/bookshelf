@@ -1,7 +1,11 @@
 <div>
   <h2 class="ui dividing header">
     {{book.title}}
-    <div class="sub header">by {{book.author.fullName}}</div>
+    <div class="sub header">
+      by {{#link-to "authors.author" book.author.id}}
+        {{book.author.fullName}}
+      {{/link-to}}
+    </div>
   </h2>
 
   <div class="ui basic buttons icon labeled">
@@ -33,9 +37,8 @@
 
 </div>
 
-<div>
-  {{book-card
-      book=book
-      isBlank=true
-  }}
-</div>
+{{book-card
+    book=book
+    isBlank=true
+}}
+

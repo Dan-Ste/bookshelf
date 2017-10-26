@@ -1,9 +1,14 @@
 .book-view {
   display: grid;
   grid-gap: 54px;
-  grid-template-columns: 480px 1fr;
+  grid-template-columns: 480px 350px;
+  grid-template-rows: 480px;
 }
 
 .description {
   white-space: pre-wrap;
+}
+
+.book-cover {
+
 }
