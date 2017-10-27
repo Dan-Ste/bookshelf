@@ -9,7 +9,7 @@ import {
 export default Controller.extend({
   books: service(),
 
-  book: alias('model.book.firstObject'),
+  book: alias('model.book'),
   bookshelves: alias('model.bookshelves'),
   authors: alias('model.authors')
 });

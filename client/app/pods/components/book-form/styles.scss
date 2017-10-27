@@ -1,9 +1,14 @@
 .book-form {
   display: grid;
-  grid-gap: 20px;
-  grid-template-columns: 480px 160px;
+  grid-gap: 54px;
+  grid-template-columns: 480px 350px;
+  grid-template-rows: 480px auto;
 }
 
 .btn-group {
   margin-top: 1.5em;
+}
+
+.form {
+  grid-row: 1 / 3;
 }
