@@ -2,4 +2,6 @@
   {{author-portrait portraitUrl=author.portraitUrl}}
 {{/link-to}}
 
-{{author.fullName}}
+{{#link-to 'authors.author' author.slug local-class="author-link"}}
+  {{author.fullName}}
+{{/link-to}}

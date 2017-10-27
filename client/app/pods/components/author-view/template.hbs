@@ -1,4 +1,4 @@
-<div>
+<div local-class="info">
   <h2 class="ui dividing header">
     {{author.fullName}}
   </h2>
@@ -29,6 +29,6 @@
   {{/if}}
 </div>
 
-<div>
-  {{author-portrait portraitUrl=author.portraitUrl}}
-</div>
+{{author-portrait
+    portraitUrl=author.portraitUrl
+}}
