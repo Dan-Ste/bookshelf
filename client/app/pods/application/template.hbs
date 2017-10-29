@@ -1,47 +1,10 @@
 {{#if session.isAuthenticated}}
   <div local-class="layout">
 
-    <div class="ui left vertical menu fixed" local-class="sidebar">
-
-      {{#link-to "index" class="item"}}
-        <h1>Bookcase</h1>
-      {{/link-to}}
-
-      <div class="item">
-        <div local-class="user-item">
-          <div>
-            <img class="ui avatar image" src="/img/avatar-placeholder.png">
-            <span>{{model.firstObject.username}}</span>
-          </div>
-
-          <button class="ui mini secondary basic button" {{action "logout"}}>Log Out</button>
-        </div>
-      </div>
-
-      {{#link-to "books" class="item"}}
-        <i class="book icon"></i>
-        All Books
-      {{/link-to}}
-
-      {{#link-to "authors" class="item"}}
-        <i class="student icon"></i>
-        Authors
-      {{/link-to}}
-
-      {{#if model.bookshelves}}
-        <div class="item">
-          <div class="header">Bookshelves</div>
-          <div class="menu">
-            {{#each model.bookshelves as |bookshelf|}}
-              {{#link-to "bookshelf" bookshelf.id class="item"}}
-                <i class="circle icon" style="color: tomato"></i>
-                {{bookshelf.title}}
-              {{/link-to}}
-            {{/each}}
-          </div>
-        </div>
-      {{/if}}
-    </div>
+    {{bc-menu
+        bookshelves=model.bookshelves
+        user=model.user.firstObject
+    }}
 
     <div local-class="stretch"></div>
 

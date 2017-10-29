@@ -7,10 +7,6 @@
   grid-template-columns: 210px auto;
 }
 
-.sidebar {
-  height: 100%;
-}
-
 .stretch {
   width: 210px;
   height: 100%;
@@ -25,9 +21,4 @@
 
 .breadcrumbs {
   margin-bottom: 2em;
-}
-
-.user-item {
-  display: flex;
-  justify-content: space-between;
 }

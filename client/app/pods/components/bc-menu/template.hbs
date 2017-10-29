@@ -1,0 +1,31 @@
+{{#link-to "index" class="item"}}
+  <h1>BookCase</h1>
+{{/link-to}}
+
+<div class="item">
+  {{current-user user=user}}
+</div>
+
+{{#link-to "books" class="item"}}
+  <i class="book icon"></i>
+  All Books
+{{/link-to}}
+
+{{#link-to "authors" class="item"}}
+  <i class="student icon"></i>
+  Authors
+{{/link-to}}
+
+{{#if bookshelves}}
+  <div class="item">
+    <div class="header">Bookshelves</div>
+    <div class="menu">
+      {{#each bookshelves as |bookshelf|}}
+        {{#link-to "bookshelf" bookshelf.id class="item"}}
+          <i class="circle icon" style="color: tomato"></i>
+          {{bookshelf.title}}
+        {{/link-to}}
+      {{/each}}
+    </div>
+  </div>
+{{/if}}
