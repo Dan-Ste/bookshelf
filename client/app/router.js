@@ -37,7 +37,7 @@ Router.map(function () {
 
   this.route('bookshelf', {
     path: 'bookshelf/:bookshelf_id'
-  });
+  }, function() {});
 });
 
 export default Router;

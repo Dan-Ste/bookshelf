@@ -17,31 +17,54 @@
   </div>
 </div>
 
-{{#link-to "books" class="item"}}
+{{#link-to "books" class="item" local-class="link-item"}}
   {{menu-item
       title="All Books"
       icon="book"
       onIconClick=(action redirectToNewBook)
+      local-class="main-item"
   }}
 {{/link-to}}
 
-{{#link-to "authors" class="item"}}
+{{#link-to "authors" class="item" local-class="link-item"}}
   {{menu-item
       title="Authors"
       icon="student"
       onIconClick=(action redirectToNewAuthor)
+      local-class="main-item"
   }}
 {{/link-to}}
 
 {{#if bookshelves}}
   <div class="item">
-    <div class="header">Bookshelves</div>
+    {{menu-item
+        title="Bookshelves"
+        icon="cubes"
+        onIconClick=(perform bookshelvesService.createNewBookshelf)
+        class="header"
+    }}
     <div class="menu">
       {{#each bookshelves as |bookshelf|}}
-        {{#link-to "bookshelf" bookshelf.id class="item"}}
-          <i class="circle icon" style="color: tomato"></i>
-          {{bookshelf.title}}
+      {{#if (eq editBookshelfId bookshelf.id)}}
+        <div class="item">
+          {{bookshelf-inline-form
+              bookshelf=bookshelf
+              onPressEnter=(queue (perform bookshelvesService.updateBookshelf bookshelf) (action toggleEditBookshelf bookshelf.id))
+          }}
+        </div>
+      {{else}}
+        {{#link-to "bookshelf" bookshelf.id class="item" local-class="link-item"}}
+          {{menu-item
+              title=bookshelf.title
+              icon="circle"
+              hoverIcon="write"
+              iconColor=bookshelf.color
+              onIconClick=(action toggleEditBookshelf bookshelf.id)
+              local-class="sub-item"
+          }}
         {{/link-to}}
+      {{/if}}
+
       {{/each}}
     </div>
   </div>

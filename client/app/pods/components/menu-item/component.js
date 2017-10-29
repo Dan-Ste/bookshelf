@@ -7,6 +7,7 @@ export default Component.extend({
   localClassNames: ['menu-item'],
 
   isHovering: false,
+  hoverIcon: 'plus',
 
   mouseEnter() {
     set(this, 'isHovering', true)

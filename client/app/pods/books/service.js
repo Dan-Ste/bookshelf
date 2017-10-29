@@ -64,27 +64,31 @@ export default Service.extend({
   }),
 
   updateBook: task(function* (book) {
-    const router = get(this, 'router')
+    try {
+      if (get(book, 'hasDirtyAttributes')) {
+        set(book, 'slug', MakeSlug(get(book, 'title')))
 
-    if (get(book, 'hasDirtyAttributes')) {
-      set(book, 'slug', MakeSlug(get(book, 'title')))
+        yield book.save()
+      }
 
-      yield book.save()
+      get(this, 'router').transitionTo('books.book', get(book, 'slug'))
+    } catch (e) {
+      Logger.log(e)
     }
-
-    router.transitionTo('books.book', get(book, 'slug'))
   }),
 
   deleteBook: task(function* (book) {
-    const router = get(this, 'router')
+    try {
+      yield book.destroyRecord()
 
-    yield book.destroyRecord()
-
-    router.transitionTo('books.index', {
-      queryParams: {
-        search: null
-      }
-    })
+      get(this, 'router').transitionTo('books.index', {
+        queryParams: {
+          search: null
+        }
+      })
+    } catch (e) {
+      Logger.log(e)
+    }
   }),
 
   uploadBookCover: task(function* (book, image) {

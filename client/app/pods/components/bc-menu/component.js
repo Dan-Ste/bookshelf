@@ -1,6 +1,7 @@
 import Component from '@ember/component'
 import {
-  get
+  get,
+  set
 } from '@ember/object'
 import {
   inject as service
@@ -9,12 +10,15 @@ import {
 
 export default Component.extend({
   router: service(),
+  bookshelvesService: service('bookshelves'),
 
   localClassNames: ['menu'],
   classNames: ['ui left large vertical menu fixed'],
 
   bookshelves: null,
   user: null,
+
+  editBookshelfId: null,
 
   redirectToNewBook(e) {
     e.preventDefault()
@@ -26,5 +30,22 @@ export default Component.extend({
     e.preventDefault()
     e.stopPropagation()
     get(this, 'router').transitionTo('authors.new')
+  },
+
+  openEditBookshelfModal(e) {
+    e.preventDefault()
+    e.stopPropagation()
+  },
+
+  toggleEditBookshelf(id, e) {
+    if (e) {
+      e.preventDefault()
+      e.stopPropagation()
+    }
+    if (get(this, 'editBookshelfId') === id) {
+      set(this, 'editBookshelfId', null)
+    } else {
+      set(this, 'editBookshelfId', id)
+    }
   }
 });
