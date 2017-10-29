@@ -6,8 +6,6 @@
         user=model.user.firstObject
     }}
 
-    <div local-class="stretch"></div>
-
     <div local-class="page">
       <div class="bc-container" local-class="masthead">
 
@@ -16,19 +14,6 @@
               {{one-way-search search update=(action (mut search)) placeholder="Search by title..."}}
             </div>
           </div>
-
-          <div class="ui buttons icon labeled">
-            {{#link-to "authors.new" tagName="button" class="ui button"}}
-              Add Author
-              <i class="plus icon"></i>
-            {{/link-to}}
-
-            {{#link-to "books.new" tagName="button" class="ui button"}}
-              Add Book
-              <i class="plus icon"></i>
-            {{/link-to}}
-          </div>
-
       </div>
 
       <div class="ui divider"></div>

@@ -6,4 +6,9 @@ export default function(){
   //     this.use('toLeft'),
   //     this.reverse('toRight')
   //   );
+
+  this.transition(
+    this.hasClass('change-icon'),
+    this.use('fade', { duration: 70 })
+  );
 }

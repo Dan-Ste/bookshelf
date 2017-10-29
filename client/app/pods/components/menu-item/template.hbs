@@ -1,0 +1,6 @@
+{{#liquid-if isHovering tagName="i" class="change-icon icon"}}
+  <i class="icon plus" onclick={{action onIconClick}}></i>
+{{else}}
+  <i class="icon {{icon}}"></i>
+{{/liquid-if}}
+{{title}}

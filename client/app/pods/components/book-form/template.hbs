@@ -140,7 +140,7 @@
   <div local-class="btn-group">
     <div class="ui vertical labeled icon buttons small fluid">
       {{upload-button
-          title=(if book.coverUrl "Change cover" "Upload cover")
+          title=(if book.coverUrl "Change book cover" "Upload book cover")
           fileInputId="book-cover-image"
           icon="file image outline"
           update=(perform tasks.uploadBookCover book)
@@ -148,7 +148,7 @@
       }}
 
       {{upload-button
-          title=(if book.fileUrl "Change eBook" "Upload eBook")
+          title=(if book.fileUrl "Change eBook file" "Upload eBook file")
           fileInputId="book-file"
           icon="file text outline"
           update=(perform tasks.uploadBookFile book)

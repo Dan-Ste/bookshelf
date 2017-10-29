@@ -6,14 +6,20 @@
   {{current-user user=user}}
 </div>
 
-{{#link-to "books" class="item"}}
-  <i class="book icon"></i>
-  All Books
+{{#link-to "books"}}
+  {{menu-item
+      title="All Books"
+      icon="book"
+      onIconClick=(action redirectToNewBook)
+  }}
 {{/link-to}}
 
-{{#link-to "authors" class="item"}}
-  <i class="student icon"></i>
-  Authors
+{{#link-to "authors"}}
+  {{menu-item
+      title="Authors"
+      icon="student"
+      onIconClick=(action redirectToNewAuthor)
+  }}
 {{/link-to}}
 
 {{#if bookshelves}}

@@ -4,12 +4,11 @@
 
 .layout {
   display: grid;
-  grid-template-columns: 210px auto;
+  grid-template-columns: 252px auto;
 }
 
-.stretch {
-  width: 210px;
-  height: 100%;
+.page {
+  grid-column: 2
 }
 
 .masthead {
