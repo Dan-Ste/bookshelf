@@ -5,14 +5,9 @@ import {
 
 export default Route.extend({
 
-  model({
-    slug
-  }) {
+  model() {
     return hash({
-      author: this.store.query('author', {
-        orderBy: 'slug',
-        equalTo: slug
-      })
+      author: this.modelFor('authors.author'),
     })
   }
 });

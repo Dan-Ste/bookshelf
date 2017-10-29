@@ -1,7 +1,7 @@
-import Controller from '@ember/controller';
+import Controller from '@ember/controller'
 import {
   alias
-} from '@ember/object/computed';
+} from '@ember/object/computed'
 import {
   inject as service
 } from '@ember/service'
@@ -10,5 +10,5 @@ import {
 export default Controller.extend({
   authors: service(),
 
-  author: alias('model.author.firstObject')
+  author: alias('model.author')
 });
