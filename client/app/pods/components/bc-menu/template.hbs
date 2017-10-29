@@ -1,12 +1,23 @@
 {{#link-to "index" class="item"}}
-  <h1>BookCase</h1>
+  <h1 class="ui header">
+    <i class="leanpub icon"></i>
+    <div class="content">
+      BookCase
+    </div>
+  </h1>
 {{/link-to}}
 
 <div class="item">
   {{current-user user=user}}
 </div>
 
-{{#link-to "books"}}
+<div class="item">
+  <div class="ui input">
+    {{one-way-search search update=(action (mut search)) placeholder="Search by title..."}}
+  </div>
+</div>
+
+{{#link-to "books" class="item"}}
   {{menu-item
       title="All Books"
       icon="book"
@@ -14,7 +25,7 @@
   }}
 {{/link-to}}
 
-{{#link-to "authors"}}
+{{#link-to "authors" class="item"}}
   {{menu-item
       title="Authors"
       icon="student"

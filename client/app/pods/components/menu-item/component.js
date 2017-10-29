@@ -4,7 +4,6 @@ import {
 } from '@ember/object'
 
 export default Component.extend({
-  classNames: ['item'],
   localClassNames: ['menu-item'],
 
   isHovering: false,
