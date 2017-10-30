@@ -8,10 +8,10 @@
       options=colors
       searchEnabled=false
       renderInPlace=true
-      selectedItemComponent="selected-bookshelf-color"
+      selectedItemComponent="bookshelf-color"
       onchange=(action (mut bookshelf.color))
   as |color|}}
-    <div local-class="color" style={{html-safe "background-color: {{color}}"}}></div>
+    {{bookshelf-color local-class="selected-color" option=color defaultStyle=false}}
   {{/power-select}}
 </div>
 

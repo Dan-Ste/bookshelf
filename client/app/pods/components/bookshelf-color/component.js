@@ -6,12 +6,14 @@ import {
 import {htmlSafe} from '@ember/string'
 
 export default Component.extend({
-  localClassNames: ['selected-color'],
+  localClassNameBindings: ['defaultStyle'],
   attributeBindings: ['style'],
+
+  defaultStyle: true,
 
   style: computed({
     get() {
-      return htmlSafe(`background-color: ${get(this, 'option')}; height: 100%`)
+      return htmlSafe(`background-color: ${get(this, 'option')};`)
     }
   })
 });
