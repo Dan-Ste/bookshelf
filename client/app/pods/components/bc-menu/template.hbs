@@ -49,7 +49,8 @@
         <div class="item">
           {{bookshelf-inline-form
               bookshelf=bookshelf
-              onPressEnter=(queue (perform bookshelvesService.updateBookshelf bookshelf) (action toggleEditBookshelf bookshelf.id))
+              onApprove=(queue (perform bookshelvesService.updateBookshelf bookshelf) (action toggleEditBookshelf bookshelf.id))
+              onDeny=(action toggleEditBookshelf bookshelf.id)
           }}
         </div>
       {{else}}

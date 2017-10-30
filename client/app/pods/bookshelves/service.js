@@ -22,8 +22,11 @@ export default Service.extend({
   createNewBookshelf: task(function* () {
     try {
       const newBookshelf = get(this, 'store').createRecord('bookshelf', {
-        title: 'New Bookshelf'
+        title: 'New Bookshelf',
+        color: '#A0A0A0'
       })
+
+      set(newBookshelf, 'slug', MakeSlug(get(newBookshelf, 'title')))
 
       yield newBookshelf.save()
     } catch (e) {
@@ -33,8 +36,12 @@ export default Service.extend({
 
   updateBookshelf: task(function* (bookshelf) {
     try {
+      if (get(bookshelf, 'hasDirtyAttributes')) {
+        set(bookshelf, 'slug', MakeSlug(get(bookshelf, 'title')))
 
-      yield bookshelf.save()
+        yield bookshelf.save()
+      }
+
     } catch (e) {
       Logger.log(e)
     }

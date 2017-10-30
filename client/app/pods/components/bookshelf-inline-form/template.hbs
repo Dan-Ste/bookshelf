@@ -1,3 +1,20 @@
-<div class="ui mini input">
+<div class="ui mini input" local-class="title-input">
   {{one-way-input bookshelf.title update=(action (mut bookshelf.title))}}
 </div>
+
+<div local-class="color-picker">
+  {{#power-select
+      selected=bookshelf.color
+      options=colors
+      searchEnabled=false
+      renderInPlace=true
+      selectedItemComponent="selected-bookshelf-color"
+      onchange=(action (mut bookshelf.color))
+  as |color|}}
+    <div local-class="color" style={{html-safe "background-color: {{color}}"}}></div>
+  {{/power-select}}
+</div>
+
+<i class="green checkmark icon link" onclick={{action onApprove}}></i>
+
+<i class="red remove icon link" onclick={{action onDeny}}></i>
