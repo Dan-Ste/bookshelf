@@ -8,6 +8,7 @@ export default Component.extend({
 
   isHovering: false,
   hoverIcon: 'plus',
+  iconColor: null,
 
   mouseEnter() {
     set(this, 'isHovering', true)

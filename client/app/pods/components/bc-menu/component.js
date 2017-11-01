@@ -32,6 +32,14 @@ export default Component.extend({
     get(this, 'router').transitionTo('authors.new')
   },
 
+  redirectToCurrentlyReading(e) {
+    e.preventDefault()
+    e.stopPropagation()
+    get(this, 'router').transitionTo('books', {
+      queryParams: { onlyCurrentlyReading: 'true' }
+    })
+  },
+
   openEditBookshelfModal(e) {
     e.preventDefault()
     e.stopPropagation()

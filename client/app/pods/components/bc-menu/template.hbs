@@ -19,6 +19,15 @@
 
 {{#link-to "books" class="item" local-class="link-item"}}
   {{menu-item
+      title="Currently reading"
+      icon="flag"
+      onIconClick=(action redirectToCurrentlyReading)
+      local-class="main-item"
+  }}
+{{/link-to}}
+
+{{#link-to "books" class="item" local-class="link-item"}}
+  {{menu-item
       title="All Books"
       icon="book"
       onIconClick=(action redirectToNewBook)

@@ -9,19 +9,14 @@ export default Route.extend(FindQuery, {
     }
   },
 
-  model({
-    search
-  }) {
-    if (search && search !== 'null') {
-      return new RSVP.Promise(resolve => {
-        this.filterContains(this.store, 'book', {
-          'title': search
-        }, books => resolve(books));
-      })
-    } else {
-      return this.store.query('book', {
-        orderBy: 'title'
-      })
-    }
+  model() {
+
+      // return new RSVP.Promise(resolve => {
+      //   this.filterContains(this.store, 'book', {
+      //     'title': search
+      //   }, books => resolve(books));
+      // })
+
+      return this.store.findAll('book')
   }
 });
