@@ -17,7 +17,6 @@ export default Component.extend({
 
   bookshelves: null,
   user: null,
-
   editBookshelfId: null,
 
   redirectToNewBook(e) {

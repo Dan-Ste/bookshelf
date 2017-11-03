@@ -1,0 +1,20 @@
+<i class="search icon"></i>
+{{one-way-search search update=(action (mut search)) placeholder="Search..." local-class="search-input"}}
+
+{{#ui-dropdown
+    class="basic floating dropdown selection button"
+    local-class="search-options"
+    selected=searchBy
+    onChange=(action (mut searchBy))
+    as |execute mapper|
+}}
+  <i class="dropdown icon"></i>
+  <div class="default text">books</div>
+  <div class="menu">
+    {{#each searchOptions as |option|}}
+      <div class="item" data-value="{{map-value mapper option}}">
+        {{option}}
+      </div>
+    {{/each}}
+  </div>
+{{/ui-dropdown}}
