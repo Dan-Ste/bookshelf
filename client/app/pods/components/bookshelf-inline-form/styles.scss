@@ -17,10 +17,11 @@
 }
 
 .color-picker {
+  margin-right: auto !important;
   & :global(.ember-power-select-trigger) {
     min-height: 26px;
     height: 26px;
-    width: 40px;
+    width: 26px;
     padding: 0;
     overflow: hidden;
   }
