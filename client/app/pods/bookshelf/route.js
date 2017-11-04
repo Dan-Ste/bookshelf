@@ -2,7 +2,7 @@ import {
   get,
   set
 } from '@ember/object'
-import Route from '@ember/routing/route';
+import Route from '@ember/routing/route'
 import {
   hash
 } from 'rsvp'
@@ -11,18 +11,19 @@ export default Route.extend({
   breadCrumb: {},
 
   model({
-    bookshelf_id
+    slug
   }) {
     return hash({
-      bookshelf: this.store.findRecord('bookshelf', bookshelf_id)
+      bookshelf: this.store.query('bookshelf', {
+        orderBy: 'slug',
+        equalTo: slug
+      }).then(bookshelf => get(bookshelf, 'firstObject'))
     })
   },
 
   afterModel(model) {
-    const bookshelfTitle = get(model, 'bookshelf.title');
-
     set(this, 'breadCrumb', {
-      title: bookshelfTitle
-    });
-  },
-});
+      title: get(model, 'bookshelf.title')
+    })
+  }
+})

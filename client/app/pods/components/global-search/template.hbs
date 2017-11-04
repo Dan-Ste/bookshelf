@@ -11,9 +11,9 @@
   <i class="dropdown icon"></i>
   <div class="default text">books</div>
   <div class="menu">
-    {{#each searchOptions as |option|}}
-      <div class="item" data-value="{{map-value mapper option}}">
-        {{option}}
+    {{#each searchOptions as |searchOption|}}
+      <div class="item" data-value="{{map-value mapper searchOption}}">
+        {{searchOption}}
       </div>
     {{/each}}
   </div>

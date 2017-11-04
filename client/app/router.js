@@ -36,8 +36,8 @@ Router.map(function () {
   });
 
   this.route('bookshelf', {
-    path: 'bookshelf/:bookshelf_id'
-  }, function() {});
+    path: 'bookshelf/:slug'
+  });
 });
 
 export default Router;

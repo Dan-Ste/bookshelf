@@ -7,7 +7,7 @@ export default Route.extend({
 
   model() {
     return hash({
-      author: this.modelFor('authors.author'),
+      author: this.modelFor('authors.author')
     })
   }
 });
