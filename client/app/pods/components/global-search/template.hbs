@@ -1,5 +1,10 @@
 <i class="search icon"></i>
-{{one-way-search search update=(action (mut search)) placeholder="Search..." local-class="search-input"}}
+{{one-way-search
+    search
+    update=(action onSearch)
+    placeholder="Search..."
+    local-class="search-input"
+}}
 
 {{#ui-dropdown
     class="basic floating dropdown selection button"

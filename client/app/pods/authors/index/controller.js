@@ -4,5 +4,8 @@ import {
 } from '@ember/object/computed';
 
 export default Controller.extend({
-  authors: alias('model')
+  queryParams: ['searchTerm'],
+  searchTerm: null,
+
+  authors: alias('model.authors')
 });
