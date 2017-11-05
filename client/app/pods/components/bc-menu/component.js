@@ -65,10 +65,15 @@ export default Component.extend({
   closeBookshelfDeleteConfirm() {
     set(this, 'isShowBookshelfDeleteConfirm', false)
 
-    debugger
-    if(get(this, 'router.currentRouteName') === 'bookshelf') {
-
+    // If appears in the currently deleting bookshelf route - transition to books route
+    if (get(this, 'router.currentURL').includes(get(this, 'bookshelfForDeletion.slug'))) {
+      get(this, 'router').transitionTo('books.index', {
+        queryParams: {
+          searchTerm: ''
+        }
+      })
     }
+
     set(this, 'bookshelfForDeletion', null)
   }
 });
