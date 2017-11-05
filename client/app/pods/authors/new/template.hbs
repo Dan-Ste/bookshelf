@@ -4,7 +4,7 @@
       uploadAuthorPortrait=uploadAuthorPortrait
   }}
     <button class="ui button basic primary fluid {{if authors.createAuthor.isRunning 'loading'}}"
-      onclick={{perform authors.createAuthor author}}>
+      onclick={{perform authors.createAuthor newAuthor}}>
         Create author
     </button>
   {{/author-form}}
