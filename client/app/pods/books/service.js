@@ -26,41 +26,39 @@ export default Service.extend({
   router: service(),
 
   createBook: task(function* (newBook) {
-    const router = get(this, 'router')
     const records = yield get(this, 'store').findAll('user')
     const user = get(records, 'firstObject')
+    try {
+      set(newBook, 'slug', MakeSlug(get(newBook, 'title')))
 
-    set(newBook, 'slug', MakeSlug(get(newBook, 'title')))
+      const bookshelf = yield get(newBook, 'bookshelf')
+      const author = yield get(newBook, 'author')
 
-    const bookshelf = yield get(newBook, 'bookshelf')
-    const author = yield get(newBook, 'author')
-
-    if (get(bookshelf, 'isNew')) {
-      set(bookshelf, 'user', user)
-    } else {
-      get(bookshelf, 'books').addObject(newBook)
-    }
-
-    yield bookshelf.save()
-
-    if (get(author, 'isNew')) {
-      set(author, 'user', user)
-    } else {
-      get(author, 'books').addObject(newBook)
-    }
-
-    yield author.save()
-
-    set(newBook, 'user', user)
-
-    yield newBook.save()
-    yield user.save()
-
-    router.transitionTo('books.index', {
-      queryParams: {
-        search: null
+      if (get(bookshelf, 'isNew')) {
+        set(bookshelf, 'user', user)
+      } else {
+        get(bookshelf, 'books').addObject(newBook)
       }
-    })
+
+      yield bookshelf.save()
+
+      if (get(author, 'isNew')) {
+        set(author, 'user', user)
+      } else {
+        get(author, 'books').addObject(newBook)
+      }
+
+      yield author.save()
+
+      set(newBook, 'user', user)
+
+      yield newBook.save()
+      yield user.save()
+
+      get(this, 'router').transitionTo('books.book', get(newBook, 'slug'))
+    } catch (e) {
+      Logger.log(e)
+    }
   }),
 
   updateBook: task(function* (book) {

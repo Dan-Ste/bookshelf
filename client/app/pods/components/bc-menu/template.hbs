@@ -66,7 +66,7 @@
           </div>
         {{else}}
           {{#link-to "bookshelf" bookshelf.slug class="item" local-class="link-item"}}
-            {{menu-item
+            {{#menu-item
                 title=bookshelf.title
                 icon="circle"
                 iconStyle=bookshelf.color
@@ -75,10 +75,36 @@
                 onIconClick=(action toggleEditBookshelf bookshelf.id)
                 local-class="sub-item"
             }}
+                <i class="icon trash" onclick={{action openDeleteBookshelfConfirm bookshelf}}></i>
+            {{/menu-item}}
           {{/link-to}}
         {{/if}}
 
       {{/each}}
     </div>
   </div>
+{{/if}}
+
+{{#if isShowBookshelfDeleteConfirm}}
+  {{#modal-dialog
+      onClose=(action closeBookshelfDeleteConfirm)
+      targetAttachment="center"
+      translucentOverlay=true
+      animatable=true
+  }}
+    <div class="ui basic segment">
+      <h3 class="ui header">Delete "{{bookshelfForDeletion.title}}" bookshelf?</h3>
+      <button class="ui basic negative button"
+          onclick={{queue
+            (perform bookshelvesService.deleteBookshelf bookshelfForDeletion)
+            (action closeBookshelfDeleteConfirm)
+          }}
+      >
+        Delete
+      </button>
+      <button class="ui basic button" onclick={{action closeBookshelfDeleteConfirm}}>
+        Cancel
+      </button>
+    </div>
+  {{/modal-dialog}}
 {{/if}}

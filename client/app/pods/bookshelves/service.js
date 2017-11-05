@@ -1,5 +1,5 @@
 import Ember from 'ember'
-import Service from '@ember/service';
+import Service from '@ember/service'
 import {
   set,
   get
@@ -47,4 +47,12 @@ export default Service.extend({
     }
   }),
 
-});
+  deleteBookshelf: task(function* (bookshelf) {
+    try {
+      yield bookshelf.destroyRecord()
+
+    } catch (e) {
+      Logger.log(e)
+    }
+  })
+})

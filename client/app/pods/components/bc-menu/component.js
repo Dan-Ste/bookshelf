@@ -6,7 +6,7 @@ import {
 import {
   inject as service
 } from '@ember/service'
-
+import $ from 'jquery'
 
 export default Component.extend({
   router: service(),
@@ -18,6 +18,9 @@ export default Component.extend({
   bookshelves: null,
   user: null,
   editBookshelfId: null,
+
+  isShowBookshelfDeleteConfirm: false,
+  bookshelfForDeletion: null,
 
   redirectToNewBook(e) {
     e.preventDefault()
@@ -60,5 +63,15 @@ export default Component.extend({
 
   rollbackBookshelf(bookshelf) {
     bookshelf.rollbackAttributes()
+  },
+
+  openDeleteBookshelfConfirm(bookshelf) {
+    set(this, 'isShowBookshelfDeleteConfirm', true)
+    set(this, 'bookshelfForDeletion', bookshelf)
+  },
+
+  closeBookshelfDeleteConfirm() {
+    set(this, 'isShowBookshelfDeleteConfirm', false)
+    set(this, 'bookshelfForDeletion', null)
   }
 });

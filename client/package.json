@@ -45,6 +45,7 @@
     "ember-emberfire-find-query": "^1.0.2",
     "ember-export-application-global": "^2.0.0",
     "ember-load-initializers": "^1.0.0",
+    "ember-modal-dialog": "^2.3.0",
     "ember-moment": "^7.4.1",
     "ember-one-way-controls": "^2.0.1",
     "ember-power-select": "^1.9.8",
@@ -57,7 +58,8 @@
     "ember-wormhole": "^0.5.2",
     "emberfire": "^2.0.8",
     "emberfire-utils": "^1.5.1",
-    "liquid-fire": "^0.28.1",
+    "liquid-fire": "^0.29.0",
+    "liquid-wormhole": "^2.1.1",
     "loader.js": "^4.2.3",
     "semantic-ui-ember": "^2.0.1",
     "torii": "^0.9.6"
