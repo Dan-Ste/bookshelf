@@ -63,11 +63,18 @@ export default Service.extend({
 
   updateBook: task(function* (book) {
     try {
-      if (get(book, 'hasDirtyAttributes')) {
-        set(book, 'slug', MakeSlug(get(book, 'title')))
+      set(book, 'slug', MakeSlug(get(book, 'title')))
 
-        yield book.save()
-      }
+      const bookshelf = yield get(book, 'bookshelf')
+      const author = yield get(book, 'author')
+
+      get(bookshelf, 'books').addObject(book)
+      yield bookshelf.save()
+
+      get(author, 'books').addObject(book)
+      yield author.save()
+
+      yield book.save()
 
       get(this, 'router').transitionTo('books.book', get(book, 'slug'))
     } catch (e) {

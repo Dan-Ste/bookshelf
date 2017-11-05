@@ -17,43 +17,35 @@ export default Component.extend({
 
   bookshelves: null,
   user: null,
-  editBookshelfId: null,
 
+  editBookshelfId: null,
   isShowBookshelfDeleteConfirm: false,
   bookshelfForDeletion: null,
 
-  redirectToNewBook(e) {
+  preventDefaultAndPropagation(e) {
     e.preventDefault()
     e.stopPropagation()
+  },
+
+  redirectToNewBook() {
     get(this, 'router').transitionTo('books.new')
   },
 
-  redirectToNewAuthor(e) {
-    e.preventDefault()
-    e.stopPropagation()
+  redirectToNewAuthor() {
     get(this, 'router').transitionTo('authors.new')
   },
 
-  redirectToCurrentlyReading(e) {
-    e.preventDefault()
-    e.stopPropagation()
-    get(this, 'router').transitionTo('books', {
-      queryParams: {
-        onlyCurrentlyReading: 'true'
-      }
-    })
-  },
+  // redirectToCurrentlyReading(e) {
+  //   e.preventDefault()
+  //   e.stopPropagation()
+  //   get(this, 'router').transitionTo('books', {
+  //     queryParams: {
+  //       onlyCurrentlyReading: 'true'
+  //     }
+  //   })
+  // },
 
-  openEditBookshelfModal(e) {
-    e.preventDefault()
-    e.stopPropagation()
-  },
-
-  toggleEditBookshelf(id, e) {
-    if (e) {
-      e.preventDefault()
-      e.stopPropagation()
-    }
+  toggleEditBookshelf(id) {
     if (get(this, 'editBookshelfId') === id) {
       set(this, 'editBookshelfId', null)
     } else {
@@ -72,6 +64,11 @@ export default Component.extend({
 
   closeBookshelfDeleteConfirm() {
     set(this, 'isShowBookshelfDeleteConfirm', false)
+
+    debugger
+    if(get(this, 'router.currentRouteName') === 'bookshelf') {
+
+    }
     set(this, 'bookshelfForDeletion', null)
   }
 });

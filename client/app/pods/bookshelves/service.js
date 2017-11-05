@@ -49,6 +49,12 @@ export default Service.extend({
 
   deleteBookshelf: task(function* (bookshelf) {
     try {
+      const bookshelfBooks = yield get(bookshelf, 'books')
+
+      bookshelfBooks.toArray().forEach(book => {
+        set(book, 'bookshelf', null)
+      })
+
       yield bookshelf.destroyRecord()
 
     } catch (e) {
