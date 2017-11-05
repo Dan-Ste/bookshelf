@@ -1,3 +1,4 @@
+// global styles
 :global(img) {
   max-width: 100%;
 }
@@ -7,16 +8,24 @@
   margin: 0 3em;
 }
 
+// Redefine ember-power-select styles
 @import 'ember-power-select/themes/bootstrap';
 @import "ember-power-select";
+
 :global(.ember-power-select-trigger) {
   min-height: 36px;
   line-height: 2.4;
   cursor: pointer;
 }
 
+// Redefine ember-modal-dialog styles
 @import "ember-modal-dialog/ember-modal-structure";
 @import "ember-modal-dialog/ember-modal-appearance";
+
+:global(.ember-modal-dialog) {
+  border-radius: 3px;
+}
+
 :global(.ember-modal-overlay) {
   z-index: 102;
 }

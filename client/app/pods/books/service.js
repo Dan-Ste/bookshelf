@@ -88,7 +88,7 @@ export default Service.extend({
 
       get(this, 'router').transitionTo('books.index', {
         queryParams: {
-          search: null
+          searchTerm: ''
         }
       })
     } catch (e) {
@@ -187,4 +187,4 @@ export default Service.extend({
 
     Logger.log('Upload is ' + progress + '% done')
   }
-});
+})

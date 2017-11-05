@@ -6,7 +6,6 @@ import {
 import {
   inject as service
 } from '@ember/service'
-import $ from 'jquery'
 
 export default Component.extend({
   router: service(),
@@ -57,23 +56,13 @@ export default Component.extend({
     bookshelf.rollbackAttributes()
   },
 
-  openDeleteBookshelfConfirm(bookshelf) {
+  openBookshelfDeleteConfirm(bookshelf) {
     set(this, 'isShowBookshelfDeleteConfirm', true)
     set(this, 'bookshelfForDeletion', bookshelf)
   },
 
   closeBookshelfDeleteConfirm() {
     set(this, 'isShowBookshelfDeleteConfirm', false)
-
-    // If appears in the currently deleting bookshelf route - transition to books route
-    if (get(this, 'router.currentURL').includes(get(this, 'bookshelfForDeletion.slug'))) {
-      get(this, 'router').transitionTo('books.index', {
-        queryParams: {
-          searchTerm: ''
-        }
-      })
-    }
-
     set(this, 'bookshelfForDeletion', null)
   }
 });

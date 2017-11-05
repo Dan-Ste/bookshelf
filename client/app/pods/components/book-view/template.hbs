@@ -19,7 +19,7 @@
         <i class="icon cloud download"></i>
       </a>
     {{/if}}
-    <button class="ui button" onclick={{perform deleteBook book}}>
+    <button class="ui button" onclick={{action openBookDeleteConfirm}}>
       Delete book
       <i class="icon remove"></i>
     </button>
@@ -42,3 +42,26 @@
     isBlank=true
 }}
 
+{{#if isShowBookDeleteConfirm}}
+  {{#modal-dialog
+      onClose=(action closeBookDeleteConfirm)
+      targetAttachment="center"
+      translucentOverlay=true
+      animatable=true
+  }}
+    <div class="ui basic segment">
+      <h3 class="ui header">Delete "{{book.title}}" book?</h3>
+      <button class="ui basic negative button"
+          onclick={{queue
+            (perform deleteBook book)
+            (action closeBookDeleteConfirm)
+          }}
+      >
+        Delete
+      </button>
+      <button class="ui basic button" onclick={{action closeBookDeleteConfirm}}>
+        Cancel
+      </button>
+    </div>
+  {{/modal-dialog}}
+{{/if}}

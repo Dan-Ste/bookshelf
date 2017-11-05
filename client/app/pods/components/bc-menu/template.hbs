@@ -30,7 +30,10 @@
   {{menu-item
       title="All Books"
       icon="book"
-      onIconClick=(queue (action preventDefaultAndPropagation) (action redirectToNewBook))
+      onIconClick=(queue
+        (action preventDefaultAndPropagation)
+        (action redirectToNewBook)
+      )
       local-class="main-item"
   }}
 {{/link-to}}
@@ -39,7 +42,10 @@
   {{menu-item
       title="Authors"
       icon="student"
-      onIconClick=(queue (action preventDefaultAndPropagation) (action redirectToNewAuthor))
+      onIconClick=(queue
+        (action preventDefaultAndPropagation)
+        (action redirectToNewAuthor)
+      )
       local-class="main-item"
   }}
 {{/link-to}}
@@ -59,8 +65,14 @@
         <div class="item">
           {{bookshelf-inline-form
               bookshelf=bookshelf
-              onApprove=(queue (perform bookshelvesService.updateBookshelf bookshelf) (action toggleEditBookshelf bookshelf.id))
-              onDeny=(queue (action rollbackBookshelf bookshelf) (action toggleEditBookshelf bookshelf.id))
+              onApprove=(queue
+                (perform bookshelvesService.updateBookshelf bookshelf)
+                (action toggleEditBookshelf bookshelf.id)
+              )
+              onDeny=(queue
+                (action rollbackBookshelf bookshelf)
+                (action toggleEditBookshelf bookshelf.id)
+              )
           }}
         </div>
       {{else}}
@@ -71,10 +83,18 @@
               iconStyle=bookshelf.color
               hoverIcon="write"
               iconColor=bookshelf.color
-              onIconClick=(queue (action preventDefaultAndPropagation) (action toggleEditBookshelf bookshelf.id))
+              onIconClick=(queue
+                (action preventDefaultAndPropagation)
+                (action toggleEditBookshelf bookshelf.id)
+              )
               local-class="sub-item"
           }}
-              <i class="icon trash" onclick={{queue (action preventDefaultAndPropagation) (action openDeleteBookshelfConfirm bookshelf)}}></i>
+              <i class="icon trash"
+                  onclick={{queue
+                    (action preventDefaultAndPropagation)
+                    (action openBookshelfDeleteConfirm bookshelf)
+                  }}
+              ></i>
           {{/menu-item}}
         {{/link-to}}
       {{/if}}

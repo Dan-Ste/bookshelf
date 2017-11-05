@@ -18,6 +18,7 @@ const {
 
 export default Service.extend({
   store: service(),
+  router: service(),
 
   createNewBookshelf: task(function* () {
     try {
@@ -50,12 +51,22 @@ export default Service.extend({
   deleteBookshelf: task(function* (bookshelf) {
     try {
       const bookshelfBooks = yield get(bookshelf, 'books')
+      const bookshelfSlug = get(bookshelf, 'slug')
 
       bookshelfBooks.toArray().forEach(book => {
         set(book, 'bookshelf', null)
       })
 
       yield bookshelf.destroyRecord()
+
+      // If we are in the currently deleting bookshelf route - transition to books route
+      if (get(this, 'router.currentURL').includes(bookshelfSlug)) {
+        get(this, 'router').transitionTo('books.index', {
+          queryParams: {
+            searchTerm: ''
+          }
+        })
+      }
 
     } catch (e) {
       Logger.log(e)
