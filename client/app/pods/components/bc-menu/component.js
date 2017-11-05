@@ -35,7 +35,9 @@ export default Component.extend({
     e.preventDefault()
     e.stopPropagation()
     get(this, 'router').transitionTo('books', {
-      queryParams: { onlyCurrentlyReading: 'true' }
+      queryParams: {
+        onlyCurrentlyReading: 'true'
+      }
     })
   },
 
@@ -54,5 +56,9 @@ export default Component.extend({
     } else {
       set(this, 'editBookshelfId', id)
     }
+  },
+
+  rollbackBookshelf(bookshelf) {
+    bookshelf.rollbackAttributes()
   }
 });

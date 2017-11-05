@@ -52,29 +52,31 @@
         onIconClick=(perform bookshelvesService.createNewBookshelf)
         class="header"
     }}
+
     <div class="menu">
       {{#each bookshelves as |bookshelf|}}
-      {{#if (eq editBookshelfId bookshelf.id)}}
-        <div class="item">
-          {{bookshelf-inline-form
-              bookshelf=bookshelf
-              onApprove=(queue (perform bookshelvesService.updateBookshelf bookshelf) (action toggleEditBookshelf bookshelf.id))
-              onDeny=(action toggleEditBookshelf bookshelf.id)
-          }}
-        </div>
-      {{else}}
-        {{#link-to "bookshelf" bookshelf.slug class="item" local-class="link-item"}}
-          {{menu-item
-              title=bookshelf.title
-              icon="circle"
-              iconStyle=bookshelf.color
-              hoverIcon="write"
-              iconColor=bookshelf.color
-              onIconClick=(action toggleEditBookshelf bookshelf.id)
-              local-class="sub-item"
-          }}
-        {{/link-to}}
-      {{/if}}
+
+        {{#if (eq editBookshelfId bookshelf.id)}}
+          <div class="item">
+            {{bookshelf-inline-form
+                bookshelf=bookshelf
+                onApprove=(queue (perform bookshelvesService.updateBookshelf bookshelf) (action toggleEditBookshelf bookshelf.id))
+                onDeny=(queue (action rollbackBookshelf bookshelf) (action toggleEditBookshelf bookshelf.id))
+            }}
+          </div>
+        {{else}}
+          {{#link-to "bookshelf" bookshelf.slug class="item" local-class="link-item"}}
+            {{menu-item
+                title=bookshelf.title
+                icon="circle"
+                iconStyle=bookshelf.color
+                hoverIcon="write"
+                iconColor=bookshelf.color
+                onIconClick=(action toggleEditBookshelf bookshelf.id)
+                local-class="sub-item"
+            }}
+          {{/link-to}}
+        {{/if}}
 
       {{/each}}
     </div>

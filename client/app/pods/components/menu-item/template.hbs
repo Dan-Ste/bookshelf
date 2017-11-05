@@ -1,7 +1,12 @@
 {{title}}
 
-{{#liquid-if isHovering class="change-icon" local-class="action-icon"}}
-  <i class="icon {{hoverIcon}}" onclick={{action onIconClick}}></i>
-{{else}}
-  <i style={{html-safe (concat "color: " iconColor)}} class="icon {{icon}}"></i>
-{{/liquid-if}}
+<div local-class="icons">
+
+  {{yield}}
+
+  {{#liquid-if isHovering class="change-icon" local-class="action-icon"}}
+    <i class="icon {{hoverIcon}}" onclick={{action onIconClick}}></i>
+  {{else}}
+    <i style={{html-safe (concat "color: " iconColor)}} class="icon {{icon}}"></i>
+  {{/liquid-if}}
+</div>

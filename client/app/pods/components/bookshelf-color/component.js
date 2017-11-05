@@ -11,7 +11,7 @@ export default Component.extend({
 
   defaultStyle: true,
 
-  style: computed({
+  style: computed('option', {
     get() {
       return htmlSafe(`background-color: ${get(this, 'option')};`)
     }
