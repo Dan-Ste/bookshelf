@@ -9,16 +9,16 @@
   </h2>
 
   <div class="ui basic buttons icon labeled">
-    {{#link-to "books.book.edit" book.slug class="ui button"}}
-      Edit book
-      <i class="icon edit"></i>
-    {{/link-to}}
     {{#if book.fileUrl}}
       <a href={{book.fileUrl}} target="_blank" class="ui button">
         Download eBook
         <i class="icon cloud download"></i>
       </a>
     {{/if}}
+    {{#link-to "books.book.edit" book.slug class="ui button"}}
+      Edit book
+      <i class="icon edit"></i>
+    {{/link-to}}
     <button class="ui button" onclick={{action openBookDeleteConfirm}}>
       Delete book
       <i class="icon remove"></i>

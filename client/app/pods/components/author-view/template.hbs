@@ -8,7 +8,7 @@
       Edit author
       <i class="icon edit"></i>
     {{/link-to}}
-    <button class="ui button" onclick={{perform deleteAuthor author}}>
+    <button class="ui button" onclick={{action openAuthorDeleteConfirm}}>
       Delete author
       <i class="icon remove"></i>
     </button>
@@ -32,3 +32,27 @@
 {{author-portrait
     portraitUrl=author.portraitUrl
 }}
+
+{{#if isShowAuthorDeleteConfirm}}
+  {{#modal-dialog
+      onClose=(action closeAuthorDeleteConfirm)
+      targetAttachment="center"
+      translucentOverlay=true
+      animatable=true
+  }}
+    <div class="ui basic segment">
+      <h3 class="ui header">Delete "{{author.fullName}}" author?</h3>
+      <button class="ui basic negative button"
+          onclick={{queue
+            (perform deleteAuthor author)
+            (action closeAuthorDeleteConfirm)
+          }}
+      >
+        Delete
+      </button>
+      <button class="ui basic button" onclick={{action closeAuthorDeleteConfirm}}>
+        Cancel
+      </button>
+    </div>
+  {{/modal-dialog}}
+{{/if}}
