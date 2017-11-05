@@ -8,6 +8,22 @@
   margin: 0 3em;
 }
 
+:global([class="color-*"]) {
+  transition: color 2s ease-in-out;
+}
+
+:global(.color-teal-hover:hover) {
+  color: #00b5ad;
+}
+
+:global(.color-red-hover:hover) {
+  color: #db2828;
+}
+
+:global(.color-green-hover:hover) {
+  color: #21ba45;
+}
+
 // Redefine ember-power-select styles
 @import 'ember-power-select/themes/bootstrap';
 @import "ember-power-select";

@@ -9,6 +9,6 @@ export default function(){
 
   this.transition(
     this.hasClass('change-icon'),
-    this.use('fade', { duration: 70 })
+    this.use('fade', { duration: 100 })
   );
 }

@@ -3,7 +3,7 @@
 <div local-class="icons">
   {{#liquid-if isHovering class="change-icon" local-class="action-icon"}}
     {{yield}}
-    <i class="icon {{hoverIcon}}" onclick={{action onIconClick}}></i>
+    <i class="icon {{hoverIcon}} link color-teal-hover" onclick={{action onIconClick}}></i>
   {{else}}
     <i style={{html-safe (concat "color: " iconColor)}} class="icon {{icon}}"></i>
   {{/liquid-if}}
