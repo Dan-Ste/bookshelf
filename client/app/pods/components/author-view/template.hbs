@@ -14,22 +14,34 @@
 
   <div class="ui divider"></div>
 
-  {{#if author.biography}}
-    <p local-class="biography">
-      {{author.biography}}
-    </p>
-  {{/if}}
+  {{#if (and (not author.biography) (not author.birthYear))}}
+    <div class="ui visible message">
+      <p>No author info yet</p>
+    </div>
+  {{else}}
+    {{#if author.biography}}
+      <p local-class="biography">
+        {{author.biography}}
+      </p>
+    {{/if}}
 
-  {{#if author.birthYear}}
-    <p>
-      <b>Year of birth: </b>{{author.birthYear}}
-    </p>
+    {{#if author.birthYear}}
+      <p>
+        <b>Year of birth: </b>{{author.birthYear}}
+      </p>
+    {{/if}}
   {{/if}}
 </div>
 
 {{author-portrait
     portraitUrl=author.portraitUrl
 }}
+
+<div local-class="author-books">
+  <h3 class="ui dividing header">Author's books</h3>
+
+  {{books-list books=author.books}}
+</div>
 
 {{#if isShowAuthorDeleteConfirm}}
   {{#modal-dialog
