@@ -9,8 +9,15 @@
       uploadBookFile=books.uploadBookFile
     )
 }}
-  <button class="ui button basic primary fluid {{if books.updateBook.isRunning 'loading'}}"
-    onclick={{perform books.updateBook book}}>
-    Update Book
-  </button>
+
+<button class="ui button basic primary {{if books.updateBook.isRunning 'loading'}}"
+  onclick={{perform books.updateBook book}}>
+  Update
+</button>
+
+<button class="ui button basic negative {{if books.updateBook.isRunning 'disabled'}}"
+  onclick={{action cancelEditing book}}>
+  Cancel
+</button>
+
 {{/book-form}}
