@@ -8,8 +8,8 @@
   margin: 0 3em;
 }
 
-:global([class="color-*"]) {
-  transition: color 2s ease-in-out;
+:global([class*="color-"]) {
+  transition: color 0.15s ease-in-out !important;
 }
 
 :global(.color-teal-hover:hover) {
