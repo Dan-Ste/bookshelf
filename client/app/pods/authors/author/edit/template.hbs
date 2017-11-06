@@ -4,8 +4,13 @@
       uploadAuthorPortrait=authors.uploadAuthorPortrait
     )
 }}
-  <button class="ui button basic primary fluid {{if authors.updateAuthor.isRunning 'loading'}}"
+  <button class="ui button basic primary {{if authors.updateAuthor.isRunning 'loading'}}"
     onclick={{perform authors.updateAuthor author}}>
-      Update author
+      Update
+  </button>
+
+  <button class="ui button basic negative {{if authors.updateAuthor.isRunning 'disabled'}}"
+    onclick={{action cancelEditing author}}>
+      Cancel
   </button>
 {{/author-form}}
