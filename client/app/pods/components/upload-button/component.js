@@ -3,8 +3,8 @@ import Component from '@ember/component'
 
 export default Component.extend({
   localClassNames: ['upload-button'],
-  classNames: ['ui button'],
-  classNameBindings: ['withIconClass', 'isUploaded:positive'],
+  classNames: ['ui button basic'],
+  classNameBindings: ['withIconClass', 'isUploaded:teal'],
 
   tagName: 'label',
 

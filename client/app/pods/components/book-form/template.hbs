@@ -57,9 +57,8 @@
           </div>
 
           <div class="seven wide field">
-            <button class="ui icon labeled button fluid" onclick={{action showNewBookShelfForm}}>
+            <button class="ui basic button fluid" onclick={{action showNewBookShelfForm}}>
               New Bookshelf
-              <i class="add icon"></i>
             </button>
           </div>
         </div>
@@ -117,9 +116,8 @@
           </div>
 
           <div class="seven wide field">
-            <button class="ui icon labeled button fluid" onclick={{action showNewAuthorForm}}>
+            <button class="ui basic button fluid" onclick={{action showNewAuthorForm}}>
               New Author
-              <i class="add icon"></i>
             </button>
           </div>
 
@@ -138,11 +136,10 @@
   }}
 
   <div local-class="btn-group">
-    <div class="ui vertical labeled icon buttons small fluid">
+    <div class="ui buttons small fluid">
       {{upload-button
           title=(if book.coverUrl "Change book cover" "Upload book cover")
           fileInputId="book-cover-image"
-          icon="file image outline"
           update=(perform tasks.uploadBookCover book)
           isUploaded=book.coverUrl
       }}
@@ -150,7 +147,6 @@
       {{upload-button
           title=(if book.fileUrl "Change eBook file" "Upload eBook file")
           fileInputId="book-file"
-          icon="file text outline"
           update=(perform tasks.uploadBookFile book)
           isUploaded=book.fileUrl
       }}

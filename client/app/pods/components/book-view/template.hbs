@@ -1,27 +1,27 @@
 <div local-class="info">
   <h2 class="ui dividing header">
     {{book.title}}
+    {{book-state-label
+        state=book.state
+    }}
     <div class="sub header">
-      by {{#link-to "authors.author" book.author.id}}
+      by {{#link-to "authors.author" book.author.slug}}
         {{book.author.fullName}}
       {{/link-to}}
     </div>
   </h2>
 
-  <div class="ui basic buttons icon labeled">
+  <div class="ui basic buttons">
     {{#if book.fileUrl}}
       <a href={{book.fileUrl}} target="_blank" class="ui button">
         Download eBook
-        <i class="icon cloud download"></i>
       </a>
     {{/if}}
     {{#link-to "books.book.edit" book.slug class="ui button"}}
-      Edit book
-      <i class="icon edit"></i>
+      Edit
     {{/link-to}}
     <button class="ui button" onclick={{action openBookDeleteConfirm}}>
-      Delete book
-      <i class="icon remove"></i>
+      Delete
     </button>
   </div>
 

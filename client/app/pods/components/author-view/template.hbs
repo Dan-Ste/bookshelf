@@ -3,14 +3,12 @@
     {{author.fullName}}
   </h2>
 
-   <div class="ui basic buttons icon labeled">
+   <div class="ui basic buttons">
     {{#link-to "authors.author.edit" author.slug class="ui button"}}
-      Edit author
-      <i class="icon edit"></i>
+      Edit
     {{/link-to}}
     <button class="ui button" onclick={{action openAuthorDeleteConfirm}}>
-      Delete author
-      <i class="icon remove"></i>
+      Delete
     </button>
   </div>
 

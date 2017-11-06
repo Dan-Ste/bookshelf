@@ -12,7 +12,7 @@ export default DS.Model.extend({
   fileUrl: attr('string'),
   pubYear: attr('number'),
   slug: attr('string'),
-  isActive: attr('boolean'),
+  state: attr('number'),
 
   author: belongsTo('author'),
   bookshelf: belongsTo('bookshelf'),
