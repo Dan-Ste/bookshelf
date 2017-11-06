@@ -12,3 +12,7 @@
 .form {
   grid-row: 1 / 3;
 }
+
+.author, .bookshelf {
+  box-shadow: none !important;
+}
