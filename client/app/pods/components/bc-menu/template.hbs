@@ -69,10 +69,7 @@
                 (perform bookshelvesService.updateBookshelf bookshelf)
                 (action toggleEditBookshelf bookshelf.id)
               )
-              onDeny=(queue
-                (action rollbackBookshelf bookshelf)
-                (action toggleEditBookshelf bookshelf.id)
-              )
+              onDeny=(action toggleEditBookshelf bookshelf.id)
           }}
         </div>
       {{else}}

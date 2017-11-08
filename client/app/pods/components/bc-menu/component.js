@@ -52,10 +52,6 @@ export default Component.extend({
     }
   },
 
-  rollbackBookshelf(bookshelf) {
-    bookshelf.rollbackAttributes()
-  },
-
   openBookshelfDeleteConfirm(bookshelf) {
     set(this, 'isShowBookshelfDeleteConfirm', true)
     set(this, 'bookshelfForDeletion', bookshelf)
