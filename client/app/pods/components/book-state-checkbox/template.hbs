@@ -1,0 +1,9 @@
+{{ui-checkbox
+    label=title
+    type='radio'
+    class="radio"
+    local-class=(concat 'state' stateId)
+    name='states'
+    checked=(eq (concat bookState) stateId)
+    onChange=(action (mut bookState) stateId)
+}}

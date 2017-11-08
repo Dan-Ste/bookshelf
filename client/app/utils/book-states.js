@@ -1,3 +1,14 @@
-export const DID_NOT_READ = 0
-export const READING = 1
-export const READ = 2
+export default {
+  0: {
+    title: 'Didn\'t read',
+    color: 'orange'
+  },
+  1: {
+    title: 'Reading',
+    color: 'yellow'
+  },
+  2: {
+    title: 'Read',
+    color: 'teal'
+  }
+}
