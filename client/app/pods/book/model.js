@@ -13,6 +13,8 @@ export default DS.Model.extend({
   pubYear: attr('number'),
   slug: attr('string'),
   state: attr('number'),
+  startReading: attr('date'),
+  endReading: attr('date'),
 
   author: belongsTo('author'),
   bookshelf: belongsTo('bookshelf'),

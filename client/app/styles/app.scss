@@ -49,3 +49,9 @@
 :global(.ember-modal-overlay.translucent) {
   background-color: rgba(0, 0, 0, 0.85);
 }
+
+// Redefine ember-power-calendar styles
+@import "ember-power-calendar";
+
+// Redefine ember-basic-dropdown styles
+@import "ember-basic-dropdown";

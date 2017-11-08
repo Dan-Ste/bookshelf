@@ -21,7 +21,7 @@
     <h4>State</h4>
     <div class="ui form">
       <div class="inline fields">
-        {{#each-in BookStates as |stateId stateInfo|}}
+        {{#each-in STATES_INFO as |stateId stateInfo|}}
           <div class="field">
             {{book-state-checkbox
                 stateId=stateId
@@ -31,6 +31,36 @@
           </div>
         {{/each-in}}
       </div>
+
+      {{#if (eq book.state (concat BOOK_STATES.READING))}}
+
+        <div class="fields" local-class="fields">
+          <div class="eight wide field">
+            <label>Start reading date</label>
+            {{#basic-dropdown as |dropdown|}}
+              <input type="text"
+                data-ebd-id="{{dropdown.uniqueId}}-trigger"
+                class="datepicker-demo-input"
+                onclick={{dropdown.actions.toggle}}
+                value={{if book.startReading (moment-format book.startReading 'DD-MM-YYYY')}}
+                readonly>
+
+              {{#dropdown.content class="datepicker-demo-dropdown"}}
+                {{#power-calendar class="demo-calendar-small"
+                  center=center
+                  onCenterChange=(action (mut center) value="date")
+                  selected=selected
+                  onSelect=(action (mut book.startReading) value="date") as |calendar|}}
+                  {{calendar.nav}}
+                  {{calendar.days}}
+                {{/power-calendar}}
+              {{/dropdown.content}}
+            {{/basic-dropdown}}
+          </div>
+        </div>
+
+      {{/if}}
+
     </div>
   </div>
 
@@ -59,7 +89,7 @@
     {{else}}
 
       <div class="ui form">
-        <div class="fields">
+        <div class="fields" local-class="fields">
           <div class="eight wide field">
             {{#power-select
                 selected=book.bookshelf
@@ -117,7 +147,7 @@
 
     {{else}}
       <div class="ui form">
-        <div class="fields">
+        <div class="fields" local-class="fields">
 
           <div class="eight wide field">
             {{#power-select

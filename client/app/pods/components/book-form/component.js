@@ -5,7 +5,10 @@ import {
 } from '@ember/object'
 import EmberObject from '@ember/object'
 import Component from '@ember/component'
-import BookStates from 'bookshelf/utils/book-states'
+import {
+  BOOK_STATES,
+  STATES_INFO
+} from '../../../utils/book-states'
 
 const newAuthorInfo = EmberObject.create({
   firstName: null,
@@ -30,7 +33,8 @@ export default Component.extend({
   newAuthorInfo,
   newBookshelfInfo,
 
-  BookStates,
+  BOOK_STATES,
+  STATES_INFO,
 
   cleanNewAuthorInfo() {
     const newAuthorInfo = get(this, 'newAuthorInfo')
@@ -64,9 +68,5 @@ export default Component.extend({
 
   hideNewAuthorForm() {
     set(this, 'isNewAuthor', false)
-  },
-
-  pickState(value, more) {
-debugger
   }
 })
