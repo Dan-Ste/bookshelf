@@ -1,0 +1,21 @@
+{{log message.length shortMessage.length isMessagesEqual}}
+
+{{#if isMessagesEqual}}
+  <div local-class="message">
+    {{message}}
+  </div>
+{{else}}
+  {{#liquid-spacer growDuration=250}}
+    {{#if showLongMessage}}
+      <div local-class="message">
+        {{message}}
+      </div>
+      <a onclick={{action (mut showLongMessage) false}} local-class="link">Show less</a>
+    {{else}}
+      <div local-class="message">
+        {{shortMessage}}...
+      </div>
+      <a onclick={{action (mut showLongMessage) true}} local-class="link">Show more</a>
+    {{/if}}
+  {{/liquid-spacer}}
+{{/if}}

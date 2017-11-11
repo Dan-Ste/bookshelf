@@ -24,25 +24,27 @@
 
   <div class="ui divider"></div>
 
-  <p>
-    {{#liquid-spacer growDuration=250}}
-      {{#if showLongDescription}}
-        <div local-class="description">
-          {{book.description}}
-        </div>
-        <a onclick={{action (mut showLongDescription) false}} local-class="link">Show less</a>
-      {{else}}
-        <div local-class="description">
-          {{book.shortDescription}}
-        </div>
-        <a onclick={{action (mut showLongDescription) true}} local-class="link">Show more</a>
-      {{/if}}
-    {{/liquid-spacer}}
-  </p>
+  {{#if (or book.description book.pubYear)}}
 
-  <p>
-    <b>Year: </b>{{book.pubYear}}
-  </p>
+    {{#if book.description}}
+      <p>
+        {{more-or-less-message
+            message=book.description
+        }}
+      </p>
+    {{/if}}
+
+    {{#if book.pubYear}}
+      <p>
+        <b>Year: </b>{{book.pubYear}}
+      </p>
+    {{/if}}
+
+  {{else}}
+    <div class="ui visible message">
+      <p>No book info yet</p>
+    </div>
+  {{/if}}
 
 </div>
 

@@ -1,9 +1,5 @@
 import DS from 'ember-data'
 import {
-  get,
-  computed
-} from '@ember/object'
-import {
   equal
 } from '@ember/object/computed'
 import {
@@ -30,14 +26,6 @@ export default Model.extend({
   author: belongsTo('author'),
   bookshelf: belongsTo('bookshelf'),
   user: belongsTo('user'),
-
-  shortDescription: computed('description', {
-    get() {
-      const description = get(this, 'description')
-
-      return `${description.slice(0, 250)}...`
-    }
-  }),
 
   didNotRead: equal('state', BOOK_STATES.DID_NOT_READ),
   isReading: equal('state', BOOK_STATES.READING),

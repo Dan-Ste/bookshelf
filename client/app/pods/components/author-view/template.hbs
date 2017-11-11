@@ -14,14 +14,13 @@
 
   <div class="ui divider"></div>
 
-  {{#if (and (not author.biography) (not author.birthYear))}}
-    <div class="ui visible message">
-      <p>No author info yet</p>
-    </div>
-  {{else}}
+  {{#if (or author.biography author.birthYear)}}
+
     {{#if author.biography}}
-      <p local-class="biography">
-        {{author.biography}}
+      <p>
+        {{more-or-less-message
+            message=author.biography
+        }}
       </p>
     {{/if}}
 
@@ -30,6 +29,13 @@
         <b>Year of birth: </b>{{author.birthYear}}
       </p>
     {{/if}}
+
+  {{else}}
+
+    <div class="ui visible message">
+      <p>No author info yet</p>
+    </div>
+
   {{/if}}
 </div>
 
