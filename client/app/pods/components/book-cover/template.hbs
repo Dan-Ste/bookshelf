@@ -1,1 +1,5 @@
-<div local-class="cover" style={{coverBg}}></div>
+<div local-class="cover" style={{coverBg}}>
+  {{#unless (eq state BOOK_STATES.DID_NOT_READ)}}
+    {{book-state-label state=state}}
+  {{/unless}}
+</div>

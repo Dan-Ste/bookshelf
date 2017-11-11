@@ -1,5 +1,4 @@
 import {
-  set,
   get,
   setProperties
 } from '@ember/object'

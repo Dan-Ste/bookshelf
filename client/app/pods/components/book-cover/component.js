@@ -6,12 +6,16 @@ import {
 import {
   htmlSafe
 } from '@ember/string'
-
+import {
+  BOOK_STATES
+} from '../../../utils/book-states'
 
 export default Component.extend({
   tagName: '',
 
   coverUrl: null,
+
+  BOOK_STATES,
 
   coverBg: computed('coverUrl', {
     get() {

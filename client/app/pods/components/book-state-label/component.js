@@ -9,13 +9,10 @@ import {
 
 export default Component.extend({
   tagName: 'span',
-  classNames: ['ui', 'mini', 'tag', 'label'],
+  classNames: ['ui', 'small', 'label', 'right', 'ribbon'],
   classNameBindings: ['stateInfo.color'],
 
   state: null,
-
-  color: null,
-  title: null,
 
   stateInfo: computed('state', {
     get() {

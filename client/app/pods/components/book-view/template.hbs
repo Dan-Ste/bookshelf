@@ -1,9 +1,6 @@
 <div local-class="info">
   <h2 class="ui dividing header">
     {{book.title}}
-    {{book-state-label
-        state=book.state
-    }}
     <div class="sub header">
       by {{#link-to "authors.author" book.author.slug}}
         {{book.author.fullName}}
@@ -37,9 +34,9 @@
 
 </div>
 
-{{book-card
-    book=book
-    isBlank=true
+{{book-cover
+    coverUrl=book.coverUrl
+    state=book.state
 }}
 
 {{#if isShowBookDeleteConfirm}}
