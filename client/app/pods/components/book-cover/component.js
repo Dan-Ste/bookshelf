@@ -6,20 +6,15 @@ import {
 import {
   htmlSafe
 } from '@ember/string'
-import {
-  BOOK_STATES
-} from '../../../utils/book-states'
 
 export default Component.extend({
   tagName: '',
 
-  coverUrl: null,
+  book: null,
 
-  BOOK_STATES,
-
-  coverBg: computed('coverUrl', {
+  coverBg: computed('book.coverUrl', {
     get() {
-      return htmlSafe(`background-image: url(${get(this, 'coverUrl')})`)
+      return htmlSafe(`background-image: url(${get(this, 'book.coverUrl')})`)
     }
   })
-});
+})

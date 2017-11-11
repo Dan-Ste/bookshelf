@@ -1,5 +1,5 @@
 <div local-class="cover" style={{coverBg}}>
-  {{#unless (eq state BOOK_STATES.DID_NOT_READ)}}
-    {{book-state-label state=state}}
+  {{#unless book.didNotRead}}
+    {{book-state-label state=book.state}}
   {{/unless}}
 </div>
