@@ -13,7 +13,9 @@ export default Route.extend({
 
   model() {
     return hash({
-      book: this.store.createRecord('book'),
+      book: this.store.createRecord('book', {
+        state: 0
+      }),
       authors: this.store.findAll('author'),
       bookshelves: this.store.findAll('bookshelf')
     })
