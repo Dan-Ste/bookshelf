@@ -6,9 +6,13 @@
 }
 
 .description {
-  white-space: pre-wrap;
+  white-space: pre-line;
 }
 
 .info {
   grid-row: 1 / 3;
+}
+
+.link {
+  cursor: pointer;
 }

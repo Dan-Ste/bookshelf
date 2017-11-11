@@ -24,12 +24,24 @@
 
   <div class="ui divider"></div>
 
-  <p local-class="description">
-    {{book.description}}
+  <p>
+    {{#liquid-spacer growDuration=250}}
+      {{#if showLongDescription}}
+        <div local-class="description">
+          {{book.description}}
+        </div>
+        <a onclick={{action (mut showLongDescription) false}} local-class="link">Show less</a>
+      {{else}}
+        <div local-class="description">
+          {{book.shortDescription}}
+        </div>
+        <a onclick={{action (mut showLongDescription) true}} local-class="link">Show more</a>
+      {{/if}}
+    {{/liquid-spacer}}
   </p>
 
   <p>
-      <b>Year: </b>{{book.pubYear}}
+    <b>Year: </b>{{book.pubYear}}
   </p>
 
 </div>
