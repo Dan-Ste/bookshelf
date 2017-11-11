@@ -27,8 +27,8 @@ export default Component.extend({
   book: null,
   authors: null,
 
-  isNewAuthor: false,
-  isNewBookshelf: false,
+  isAddNewAuthor: false,
+  isAddNewBookshelf: false,
 
   newAuthorInfo,
   newBookshelfInfo,
@@ -52,21 +52,5 @@ export default Component.extend({
     setProperties(newBookshelfInfo, {
       title: null
     })
-  },
-
-  showNewBookShelfForm() {
-    set(this, 'isNewBookshelf', true)
-  },
-
-  hideNewBookShelfForm() {
-    set(this, 'isNewBookshelf', false)
-  },
-
-  showNewAuthorForm() {
-    set(this, 'isNewAuthor', true)
-  },
-
-  hideNewAuthorForm() {
-    set(this, 'isNewAuthor', false)
   }
 })

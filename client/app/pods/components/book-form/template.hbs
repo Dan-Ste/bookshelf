@@ -20,7 +20,7 @@
   <div class="ui segment" local-class="segment">
     <h4>State</h4>
     <div class="ui form">
-      <div class="inline fields">
+      <div class="inline fields" local-class="fields">
         {{#each-in STATES_INFO as |stateId stateInfo|}}
           <div class="field">
             {{book-state-checkbox
@@ -32,34 +32,41 @@
         {{/each-in}}
       </div>
 
-      {{#if (eq book.state (concat BOOK_STATES.READING))}}
-
-        <div class="fields" local-class="fields">
-          <div class="eight wide field">
-            <label>Start reading date</label>
-            {{#basic-dropdown as |dropdown|}}
-              <input type="text"
-                data-ebd-id="{{dropdown.uniqueId}}-trigger"
-                class="datepicker-demo-input"
-                onclick={{dropdown.actions.toggle}}
-                value={{if book.startReading (moment-format book.startReading 'DD-MM-YYYY')}}
-                readonly>
-
-              {{#dropdown.content class="datepicker-demo-dropdown"}}
-                {{#power-calendar class="demo-calendar-small"
-                  center=center
-                  onCenterChange=(action (mut center) value="date")
-                  selected=selected
-                  onSelect=(action (mut book.startReading) value="date") as |calendar|}}
-                  {{calendar.nav}}
-                  {{calendar.days}}
-                {{/power-calendar}}
-              {{/dropdown.content}}
-            {{/basic-dropdown}}
+      {{#liquid-if (eq book.state BOOK_STATES.READING) class="fade"}}
+        <div class="ui form" local-class="date">
+          <div class="fields" local-class="fields">
+            <div class="eight wide field">
+              <label>Start reading date</label>
+              {{bc-date-picker
+                  date=book.startReading
+                  onChange=(action (mut book.startReading) value="date")
+              }}
+            </div>
           </div>
         </div>
+      {{/liquid-if}}
 
-      {{/if}}
+      {{#liquid-if (eq book.state BOOK_STATES.READ) class="fade"}}
+        <div class="ui form" local-class="date">
+          <div class="fields" local-class="fields">
+            <div class="eight wide field">
+              <label>Start reading date</label>
+              {{bc-date-picker
+                  date=book.startReading
+                  onChange=(action (mut book.startReading) value="date")
+              }}
+            </div>
+
+            <div class="eight wide field">
+              <label>Finish reading date</label>
+              {{bc-date-picker
+                  date=book.finishReading
+                  onChange=(action (mut book.finishReading) value="date")
+              }}
+            </div>
+          </div>
+        </div>
+      {{/liquid-if}}
 
     </div>
   </div>
@@ -67,7 +74,7 @@
   <div class="ui segment" local-class="segment">
     <h4>Bookshelf</h4>
 
-    {{#if isNewBookshelf}}
+    {{#if isAddNewBookshelf}}
 
       <div class="ui form">
         <div class="field">
@@ -76,12 +83,16 @@
         </div>
 
         <button class="ui button basic primary"
-          onclick={{queue (action addNewBookshelf book newBookshelfInfo) (action cleanNewBookshelfInfo) (action hideNewBookShelfForm)}}
+          onclick={{queue
+            (action addNewBookshelf book newBookshelfInfo)
+            (action cleanNewBookshelfInfo)
+            (action (mut isAddNewBookshelf) false)
+          }}
         >
           Create New Bookshelf
         </button>
 
-        <button class="ui button basic negative" onclick={{action hideNewBookShelfForm}}>
+        <button class="ui button basic negative" onclick={{action (mut isAddNewBookshelf) false}}>
           Cancel
         </button>
       </div>
@@ -104,7 +115,7 @@
           </div>
 
           <div class="eight wide field">
-            <button class="ui basic button fluid" onclick={{action showNewBookShelfForm}}>
+            <button class="ui basic button fluid" onclick={{action (mut isAddNewBookshelf) true}}>
               New Bookshelf
             </button>
           </div>
@@ -118,7 +129,7 @@
   <div class="ui segment" local-class="segment">
     <h4>Author</h4>
 
-    {{#if isNewAuthor}}
+    {{#if isAddNewAuthor}}
 
       <div class="ui form">
         <div class="field">
@@ -137,12 +148,16 @@
         </div>
 
         <button class="ui basic primary button"
-          onclick={{queue (action addNewAuthor book newAuthorInfo) (action cleanNewAuthorInfo) (action hideNewAuthorForm)}}
+          onclick={{queue
+            (action addNewAuthor book newAuthorInfo)
+            (action cleanNewAuthorInfo)
+            (action (mut isAddNewAuthor) false)
+          }}
         >
           Create New Author
         </button>
 
-        <button class="ui button basic negative" onclick={{action hideNewAuthorForm}}>Cancel</button>
+        <button class="ui button basic negative" onclick={{action (mut isAddNewAuthor) false}}>Cancel</button>
       </div>
 
     {{else}}
@@ -163,7 +178,7 @@
           </div>
 
           <div class="eight wide field">
-            <button class="ui basic button fluid" onclick={{action showNewAuthorForm}}>
+            <button class="ui basic button fluid" onclick={{action (mut isAddNewAuthor) true}}>
               New Author
             </button>
           </div>

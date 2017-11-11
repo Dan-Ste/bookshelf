@@ -1,7 +1,7 @@
 {{title}}
 
 <div local-class="icons">
-  {{#liquid-if isHovering class="change-icon" local-class="action-icon"}}
+  {{#liquid-if isHovering class="fade" local-class="action-icon"}}
     {{yield}}
     <i class="icon {{hoverIcon}} link color-teal-hover" onclick={{action onIconClick}}></i>
   {{else}}

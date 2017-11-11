@@ -15,6 +15,9 @@ import {
 import {
   task
 } from 'ember-concurrency'
+import {
+  BOOK_STATES
+} from '../../utils/book-states'
 
 const {
   Logger
@@ -52,6 +55,13 @@ export default Service.extend({
 
       set(newBook, 'user', user)
 
+      if (get(newBook, 'state') == BOOK_STATES.DID_NOT_READ) {
+        set(newBook, 'startReading', null)
+        set(newBook, 'finishReading', null)
+      } else if (get(newBook, 'state') == BOOK_STATES.READING) {
+        set(newBook, 'finishReading', null)
+      }
+
       yield newBook.save()
       yield user.save()
 
@@ -73,6 +83,13 @@ export default Service.extend({
 
       get(author, 'books').addObject(book)
       yield author.save()
+
+      if (get(book, 'state') == BOOK_STATES.DID_NOT_READ) {
+        set(book, 'startReading', null)
+        set(book, 'finishReading', null)
+      } else if (get(book, 'state') == BOOK_STATES.READING) {
+        set(book, 'finishReading', null)
+      }
 
       yield book.save()
 

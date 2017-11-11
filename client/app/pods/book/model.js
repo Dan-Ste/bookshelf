@@ -14,7 +14,7 @@ export default DS.Model.extend({
   slug: attr('string'),
   state: attr('number'),
   startReading: attr('date'),
-  endReading: attr('date'),
+  finishReading: attr('date'),
 
   author: belongsTo('author'),
   bookshelf: belongsTo('bookshelf'),

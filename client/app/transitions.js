@@ -1,4 +1,4 @@
-export default function(){
+export default function () {
   // Add your transitions here, like:
   //   this.transition(
   //     this.fromRoute('people.index'),
@@ -8,7 +8,13 @@ export default function(){
   //   );
 
   this.transition(
-    this.hasClass('change-icon'),
-    this.use('fade', { duration: 100 })
+    this.hasClass('fade'),
+    this.toValue(true),
+    this.use('fade', {
+      duration: 100
+    }),
+    this.reverse('fade', {
+      duration: 100
+    })
   );
 }
