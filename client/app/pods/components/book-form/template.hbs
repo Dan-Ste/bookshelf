@@ -197,21 +197,25 @@
       book=book
   }}
 
-  <div local-class="btn-group">
-    <div class="ui buttons small fluid">
-      {{upload-button
-          title=(if book.coverUrl "Change book cover" "Upload book cover")
-          fileInputId="book-cover-image"
-          update=(perform tasks.uploadBookCover book)
-          isUploaded=book.coverUrl
-      }}
-
-      {{upload-button
-          title=(if book.fileUrl "Change eBook file" "Upload eBook file")
-          fileInputId="book-file"
-          update=(perform tasks.uploadBookFile book)
-          isUploaded=book.fileUrl
-      }}
+  <div class="ui form" local-class="btn-group">
+    <div class="fields" local-class="fields">
+      <div class="eight wide field">
+        {{upload-button
+            title=(if book.coverUrl "Change book cover" "Upload book cover")
+            fileInputId="book-cover-image"
+            update=(perform tasks.uploadBookCover book)
+            isUploaded=book.coverUrl
+        }}
+      </div>
+      <div class="eight wide field">
+        {{upload-button
+            title=(if book.fileUrl "Change eBook file" "Upload eBook file")
+            fileInputId="book-file"
+            update=(perform tasks.uploadBookFile book)
+            isUploaded=book.fileUrl
+        }}
+      </div>
     </div>
   </div>
+
 </div>

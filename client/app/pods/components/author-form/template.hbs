@@ -39,13 +39,11 @@
   }}
 
   <div local-class="btn-group">
-    <div class="ui buttons small fluid">
-      {{upload-button
-          title=(if author.portraitUrl "Change author portrait" "Upload author portrait")
-          fileInputId="author-portrait-image"
-          update=(perform tasks.uploadAuthorPortrait author)
-          isUploaded=author.portraitUrl
-      }}
-    </div>
+    {{upload-button
+        title=(if author.portraitUrl "Change author portrait" "Upload author portrait")
+        fileInputId="author-portrait-image"
+        update=(perform tasks.uploadAuthorPortrait author)
+        isUploaded=author.portraitUrl
+    }}
   </div>
 </div>

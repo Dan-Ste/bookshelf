@@ -1,28 +1,17 @@
-import { get, set } from '@ember/object'
+import { get } from '@ember/object'
 import Component from '@ember/component'
 
 export default Component.extend({
   localClassNames: ['upload-button'],
-  classNames: ['ui button basic'],
-  classNameBindings: ['withIconClass', 'isUploaded:teal'],
+  classNames: ['ui basic button fluid'],
+  classNameBindings: ['isUploaded:teal'],
 
   tagName: 'label',
 
   // passed in
   fileInputId: null,
   title: null,
-  icon: null,
   isUploaded: null,
-
-  withIconClass: null,
-
-  didReceiveAttrs() {
-    this._super(...arguments)
-
-    if(get(this, 'icon')) {
-      set(this, 'withIconClass', 'icon labeled')
-    }
-  },
 
   onLoad() {
     const fileInputId = get(this, 'fileInputId')
@@ -30,4 +19,4 @@ export default Component.extend({
 
     this.attrs.update(image)
   }
-});
+})
