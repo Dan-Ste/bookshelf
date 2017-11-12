@@ -1,5 +1,6 @@
 import {
   get,
+  set,
   setProperties
 } from '@ember/object'
 import EmberObject from '@ember/object'

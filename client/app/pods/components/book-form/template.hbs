@@ -203,17 +203,26 @@
         {{upload-button
             title=(if book.coverUrl "Change book cover" "Upload book cover")
             fileInputId="book-cover-image"
+            progress=bookCoverUploadProgress
             update=(perform tasks.uploadBookCover book)
-            isUploaded=book.coverUrl
         }}
+        {{#if (not-eq bookCoverUploadProgress 0)}}
+          {{#ui-progress percent=bookCoverUploadProgress class="teal small indicating"}}
+            <div class="bar"></div>
+          {{/ui-progress}}
+        {{/if}}
       </div>
       <div class="eight wide field">
         {{upload-button
             title=(if book.fileUrl "Change eBook file" "Upload eBook file")
             fileInputId="book-file"
             update=(perform tasks.uploadBookFile book)
-            isUploaded=book.fileUrl
         }}
+        {{#if (not-eq bookFileUploadProgress 0)}}
+          {{#ui-progress percent=bookFileUploadProgress class="teal small indicating"}}
+            <div class="bar"></div>
+          {{/ui-progress}}
+        {{/if}}
       </div>
     </div>
   </div>

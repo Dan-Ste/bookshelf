@@ -4,7 +4,6 @@ import Component from '@ember/component'
 export default Component.extend({
   localClassNames: ['upload-button'],
   classNames: ['ui basic button fluid'],
-  classNameBindings: ['isUploaded:teal'],
 
   tagName: 'label',
 

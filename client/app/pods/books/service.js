@@ -28,6 +28,9 @@ export default Service.extend({
   store: service(),
   router: service(),
 
+  bookCoverUploadProgress: 0,
+  bookFileUploadProgress: 0,
+
   createBook: task(function* (newBook) {
     const records = yield get(this, 'store').findAll('user')
     const user = get(records, 'firstObject')
@@ -124,6 +127,8 @@ export default Service.extend({
     const firebaseUtil = get(this, 'firebaseUtil')
     const path = `${get(user, 'username')}/images/book-covers/${image.name}`
 
+    set(this, 'bookCoverUploadProgress', 0)
+
     try {
       if (get(book, 'coverUrl')) {
         yield fbDeleteFile({
@@ -136,7 +141,7 @@ export default Service.extend({
         firebaseUtil,
         file: image,
         path,
-        onStateChange: this._onUploadStateChange.bind(this)
+        onStateChange: this._onBookCoverUploadStateChange.bind(this)
       })
 
       set(book, 'coverUrl', coverUrl)
@@ -152,6 +157,8 @@ export default Service.extend({
     const firebaseUtil = get(this, 'firebaseUtil')
     const path = `${get(user, 'username')}/files/books/${file.name}`
 
+    set(this, 'bookFileUploadProgress', 0)
+
     try {
       if (get(book, 'fileUrl')) {
         yield fbDeleteFile({
@@ -164,7 +171,7 @@ export default Service.extend({
         firebaseUtil,
         file,
         path,
-        onStateChange: this._onUploadStateChange.bind(this)
+        onStateChange: this._onBookFileUploadStateChange.bind(this)
       })
 
       set(book, 'fileUrl', bookFileUrl)
@@ -203,9 +210,11 @@ export default Service.extend({
     set(book, 'bookshelf', newBookshelf)
   },
 
-  _onUploadStateChange(snapshot) {
-    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+  _onBookCoverUploadStateChange(snapshot) {
+    set(this, 'bookCoverUploadProgress', (snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+  },
 
-    Logger.log('Upload is ' + progress + '% done')
+  _onBookFileUploadStateChange(snapshot) {
+    set(this, 'bookFileUploadProgress', (snapshot.bytesTransferred / snapshot.totalBytes) * 100)
   }
 })

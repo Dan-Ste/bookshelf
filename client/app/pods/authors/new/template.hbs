@@ -1,7 +1,10 @@
 <div class="bc-container">
   {{#author-form
       author=newAuthor
-      uploadAuthorPortrait=uploadAuthorPortrait
+      authorPortraitUploadProgress=authors.authorPortraitUploadProgress
+      tasks=(hash
+        uploadAuthorPortrait=authors.uploadAuthorPortrait
+      )
   }}
     <button class="ui button basic primary fluid {{if authors.createAuthor.isRunning 'loading'}}"
       onclick={{perform authors.createAuthor newAuthor}}>

@@ -25,6 +25,8 @@ export default Service.extend({
   store: service(),
   router: service(),
 
+  authorPortraitUploadProgress: 0,
+
   createAuthor: task(function* (newAuthor) {
     const records = yield get(this, 'store').findAll('user')
     const user = get(records, 'firstObject');
@@ -85,6 +87,8 @@ export default Service.extend({
     const firebaseUtil = get(this, 'firebaseUtil')
     const path = `${get(user, 'username')}/images/authors-portraits/${image.name}`
 
+    set(this, 'authorPortraitUploadProgress', 0)
+
     try {
       if (get(author, 'portraitUrl')) {
         yield fbDeleteFile({
@@ -97,7 +101,7 @@ export default Service.extend({
         firebaseUtil,
         file: image,
         path,
-        onStateChange: this._onUploadStateChange.bind(this)
+        onStateChange: this._onAuthorPortraitUploadStateChange.bind(this)
       })
 
       set(author, 'portraitUrl', portraitUrl)
@@ -106,9 +110,7 @@ export default Service.extend({
     }
   }),
 
-  _onUploadStateChange(snapshot) {
-    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-
-    Logger.log('Upload is ' + progress + '% done')
+  _onAuthorPortraitUploadStateChange(snapshot) {
+    set(this, 'authorPortraitUploadProgress', (snapshot.bytesTransferred / snapshot.totalBytes) * 100)
   }
 });
