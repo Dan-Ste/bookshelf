@@ -1,5 +1,7 @@
-<div local-class="cover" style={{coverBg}}>
-  {{#if (not book.didNotRead)}}
-    {{book-state-label state=book.state}}
-  {{/if}}
-</div>
+{{#if (not book.didNotRead)}}
+  {{book-state-label state=book.state}}
+{{/if}}
+
+{{#if (not book.coverUrl)}}
+  <h3 local-class="title">{{book.title}}</h3>
+{{/if}}

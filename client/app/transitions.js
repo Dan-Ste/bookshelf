@@ -91,7 +91,7 @@ export default function () {
     this.use('fade', {
       duration: 70
     }),
-    this.reverse('fade', {
+    this.reverse('toLeft', {
       duration: 70
     })
   )
