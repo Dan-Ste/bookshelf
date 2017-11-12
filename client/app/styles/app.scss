@@ -1,3 +1,5 @@
+@value color-teal, color-red from 'bookshelf/styles/colors';
+
 // global styles
 :global(img) {
   max-width: 100%;
@@ -13,15 +15,11 @@
 }
 
 :global(.color-teal-hover:hover) {
-  color: #00b5ad;
+  color: color-teal;
 }
 
 :global(.color-red-hover:hover) {
-  color: #db2828;
-}
-
-:global(.color-green-hover:hover) {
-  color: #21ba45;
+  color: color-red;
 }
 
 // Redefine ember-power-select styles
@@ -50,8 +48,8 @@
   background-color: rgba(0, 0, 0, 0.85);
 }
 
-// Redefine ember-power-calendar styles
-@import "ember-power-calendar";
-
 // Redefine ember-basic-dropdown styles
 @import "ember-basic-dropdown";
+
+@import "ember-power-calendar";
+@import "addons/ember-power-calendar"

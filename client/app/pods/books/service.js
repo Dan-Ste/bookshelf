@@ -37,21 +37,25 @@ export default Service.extend({
       const bookshelf = yield get(newBook, 'bookshelf')
       const author = yield get(newBook, 'author')
 
-      if (get(bookshelf, 'isNew')) {
-        set(bookshelf, 'user', user)
-      } else {
-        get(bookshelf, 'books').addObject(newBook)
+      if (bookshelf) {
+        if (get(bookshelf, 'isNew')) {
+          set(bookshelf, 'user', user)
+        } else {
+          get(bookshelf, 'books').addObject(newBook)
+        }
+
+        yield bookshelf.save()
       }
 
-      yield bookshelf.save()
+      if (author) {
+        if (get(author, 'isNew')) {
+          set(author, 'user', user)
+        } else {
+          get(author, 'books').addObject(newBook)
+        }
 
-      if (get(author, 'isNew')) {
-        set(author, 'user', user)
-      } else {
-        get(author, 'books').addObject(newBook)
+        yield author.save()
       }
-
-      yield author.save()
 
       set(newBook, 'user', user)
 

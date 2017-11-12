@@ -1,5 +1,7 @@
 {{#basic-dropdown as |dropdown|}}
-  <input type="text"
+  <input
+    type="text"
+    local-class="input"
     data-ebd-id="{{dropdown.uniqueId}}-trigger"
     onclick={{dropdown.actions.toggle}}
     value={{if date (moment-format date 'LL')}}
