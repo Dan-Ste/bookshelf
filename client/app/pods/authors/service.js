@@ -81,11 +81,8 @@ export default Service.extend({
   }),
 
   uploadAuthorPortrait: task(function* (author, image) {
-    const store = get(this, 'store')
-    const records = yield store.peekAll('user')
-    const user = get(records, 'firstObject')
     const firebaseUtil = get(this, 'firebaseUtil')
-    const path = `${get(user, 'username')}/images/authors-portraits/${image.name}`
+    const path = `images/${image.name}`
 
     set(this, 'authorPortraitUploadProgress', 0)
 
@@ -111,6 +108,11 @@ export default Service.extend({
   }),
 
   _onAuthorPortraitUploadStateChange(snapshot) {
-    set(this, 'authorPortraitUploadProgress', (snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+    const {
+      bytesTransferred,
+      totalBytes
+    } = snapshot
+
+    set(this, 'authorPortraitUploadProgress', (bytesTransferred / totalBytes) * 100)
   }
 });

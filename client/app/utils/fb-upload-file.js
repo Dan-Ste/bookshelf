@@ -10,15 +10,13 @@ export function fbUploadFile({
 }) {
   const metadata = {
     'contentType': file.type
-  };
+  }
 
   return new Promise((resolve, reject) => {
-    firebaseUtil.uploadFile(path, file, metadata, onStateChange).then(fileUrl => {
-      resolve(fileUrl);
-    }).catch(e => {
-      reject(e);
-    })
-  });
+    firebaseUtil.uploadFile(path, file, metadata, onStateChange)
+      .then(fileUrl => resolve(fileUrl))
+      .catch(e => reject(e))
+  })
 }
 
 export function fbDeleteFile({
@@ -26,10 +24,8 @@ export function fbDeleteFile({
   url
 }) {
   return new Promise((resolve, reject) => {
-    firebaseUtil.deleteFile(url).then(() => {
-      resolve();
-    }).catch(e => {
-      reject(e);
-    })
-  });
+    firebaseUtil.deleteFile(url)
+      .then(() => resolve())
+      .catch(e => reject(e))
+  })
 }

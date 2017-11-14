@@ -121,11 +121,8 @@ export default Service.extend({
   }),
 
   uploadBookCover: task(function* (book, image) {
-    const store = get(this, 'store')
-    const records = yield store.peekAll('user')
-    const user = get(records, 'firstObject')
     const firebaseUtil = get(this, 'firebaseUtil')
-    const path = `${get(user, 'username')}/images/book-covers/${image.name}`
+    const path = `images/${image.name}`
 
     set(this, 'bookCoverUploadProgress', 0)
 
@@ -151,11 +148,8 @@ export default Service.extend({
   }),
 
   uploadBookFile: task(function* (book, file) {
-    const store = get(this, 'store')
-    const records = yield store.peekAll('user')
-    const user = get(records, 'firstObject')
     const firebaseUtil = get(this, 'firebaseUtil')
-    const path = `${get(user, 'username')}/files/books/${file.name}`
+    const path = `ebooks/${file.name}`
 
     set(this, 'bookFileUploadProgress', 0)
 
@@ -211,10 +205,20 @@ export default Service.extend({
   },
 
   _onBookCoverUploadStateChange(snapshot) {
-    set(this, 'bookCoverUploadProgress', (snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+    const {
+      bytesTransferred,
+      totalBytes
+    } = snapshot
+
+    set(this, 'bookCoverUploadProgress', (bytesTransferred / totalBytes) * 100)
   },
 
   _onBookFileUploadStateChange(snapshot) {
-    set(this, 'bookFileUploadProgress', (snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+    const {
+      bytesTransferred,
+      totalBytes
+    } = snapshot
+
+    set(this, 'bookFileUploadProgress', (bytesTransferred / totalBytes) * 100)
   }
 })
