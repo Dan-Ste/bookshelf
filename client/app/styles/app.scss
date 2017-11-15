@@ -1,54 +1,16 @@
-@value color_teal, color_red from "bookshelf/styles/colors";
+@import "global";
 
-// global styles
-:global(img) {
-  max-width: 100%;
-}
-
-:global(.bc-container) {
-  max-width: 1640px;
-  margin: 0 3em;
-}
-
-:global([class*="color-"]) {
-  transition: color 0.15s ease-in-out !important;
-}
-
-:global(.color-teal-hover:hover) {
-  color: color_teal;
-}
-
-:global(.color-red-hover:hover) {
-  color: color_red;
-}
-
-// Redefine ember-power-select styles
+// ember-power-select styles
 @import 'ember-power-select/themes/bootstrap';
 @import "ember-power-select";
+@import "addons/power-select";
 
-:global(.ember-power-select-trigger) {
-  min-height: 36px;
-  line-height: 2.4;
-  cursor: pointer;
-}
-
-// Redefine ember-modal-dialog styles
+// ember-modal-dialog styles
 @import "ember-modal-dialog/ember-modal-structure";
 @import "ember-modal-dialog/ember-modal-appearance";
+@import "addons/modal-dialog";
 
-:global(.ember-modal-dialog) {
-  border-radius: 3px;
-}
-
-:global(.ember-modal-overlay) {
-  z-index: 102;
-}
-
-:global(.ember-modal-overlay.translucent) {
-  background-color: rgba(0, 0, 0, 0.85);
-}
-
-// Redefine ember-basic-dropdown styles
+// ember-basic-dropdown styles
 @import "ember-basic-dropdown";
 
 @import "ember-power-calendar";

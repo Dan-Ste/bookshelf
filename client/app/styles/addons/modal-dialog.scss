@@ -1,0 +1,11 @@
+.ember-modal-dialog {
+  border-radius: 3px;
+}
+
+.ember-modal-overlay {
+  z-index: 102;
+}
+
+.ember-modal-overlay.translucent {
+  background-color: rgba(0, 0, 0, 0.85);
+}

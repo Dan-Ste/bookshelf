@@ -1,4 +1,18 @@
+@value color_teal, color_red from "bookshelf/styles/colors";
+
 .bookshelf-menu-item {
   display: flex;
   justify-content: space-between;
+}
+
+.edit-icon {
+  &:hover {
+    color: color_teal;
+  }
+}
+
+.delete-icon {
+  &:hover {
+    color: color_red;
+  }
 }

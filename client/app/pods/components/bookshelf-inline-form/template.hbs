@@ -5,7 +5,7 @@
 <div local-class="color-picker">
   {{#power-select
       selected=bookshelf.color
-      options=colors
+      options=BookshelfColors
       searchEnabled=false
       renderInPlace=true
       selectedItemComponent="bookshelf-color"
@@ -15,6 +15,12 @@
   {{/power-select}}
 </div>
 
-<i class="icon checkmark link color-teal-hover" onclick={{action onApprove}}></i>
+<i class="icon checkmark link"
+  onclick={{action onApprove}}
+  local-class="approve-icon"
+></i>
 
-<i class="icon remove link color-red-hover" onclick={{action onDeny}}></i>
+<i class="icon remove link"
+  onclick={{action onDeny}}
+  local-class="deny-icon"
+></i>

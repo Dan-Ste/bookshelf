@@ -1,0 +1,9 @@
+.ember-power-select-trigger {
+  min-height: 36px;
+  line-height: 2.4;
+  cursor: pointer;
+}
+
+.ember-power-select-options[role="listbox"] {
+  max-height: 16em;
+}
