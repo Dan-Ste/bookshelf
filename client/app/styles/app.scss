@@ -1,4 +1,4 @@
-@value color-teal, color-red from 'bookshelf/styles/colors';
+@value color_teal, color_red from "bookshelf/styles/colors";
 
 // global styles
 :global(img) {
@@ -15,11 +15,11 @@
 }
 
 :global(.color-teal-hover:hover) {
-  color: color-teal;
+  color: color_teal;
 }
 
 :global(.color-red-hover:hover) {
-  color: color-red;
+  color: color_red;
 }
 
 // Redefine ember-power-select styles

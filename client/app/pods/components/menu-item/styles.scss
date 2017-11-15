@@ -1,8 +1,18 @@
+@value color_grey, color_teal from "bookshelf/styles/colors";
+
 .menu-item {
   display: flex;
   justify-content: space-between;
 }
 
-.action-icon {
+.icon {
+  color: color_grey;
+  opacity: 0.2;
   cursor: pointer;
+  transition: color 0.15s ease-in-out !important;;
+
+  &:hover {
+    color: color_teal;
+    opacity: 1;
+  }
 }

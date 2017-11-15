@@ -1,10 +1,6 @@
 {{title}}
 
-<div local-class="icons">
-  {{#liquid-if isHovering class="fade" local-class="action-icon"}}
-    {{yield}}
-    <i class="icon {{hoverIcon}} link color-teal-hover" onclick={{action onIconClick}}></i>
-  {{else}}
-    <i style={{html-safe (concat "color: " iconColor)}} class="icon {{icon}}"></i>
-  {{/liquid-if}}
-</div>
+<i class="icon {{icon}} link"
+  local-class="icon"
+  onclick={{action onIconClick}}
+></i>

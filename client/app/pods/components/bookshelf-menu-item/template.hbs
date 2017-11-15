@@ -1,0 +1,14 @@
+ {{bookshelf.title}}
+
+ {{#liquid-if isHovering class="fade" local-class="action-icon"}}
+  <i class="icon write link color-teal-hover"
+    onclick={{action onEditClick}}
+  ></i>
+  <i class="icon trash link color-red-hover"
+    onclick={{action onDeleteClick}}
+  ></i>
+{{else}}
+  <i style={{html-safe (concat "color: " bookshelf.color)}}
+    class="icon circle link"
+  ></i>
+{{/liquid-if}}
