@@ -15,115 +15,20 @@
       <label>Publishing year</label>
       {{one-way-number book.pubYear update=(action (mut book.pubYear))}}
     </div>
-  </div>
 
-  <div class="ui segment" local-class="segment">
-    <h4>State</h4>
-    <div class="ui form">
-      <div class="inline fields" local-class="fields">
-        {{#each-in STATES_INFO as |stateId stateInfo|}}
-          <div class="field">
-            {{book-state-checkbox
-                stateId=stateId
-                title=stateInfo.title
-                bookState=book.state
-            }}
-          </div>
-        {{/each-in}}
-      </div>
-
-      {{#liquid-if (eq book.state BOOK_STATES.READING) class="fade"}}
-        <div class="ui form" local-class="date">
-          <div class="fields" local-class="fields">
-            <div class="eight wide field">
-              <label>Start reading date</label>
-              {{bc-date-picker
-                  date=book.startReading
-                  onChange=(action (mut book.startReading) value="date")
-              }}
-            </div>
-          </div>
-        </div>
-      {{/liquid-if}}
-
-      {{#liquid-if (eq book.state BOOK_STATES.READ) class="fade"}}
-        <div class="ui form" local-class="date">
-          <div class="fields" local-class="fields">
-            <div class="eight wide field">
-              <label>Start reading date</label>
-              {{bc-date-picker
-                  date=book.startReading
-                  onChange=(action (mut book.startReading) value="date")
-              }}
-            </div>
-
-            <div class="eight wide field">
-              <label>Finish reading date</label>
-              {{bc-date-picker
-                  date=book.finishReading
-                  onChange=(action (mut book.finishReading) value="date")
-              }}
-            </div>
-          </div>
-        </div>
-      {{/liquid-if}}
-
+    <div class="field">
+      <label>Bookshelf</label>
+      {{#power-select
+          selected=book.bookshelf
+          options=bookshelves
+          searchField="fullInitials"
+          searchEnabled=(gt bookshelves.length 5)
+          onchange=(action (mut book.bookshelf))
+          placeholder="Pick Existed Bookshelf"
+      as |bookshelf|}}
+        {{bookshelf.title}}
+      {{/power-select}}
     </div>
-  </div>
-
-  <div class="ui segment" local-class="segment">
-    <h4>Bookshelf</h4>
-
-    {{#if isAddNewBookshelf}}
-
-      <div class="ui form">
-        <div class="field">
-          <label>Title</label>
-          {{one-way-input newBookshelfInfo.title update=(action (mut newBookshelfInfo.title))}}
-        </div>
-
-        <button class="ui button basic primary"
-          onclick={{queue
-            (action addNewBookshelf book newBookshelfInfo)
-            (action cleanNewBookshelfInfo)
-            (action (mut isAddNewBookshelf) false)
-          }}
-        >
-          Create New Bookshelf
-        </button>
-
-        <button class="ui button basic negative" onclick={{action (mut isAddNewBookshelf) false}}>
-          Cancel
-        </button>
-      </div>
-
-    {{else}}
-
-      <div class="ui form">
-        <div class="fields" local-class="fields">
-          <div class="eight wide field">
-            {{#power-select
-                selected=book.bookshelf
-                options=bookshelves
-                searchField="fullInitials"
-                searchEnabled=(gt bookshelves.length 5)
-                onchange=(action (mut book.bookshelf))
-                placeholder="Pick Existed Bookshelf"
-            as |bookshelf|}}
-              {{bookshelf.title}}
-            {{/power-select}}
-          </div>
-
-          <div class="eight wide field">
-            <button class="ui basic button fluid" onclick={{action (mut isAddNewBookshelf) true}}>
-              New Bookshelf
-            </button>
-          </div>
-        </div>
-      </div>
-
-    {{/if}}
-
   </div>
 
   <div class="ui segment" local-class="segment">
@@ -186,6 +91,60 @@
         </div>
       </div>
     {{/if}}
+  </div>
+
+  <div class="ui segment" local-class="segment">
+    <h4>State</h4>
+    <div class="ui form">
+      <div class="inline fields" local-class="fields">
+        {{#each-in STATES_INFO as |stateId stateInfo|}}
+          <div class="field">
+            {{book-state-checkbox
+                stateId=stateId
+                title=stateInfo.title
+                bookState=book.state
+            }}
+          </div>
+        {{/each-in}}
+      </div>
+
+      {{#liquid-if (eq book.state BOOK_STATES.READING) class="fade"}}
+        <div class="ui form" local-class="date">
+          <div class="fields" local-class="fields">
+            <div class="eight wide field">
+              <label>Start reading date</label>
+              {{bc-date-picker
+                  date=book.startReading
+                  onChange=(action (mut book.startReading) value="date")
+              }}
+            </div>
+          </div>
+        </div>
+      {{/liquid-if}}
+
+      {{#liquid-if (eq book.state BOOK_STATES.READ) class="fade"}}
+        <div class="ui form" local-class="date">
+          <div class="fields" local-class="fields">
+            <div class="eight wide field">
+              <label>Start reading date</label>
+              {{bc-date-picker
+                  date=book.startReading
+                  onChange=(action (mut book.startReading) value="date")
+              }}
+            </div>
+
+            <div class="eight wide field">
+              <label>Finish reading date</label>
+              {{bc-date-picker
+                  date=book.finishReading
+                  onChange=(action (mut book.finishReading) value="date")
+              }}
+            </div>
+          </div>
+        </div>
+      {{/liquid-if}}
+
+    </div>
   </div>
 
   {{yield}}
